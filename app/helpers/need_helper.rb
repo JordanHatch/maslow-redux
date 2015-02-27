@@ -36,13 +36,6 @@ module NeedHelper
     criteria.present? ? criteria : [""]
   end
 
-  def format_need_impact(impact)
-    impact_key = impact.parameterize.underscore
-    translated = t("needs.show.impact.#{impact_key}")
-
-    "If GOV.UK didn't meet this need #{translated}."
-  end
-
   def calculate_percentage(numerator, denominator)
     return unless numerator.present? and denominator.present?
     return if denominator == 0
@@ -69,19 +62,11 @@ module NeedHelper
   end
 
   def paginate_needs(needs)
-    return unless needs.present? and needs.current_page.present? and needs.pages.present? and needs.page_size.present?
-
-    Kaminari::Helpers::Paginator.new(self,
-      current_page: needs.current_page,
-      total_pages: needs.pages,
-      per_page: needs.page_size,
-      param_name: "page",
-      remote: false
-    ).to_s
+    paginate needs
   end
 
   def canonical_need_goal
-    Need.find(@need.duplicate_of).goal
+    Need.find_by_need_id(@need.duplicate_of).goal
   end
 
   def format_decision_made(need)
@@ -97,7 +82,7 @@ module NeedHelper
   end
 
   def bookmark_icon(bookmarks = [], need_id)
-    bookmarks.include?(need_id.to_i) ? 'glyphicon-star' : 'glyphicon-star-empty'
+    bookmarks.include?(need_id) ? 'glyphicon-star' : 'glyphicon-star-empty'
   end
 
   def status_label_class(status_description)

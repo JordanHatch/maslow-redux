@@ -29,8 +29,6 @@
 
   <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(@need.met_when), f: f } %>
 
-  <%= f.input :justifications, :label => "Is this need in proposition for GOV.UK? You can tick more than one. <br/><span class='optional'>(optional)</span>".html_safe, :hint => "Why should this need be on GOV.UK?", :as => :check_boxes, :collection => Need::JUSTIFICATIONS %>
-
   <%= f.inputs "Provide evidence for this need", :id => "evidence" do %>
     <p class="hint-text">This helps us understand how important this need is in context of all the needs GOV.UK meets.</p>
     <%= f.input :legislation,
@@ -66,12 +64,6 @@
       :input_html => { :class => 'input-md-8', :rows => 3 }
     %>
   <% end %>
-
-  <%= f.input :impact,
-    :label => "What is the impact of GOV.UK not doing this? <br/><span class='optional'>(optional)</span>".html_safe, :hint => "What is the impact of GOV.UK not doing this?",
-    :as => :radio,
-    :collection => Need::IMPACT
-  %>
 
   <%= render layout: 'workflow_footer' do %>
     <div class="navbar-btn">

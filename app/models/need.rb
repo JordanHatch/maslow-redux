@@ -1,244 +1,102 @@
 require "active_model"
 
 class Need
-  extend ActiveModel::Naming
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  include ActiveModel::Serialization
+  include Mongoid::Document
 
-  class NotFound < StandardError
-    attr_reader :need_id
+  INITIAL_NEED_ID = 100001
 
-    def initialize(need_id)
-      super("Need with ID #{need_id} not found")
-      @need_id = need_id
-    end
+  field :need_id, type: Integer
+  field :role, type: String
+  field :goal, type: String
+  field :benefit, type: String
+  field :organisation_ids, type: Array, default: []
+  field :met_when, type: Array
+  field :yearly_user_contacts, type: Integer
+  field :yearly_site_views, type: Integer
+  field :yearly_need_views, type: Integer
+  field :yearly_searches, type: Integer
+  field :other_evidence, type: String
+  field :legislation, type: String
+  field :applies_to_all_organisations, type: Boolean, default: false
+  field :duplicate_of, type: Integer, default: nil
+
+  embeds_one :status, class_name: "NeedStatus", inverse_of: :need, cascade_callbacks: true
+  validates :status, presence: true
+  validates_associated :status
+
+  before_save :assign_new_id, on: :create
+
+  has_and_belongs_to_many :organisations
+  has_many :revisions, class_name: "NeedRevision"
+
+  # before_validation :default_booleans_to_false
+  before_validation :default_status_to_proposed
+  default_scope order_by([:_id, :desc])
+
+  def per_page
+    50
   end
 
-  # Allow us to convert the API response to a list of Need objects, but still
-  # retain the pagination information
-  class PaginatedList < Array
-    PAGINATION_PARAMS = [:pages, :total, :page_size, :current_page, :start_index]
-    attr_reader *PAGINATION_PARAMS
-
-    def initialize(needs, pagination_info)
-      super(needs)
-
-      @pages = pagination_info.pages
-      @total = pagination_info.total
-      @page_size = pagination_info.page_size
-      @current_page = pagination_info.current_page
-      @start_index = pagination_info.start_index
-    end
-
-    def inspect
-      pagination_params = Hash[
-        PAGINATION_PARAMS.map { |param_name| [param_name, send(param_name)] }
-      ]
-      "#<#{self.class} #{super}, #{pagination_params}>"
-    end
+  def to_param
+    need_id
   end
 
-  JUSTIFICATIONS = [
-    "It's something only government does",
-    "The government is legally obliged to provide it",
-    "It's inherent to a person's or an organisation's rights and obligations",
-    "It's something that people can do or it's something people need to know before they can do something that's regulated by/related to government",
-    "There is clear demand for it from users",
-    "It's something the government provides/does/pays for",
-    "It's straightforward advice that helps people to comply with their statutory obligations"
-  ]
-  IMPACT = [
-    "No impact",
-    "Noticed only by an expert audience",
-    "Noticed by the average member of the public",
-    "Has consequences for the majority of your users",
-    "Has serious consequences for your users and/or their customers",
-    "Endangers people"
-  ]
+  def changesets
+    (revisions + [nil]).each_cons(2).map {|revision, previous|
+      notes = Note.where(revision: revision.id)
+      Changeset.new(revision, previous, notes)
+    }
+  end
 
   NUMERIC_FIELDS = ["yearly_user_contacts", "yearly_site_views", "yearly_need_views", "yearly_searches"]
-  MASS_ASSIGNABLE_FIELDS = ["role", "goal", "benefit", "organisation_ids", "impact", "justifications", "met_when",
-    "other_evidence", "legislation"] + NUMERIC_FIELDS
 
-  # fields which should not be updated through mass-assignment.
-  # this is equivalent to using ActiveModel's attr_protected
-  PROTECTED_FIELDS = ["duplicate_of", "status"]
-
-  # fields which we should create read and write accessors for
-  # and which we should send back to the Need API
-  WRITABLE_FIELDS = MASS_ASSIGNABLE_FIELDS + PROTECTED_FIELDS
-
-  # non-writable fields returned from the API which we want to make accessible
-  # but which we don't want to send back to the Need API
-  READ_ONLY_FIELDS = [ :id, :revisions, :organisations, :applies_to_all_organisations ]
-
-  attr_accessor *WRITABLE_FIELDS
-  attr_reader *READ_ONLY_FIELDS
-
-  alias_method :need_id, :id
-
-  validates_presence_of ["role", "goal", "benefit"]
-  validates :impact, inclusion: { in: IMPACT }, allow_blank: true
-  validates_each :justifications do |record, attr, value|
-    record.errors.add(attr, "must contain a known value") unless (value.nil? || value.all? { |v| JUSTIFICATIONS.include? v })
-  end
+  validates :role, :goal, :benefit, presence: true
   NUMERIC_FIELDS.each do |field|
     validates_numericality_of field, :only_integer => true, :allow_blank => true, :greater_than_or_equal_to => 0
   end
 
-  # Retrieve a list of needs from the Need API
-  #
-  # The parameters are the same as passed through to the Need API: as of
-  # 2014-03-12, they are `organisation_id`, `page` and `q`.
-  def self.list(options={})
-    need_response = Maslow.need_api.needs(options)
-
-    # The response can be treated either as nested `OpenStruct`s or as a hash;
-    # to get the result hashes back out, we can access the key directly.
-    need_hashes = need_response["results"]
-
-    need_objects = need_hashes.map { |need_hash| self.new(need_hash, true) }
-    PaginatedList.new(need_objects, need_response)
+  def self.by_ids(ids)
+    Need.in(need_id: ids)
   end
 
-  # Retrieve a list of needs matching an array of ids
-
-  # Note that this returns the entire set of matching ids and not a
-  # PaginatedList
-  def self.by_ids(*ids)
-    response = Maslow.need_api.needs_by_id(ids.flatten)
-
-    response.with_subsequent_pages.map { |need| self.new(need.marshal_dump.stringify_keys, true) }
+  def self.find_by_need_id(id)
+    self.where(need_id: id).first
   end
 
-  # Retrieve a need from the Need API, or raise NotFound if it doesn't exist.
-  #
-  # This works in roughly the same way as an ActiveRecord-style `find` method,
-  # just with a different exception type.
-  def self.find(need_id)
-    need_response = Maslow.need_api.need(need_id)
-    if need_response
-      self.new(need_response.to_hash, true)
-    else
-      raise NotFound, need_id
-    end
-  end
-
-  def initialize(attrs, existing = false)
-    @existing = existing
-
-    if existing
-      assign_read_only_and_protected_attributes(attrs)
-
-      # discard all the read-only fields and anything else from the API which
-      # we don't understand, before calling the update method below
-      #
-      # we only do this for initializing an existing need from the API so that
-      # we can raise an error when invalid fields are submitted through the
-      # Maslow forms.
-      attrs = filtered_attributes(attrs)
-    end
-
-    # assign all the writable attributes
-    update(attrs)
+  def record_revision(action, user = nil)
+    rev = revisions.build(
+      action_type: action,
+      snapshot: attributes,
+      author: user
+    )
+    puts rev.inspect
+    rev.save!
   end
 
   def add_more_criteria
-    @met_when << ""
+    met_when << ""
   end
 
   def remove_criteria(index)
-    @met_when.delete_at(index)
+    met_when.delete_at(index)
   end
 
   def duplicate?
     duplicate_of.present?
   end
 
-  def update(attrs)
-    strip_newline_from_textareas(attrs)
-
-    unless (attrs.keys - MASS_ASSIGNABLE_FIELDS).empty?
-      raise(ArgumentError, "Unrecognised attributes present in: #{attrs.keys}")
-    end
-    attrs.keys.each do |f|
-      send("#{f}=", attrs[f])
-    end
-
-    @met_when ||= []
-    @justifications ||= []
-    @organisation_ids ||= []
-  end
-
   def artefacts
-    @artefacts ||= Maslow.content_api.for_need(@id)
-  rescue GdsApi::BaseError
     []
   end
 
-  def as_json(options = {})
-    # Build up the hash manually, as ActiveModel::Serialization's default
-    # behaviour serialises all attributes, including @errors and
-    # @validation_context.
-    remove_blank_met_when_criteria
-    res = (WRITABLE_FIELDS).each_with_object({}) do |field, hash|
-      value = send(field)
-      if value.present?
-        # if this is a numeric field, force the value we send to the API to be an
-        # integer
-        value = Integer(value) if NUMERIC_FIELDS.include?(field)
-      end
-
-      # catch empty text fields and send them as null values instead for consistency
-      # with updates on other fields
-      value = nil if value == ""
-
-      hash[field] = value.as_json
-    end
-  end
-
-  def save
-    raise("The save_as method must be used when persisting a need, providing details about the author.")
-  end
-
-  def close_as(author)
-    duplicate_atts = {
-      "duplicate_of" => @duplicate_of,
-      "author" => author_atts(author)
-    }
-    Maslow.need_api.close(@id, duplicate_atts)
-    true
-  rescue GdsApi::HTTPErrorResponse => err
-    false
+  def save_as(user)
+    action = persisted? ? 'update' : 'create'
+    save && reload && record_revision(action, user)
   end
 
   def reopen_as(author)
-    Maslow.need_api.reopen(@id, "author" => author_atts(author))
-    true
-  rescue GdsApi::HTTPErrorResponse => err
-    false
-  end
-
-  def save_as(author)
-    atts = as_json.merge("author" => author_atts(author))
-
-    if persisted?
-      Maslow.need_api.update_need(@id, atts)
-    else
-      response_hash = Maslow.need_api.create_need(atts).to_hash
-      @existing = true
-
-      assign_read_only_and_protected_attributes(response_hash)
-      update(filtered_attributes(response_hash))
-    end
-    true
-  rescue GdsApi::HTTPErrorResponse => err
-    false
-  end
-
-  def persisted?
-    @existing
+    self.duplicate_of = nil
+    save_as(author)
   end
 
   def has_invalid_status?
@@ -246,61 +104,21 @@ class Need
   end
 
 private
+  def assign_new_id
+    last_assigned = Need.order_by([:need_id, :desc]).first
+    self.need_id ||= (last_assigned.present? && last_assigned.need_id >= INITIAL_NEED_ID) ? last_assigned.need_id + 1 : INITIAL_NEED_ID
+  end
+
+  def default_status_to_proposed
+    self.status ||= NeedStatus.new(description: NeedStatus::PROPOSED)
+  end
+
   def author_atts(author)
     {
       "name" => author.name,
       "email" => author.email,
       "uid" => author.uid
     }
-  end
-
-  def assign_read_only_and_protected_attributes(attrs)
-    # map the read only and protected fields from the API to instance
-    # variables of the same name
-    (READ_ONLY_FIELDS + PROTECTED_FIELDS).map(&:to_s).each do |field|
-      value = attrs[field]
-      prepared_value = case field
-                       when 'revisions'
-                         prepare_revisions(value)
-                       when 'organisations'
-                         prepare_organisations(value)
-                       when 'status'
-                         prepare_status(value)
-                       else
-                         value
-                       end
-
-      instance_variable_set("@#{field}", prepared_value)
-    end
-  end
-
-  def filtered_attributes(original_attrs)
-    # Discard fields from the API we don't understand. Coupling the fields
-    # this app understands to the fields it expects from clients is fine, but
-    # we don't want to couple that with the fields we can use in the API.
-    original_attrs.slice(*MASS_ASSIGNABLE_FIELDS)
-  end
-
-  def prepare_organisations(organisations)
-    return [] unless organisations.present?
-    GdsApi::Response.build_ostruct_recursively(organisations)
-  end
-
-  def prepare_status(status)
-    return nil unless status.present?
-    NeedStatus.new(status)
-  end
-
-  def prepare_revisions(revisions)
-    return [] unless revisions.present?
-
-    structs = GdsApi::Response.build_ostruct_recursively(revisions)
-
-    # Return changes as a hash, rather than an OpenStruct because
-    # we would like changes to be returned as field-value pairs
-    structs.each_with_index do |revision, i|
-      revision.changes = revisions[i]["changes"]
-    end
   end
 
   def remove_blank_met_when_criteria

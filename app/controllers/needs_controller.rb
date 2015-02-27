@@ -18,7 +18,8 @@ class NeedsController < ApplicationController
     @bookmarks = current_user.bookmarks
     @current_page = needs_path
 
-    @needs = Need.list(opts)
+    @needs = Need.page(params[:page])
+
     respond_to do |format|
       format.html
       format.csv do
@@ -83,24 +84,21 @@ class NeedsController < ApplicationController
 
   def update
     authorize! :update, Need
+
     @need = load_need
-    @need.update(prepare_need_params(params))
+
+    need_params = prepare_need_params(params)
+    @need.assign_attributes(need_params)
 
     add_or_remove_criteria(:edit) and return if criteria_params_present?
 
-    if @need.valid?
-      if @need.save_as(current_user)
-        redirect_to redirect_url, notice: "Need updated",
-          flash: { need_id: @need.need_id, goal: @need.goal }
-        return
-      else
-        flash[:error] = "There was a problem saving your need."
-      end
+    if @need.save_as(current_user)
+      redirect_to redirect_url, notice: "Need updated",
+        flash: { need_id: @need.need_id, goal: @need.goal }
     else
       flash[:error] = "There were errors in the need form."
+      render "edit", :status => 422
     end
-
-    render "edit", :status => 422
   end
 
   def close_as_duplicate
@@ -116,12 +114,14 @@ class NeedsController < ApplicationController
 
   def closed
     authorize! :close, Need
+
     @need = load_need
     @need.duplicate_of = params["need"]["duplicate_of"].to_i
 
-    if @need.valid?
-      if @need.close_as(current_user)
-        @canonical_need = Need.find(@need.duplicate_of)
+    @canonical_need = Need.find_by_need_id(@need.duplicate_of)
+
+    if @need.valid? && @canonical_need.present?
+      if @need.save_as(current_user)
         redirect_to need_url(@need.need_id), notice: "Need closed as a duplicate of",
           flash: { need_id: @canonical_need.need_id, goal: @canonical_need.goal }
         return
@@ -138,12 +138,13 @@ class NeedsController < ApplicationController
 
   def reopen
     authorize! :reopen, Need
+
     @need = load_need
     old_canonical_id = @need.duplicate_of
 
     if @need.reopen_as(current_user)
       redirect_to need_url(@need.need_id), notice: "Need is no longer a duplicate of",
-        flash: { need_id: old_canonical_id, goal: Need.find(old_canonical_id).goal }
+        flash: { need_id: old_canonical_id, goal: Need.find_by_need_id(old_canonical_id).goal }
       return
     else
       flash[:error] = "There was a problem reopening the need"
@@ -181,7 +182,7 @@ class NeedsController < ApplicationController
       return
     end
 
-    @need.status = need_status.as_json
+    @need.status = need_status
 
     unless @need.save_as(current_user)
       flash[:error] = "We had a problem updating the need’s status"
@@ -190,31 +191,26 @@ class NeedsController < ApplicationController
     redirect_to need_path(@need)
   end
 
-  private
+private
 
   def redirect_url
     params["add_new"] ? new_need_path : need_url(@need.need_id)
   end
 
   def prepare_need_params(params_hash)
-    if params_hash["need"]
-      # Remove empty strings from multi-valued fields that Rails inserts.
-      ["justifications","organisation_ids"].each do |field|
-        if params_hash["need"][field]
-          params_hash["need"][field].select!(&:present?)
+    params_hash[:need].tap {|hash|
+      [:organisation_ids, :met_when].each do |field|
+        if hash[field]
+          hash[field].select!(&:present?)
         end
       end
-    end
-    params_hash["need"]
+    }
   end
 
   def load_need
     begin
-      need_id = Integer(params[:id])
-      Need.find(need_id)
+      Need.find_by_need_id(params[:id])
     rescue ArgumentError, TypeError # shouldn't happen; route is constrained
-      raise Http404
-    rescue Need::NotFound
       raise Http404
     end
   end

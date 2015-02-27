@@ -23,23 +23,6 @@
         </ul>
       <% end %>
 
-      <% if @need.justifications.any? %>
-        <h3>Need should be met on GOV.UK because</h3>
-        <ul class="justifications add-bottom-margin">
-          <% @need.justifications.each do |justification| %>
-            <li><%= justification %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <% if @need.impact.present? %>
-        <div class="impact">
-          <p>
-            <%= format_need_impact @need.impact %>
-          </p>
-        </div>
-      <% end %>
-
       <% if @need.applies_to_all_organisations %>
         <p class="all-organisations">
           <strong>This need applies to all organisations.</strong> This is because it's common across government. It will be met by a particular format of content rather than individual items.
@@ -57,40 +40,6 @@
         <div class="other-evidence">
           <h3>Further evidence</h3>
           <%= simple_format html_escape(@need.other_evidence) %>
-        </div>
-      <% end %>
-
-      <% if @need.artefacts.any? %>
-        <div class="add-top-margin">
-          <h3>GOV.UK content which meets this need</h3>
-
-          <table id="artefacts-for-need" class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">
-                  Title
-                </th>
-                <th scope="col">
-                  Feedback
-                </th>
-                <th scope="col">
-                  Format
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @need.artefacts.each do |artefact| %>
-                <tr>
-                  <td><%= link_to artefact.title, artefact.web_url %></td>
-                  <td><% if artefact.web_url.present? %>
-                        <%= link_to 'View feedback', feedback_for_page(artefact) %>
-                      <% end %></td>
-                  <td><%= artefact.format.humanize %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
         </div>
       <% end %>
     </div>
