@@ -13,10 +13,6 @@
     <%= link_to "Bookmarked needs", bookmarks_path %>
   </li>
 <% end %>
-<% content_for :navbar_right do %>
-  Hello, <%= link_to current_user.name, Plek.current.find('signon') %>
-  &bull; <%= link_to 'Sign out', gds_sign_out_path %>
-<% end %>
 <% content_for :app_title do %>Maslow<% end %>
 <% content_for :content do %>
   <% [:notice, :alert, :error].select { |k| flash[k].present? }.each do |k| %>

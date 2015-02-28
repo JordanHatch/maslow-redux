@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   check_authorization
+  include ApplicationHelper
 
   rescue_from ActionController::InvalidAuthenticityToken do
     render text: "Invalid authenticity token", status: 403
@@ -9,11 +10,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to needs_path, alert: "You do not have permission to perform this action."
   end
-
-  include GDS::SSO::ControllerMethods
-
-  before_filter :authenticate_user!
-  before_filter :require_signin_permission!
 
   private
     def verify_authenticity_token

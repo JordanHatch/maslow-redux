@@ -5,12 +5,6 @@ gem 'rails', '3.2.17'
 gem 'mongoid', '3.0.23'
 gem 'plek', '1.4.0'
 
-if ENV['SSO_DEV']
-  gem 'gds-sso', path: '../gds-sso'
-else
-  gem 'gds-sso', '9.3.0'
-end
-
 gem 'kaminari', '0.14.1'
 gem 'logstasher', '0.4.8'
 gem 'airbrake', '~> 4.0.0'
