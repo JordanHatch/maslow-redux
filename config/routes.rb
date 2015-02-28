@@ -1,6 +1,4 @@
 Maslow::Application.routes.draw do
-  mount GovukAdminTemplate::Engine, at: '/style-guide'
-
   get "/healthcheck" => Proc.new { [200, {"Content-type" => "text/plain"}, ["OK"]] }
 
   resources :bookmarks, only: [:index] do

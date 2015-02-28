@@ -11,9 +11,8 @@
  *= require_self
  */
 
-@import "govuk_admin_template";
+@import "bootstrap";
 @import "formtastic-bootstrap";
-@import "govuk_admin_template_overrides";
 @import "chosen";
 @import "mixins";
 @import "maslow_theme";

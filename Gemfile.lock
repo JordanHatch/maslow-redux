@@ -85,10 +85,6 @@ GEM
       plek
       rack-cache
       rest-client (~> 1.6.3)
-    govuk_admin_template (1.4.0)
-      bootstrap-sass (~> 3.3.1)
-      jquery-rails (~> 3.1.1)
-      rails (>= 3.2.0)
     hike (1.2.3)
     i18n (0.6.11)
     jasmine (2.1.0)
@@ -206,6 +202,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake (~> 4.0.0)
+  bootstrap-sass
   cancan (= 1.6.10)
   capybara (= 2.1.0)
   chosen-rails
@@ -215,8 +212,8 @@ DEPENDENCIES
   formtastic (= 2.3.0)
   formtastic-bootstrap (= 3.0.0)
   gds-api-adapters (= 16.1.0)
-  govuk_admin_template (= 1.4.0)
   jasmine (= 2.1.0)
+  jquery-rails
   kaminari (= 0.14.1)
   logstasher (= 0.4.8)
   lrucache (= 0.1.4)
