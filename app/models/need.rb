@@ -3,7 +3,7 @@ require "active_model"
 class Need
   include Mongoid::Document
 
-  INITIAL_NEED_ID = 100001
+  INITIAL_NEED_ID = 1
 
   field :need_id, type: Integer
   field :role, type: String
