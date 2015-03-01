@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def current_user
-    User.first
+    @user ||= User.first
   end
 end
