@@ -4,6 +4,18 @@
   margin-top: 0;
 }
 
+.need-header {
+  margin-bottom: 15px;
+
+  .status {
+    @extend .label;
+
+    display: inline-block;
+    font-size: 14px;
+    padding: .4em .6em .5em;
+  }
+}
+
 .need-btn-group {
   @extend .btn-group;
   text-align: right;

@@ -1,4 +1,4 @@
-<header class="block-border add-bottom-margin">
+<header class="need-header">
   <% if @need.organisations.any? %>
     <p class="need-organisations">
       <%= @need.organisations.map do |o| %>
@@ -11,9 +11,7 @@
       <%= format_need_goal @need.goal %>
     </h1>
   </div>
-  <span class="lead">
-    <span class="status label <%= status_label_class(@need.status.description) %>">
-      Status: <%= @need.status.description %>
-    </span>
+  <span class="status <%= status_label_class(@need.status.description) %>">
+    Status: <%= @need.status.description %>
   </span>
 </header>
