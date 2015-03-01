@@ -67,5 +67,11 @@ module Maslow
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    if ENV['USER'].present? && ENV['PASSWORD'].present?
+      config.middleware.use '::Rack::Auth::Basic' do |u, p|
+        [u, p] == [ENV['USER'], ENV['PASSWORD']]
+      end
+    end
   end
 end

@@ -33,3 +33,8 @@ and 'justifications'.
 
     bundle install
     bundle exec rails s -p 5000
+
+## Basic authentication
+
+You can protect the app with HTTP Basic Authentication by setting the `USER` and
+`PASSWORD` configurations appropriately in your environment.
