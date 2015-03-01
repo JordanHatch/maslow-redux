@@ -8,7 +8,7 @@ class Need
   field :goal, type: String
   field :benefit, type: String
   field :organisation_ids, type: Array, default: []
-  field :met_when, type: Array
+  field :met_when, type: Array, default: []
   field :yearly_user_contacts, type: Integer
   field :yearly_site_views, type: Integer
   field :yearly_need_views, type: Integer

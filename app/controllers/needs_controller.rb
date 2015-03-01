@@ -61,7 +61,7 @@ class NeedsController < ApplicationController
 
   def create
     authorize! :create, Need
-    @need = Need.new( prepare_need_params(params) )
+    @need = Need.new(prepare_need_params)
 
     add_or_remove_criteria(:new) and return if criteria_params_present?
 
@@ -84,9 +84,7 @@ class NeedsController < ApplicationController
     authorize! :update, Need
 
     @need = load_need
-
-    need_params = prepare_need_params(params)
-    @need.assign_attributes(need_params)
+    @need.assign_attributes(prepare_need_params)
 
     add_or_remove_criteria(:edit) and return if criteria_params_present?
 
@@ -195,8 +193,8 @@ private
     params["add_new"] ? new_need_path : need_url(@need.need_id)
   end
 
-  def prepare_need_params(params_hash)
-    params_hash[:need].tap {|hash|
+  def prepare_need_params
+    need_params.tap {|hash|
       [:organisation_ids, :met_when].each do |field|
         if hash[field]
           hash[field].select!(&:present?)
@@ -231,5 +229,12 @@ private
     index = Integer(params[:delete_criteria])
     @need.remove_criteria(index)
   rescue ArgumentError
+  end
+
+  def need_params
+    params.require(:need).permit(:role, :goal, :benefit, :yearly_user_contacts,
+      :yearly_site_views, :yearly_need_views, :yearly_searches, :other_evidence,
+      :legislation, :applies_to_all_organisations,
+      { organisation_ids: [] }, { met_when: [] })
   end
 end
