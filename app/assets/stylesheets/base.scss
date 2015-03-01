@@ -1,0 +1,34 @@
+header.app-header {
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-inverse;
+  @extend .navbar-static-top;
+
+  > div {
+    @extend .container;
+  }
+
+  .app-title {
+    @extend .navbar-header;
+  }
+
+  nav {
+    @extend .collapse;
+    @extend .navbar-collapse;
+
+    > ul {
+      @extend .nav;
+      @extend .navbar-nav;
+    }
+  }
+}
+
+main {
+  @extend .container;
+}
+
+h1 {
+  &.page-title, &.page-title-with-border {
+    margin-bottom: 30px;
+  }
+}

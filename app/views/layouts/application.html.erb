@@ -7,13 +7,13 @@
   <%= yield :extra_headers %>
 </head>
 <body>
-  <header class="navbar navbar-default navbar-inverse navbar-static-top" role="banner">
-    <div class="container">
-      <div class="navbar-header">
+  <header class="app-header">
+    <div>
+      <div class="app-title">
         <%= link_to "Maslow", root_path, :class => 'navbar-brand' %>
       </div>
-      <nav role="navigation" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+      <nav role="navigation">
+        <ul>
           <li <% if current_page?(bookmarks_path) %> class="active" <% end %>>
             <%= link_to "Bookmarked needs", bookmarks_path %>
           </li>
@@ -21,7 +21,8 @@
       </nav>
     </div>
   </header>
-  <div class="container">
+
+  <main>
     <% [:notice, :alert, :error].select { |k| flash[k].present? }.each do |k| %>
       <div class="main-alert <%= k %>">
         <%= flash[k] %>
@@ -33,6 +34,6 @@
     <% end %>
 
     <%= yield %>
-  </div>
+  </main>
 </body>
 </html>
