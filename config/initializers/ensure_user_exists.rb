@@ -7,3 +7,4 @@ user.assign_attributes(
     'admin',
   ]
 )
+user.save!
