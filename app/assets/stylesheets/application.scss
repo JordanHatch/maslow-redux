@@ -11,9 +11,12 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import "formtastic-bootstrap";
 @import "chosen";
+
 @import "mixins";
 @import "maslow_theme";
 
