@@ -34,7 +34,13 @@ and 'justifications'.
     bundle install
     bundle exec rails s -p 5000
 
-## Basic authentication
+## Configuration
+
+- `INSTANCE_NAME`: the name to give to this instance of Maslow (eg. your team or
+  product name).
+- `DATABASE_URI`: the URL to a MongoDB database in the production environment
+
+### Basic authentication
 
 You can protect the app with HTTP Basic Authentication by setting the `USER` and
 `PASSWORD` configurations appropriately in your environment.
