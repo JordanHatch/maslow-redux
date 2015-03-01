@@ -6,7 +6,7 @@
   <%= csrf_meta_tag %>
   <%= yield :extra_headers %>
 
-  <title><%= content_for?(:page_title) ? yield(:page_title) + " | " : "" %> Maslow</title>
+  <title><%= content_for?(:page_title) ? yield(:page_title) + " | " : "" %><%= app_title %></title>
 </head>
 <body>
   <header class="app-header">
