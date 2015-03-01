@@ -1,7 +1,7 @@
 ruby '2.1.5'
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.13'
+gem 'rails', '~> 4.1.9'
 
 gem 'mongoid', '~> 4.0.2'
 
