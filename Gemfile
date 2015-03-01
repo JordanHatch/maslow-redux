@@ -1,7 +1,7 @@
 ruby '2.1.5'
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.9'
+gem 'rails', '~> 4.2.0'
 
 gem 'mongoid', '~> 4.0.2'
 
@@ -9,6 +9,10 @@ gem 'kaminari', '0.14.1'
 gem 'airbrake', '~> 4.0.0'
 gem 'cancan', '1.6.10'
 gem 'lrucache', '0.1.4'
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
 
 group :test do
   gem 'capybara', '2.1.0'
