@@ -5,6 +5,8 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
   <%= yield :extra_headers %>
+
+  <title><%= content_for?(:page_title) ? yield(:page_title) + " | " : "" %> Maslow</title>
 </head>
 <body>
   <header class="app-header">
