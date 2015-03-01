@@ -18,3 +18,7 @@ test:
         retry_interval: 0
   options:
     allow_dynamic_fields: false
+production:
+  sessions:
+    default:
+      uri: '<%= ENV['DATABASE_URI'] %>'

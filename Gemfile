@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.17'
 
-gem 'mongoid', '3.0.23'
+gem 'mongoid', '3.1.6'
 
 gem 'kaminari', '0.14.1'
 gem 'airbrake', '~> 4.0.0'
