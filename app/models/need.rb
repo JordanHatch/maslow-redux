@@ -26,7 +26,7 @@ class Need
   before_validation :default_status_to_proposed
   before_validation :remove_blank_met_when_criteria
 
-  default_scope order_by([:_id, :desc])
+  default_scope ->{ order_by([:_id, :desc]) }
 
   validates :role, :goal, :benefit, :status, presence: true
   validates_associated :status
@@ -57,7 +57,7 @@ class Need
   end
 
   def to_param
-    need_id
+    need_id.to_s
   end
 
   def changesets

@@ -7,7 +7,7 @@ class Note
   field :author_id, type: String
   field :revision, type: String
 
-  default_scope order_by([:created_at, :desc])
+  default_scope ->{ order_by([:created_at, :desc]) }
 
   belongs_to :author, class_name: 'User'
 

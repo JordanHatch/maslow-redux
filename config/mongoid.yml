@@ -4,8 +4,6 @@ development:
       database: maslow_development
       hosts:
         - localhost:27017
-  options:
-    allow_dynamic_fields: false
 test:
   sessions:
     default:
@@ -16,8 +14,6 @@ test:
         consistency: :strong
         max_retries: 1
         retry_interval: 0
-  options:
-    allow_dynamic_fields: false
 production:
   sessions:
     default:

@@ -1,9 +1,9 @@
 ruby '2.1.5'
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.0.13'
 
-gem 'mongoid', '3.1.6'
+gem 'mongoid', '~> 4.0.2'
 
 gem 'kaminari', '0.14.1'
 gem 'airbrake', '~> 4.0.0'
@@ -27,9 +27,7 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
+  gem 'sass-rails',   '~> 4.0.5'
   gem 'uglifier', '>= 1.0.3'
 end
 
