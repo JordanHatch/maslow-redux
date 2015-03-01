@@ -1,5 +1,3 @@
-require 'gds_api/need_api'
-
 class Organisation
 
   # attr_reader :id, :name, :abbreviation, :status

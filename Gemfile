@@ -1,9 +1,9 @@
+ruby '2.1.5'
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.17'
 
 gem 'mongoid', '3.0.23'
-gem 'plek', '1.4.0'
 
 gem 'kaminari', '0.14.1'
 gem 'logstasher', '0.4.8'
@@ -36,16 +36,9 @@ end
 
 gem 'chosen-rails'
 
-# gem 'govuk_admin_template', '1.4.0'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem 'unicorn'
 gem 'formtastic', '2.3.0'
 gem 'formtastic-bootstrap', '3.0.0'
-
-if ENV['API_DEV']
-  gem 'gds-api-adapters', path: '../gds-api-adapters'
-else
-  gem 'gds-api-adapters', '16.1.0'
-end

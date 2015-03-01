@@ -76,11 +76,6 @@ module NeedHelper
     decision.join(", ")
   end
 
-  def feedback_for_page(artefact)
-    path = URI(artefact.web_url).path
-    Maslow.support_api.feedback_url path
-  end
-
   def bookmark_icon(bookmarks = [], need_id)
     bookmarks.include?(need_id) ? 'glyphicon-star' : 'glyphicon-star-empty'
   end
