@@ -1,17 +1,15 @@
-class NeedRevision
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class NeedRevision < ActiveRecord::Base
 
-  field :action_type, type: String
-  field :snapshot, type: Hash
-  field :author_id, type: String
+  # field :action_type, type: String
+  # field :snapshot, type: Hash
+  # field :author_id, type: String
 
-  default_scope ->{ order_by([:created_at, :desc]) }
+  default_scope ->{ order('created_at desc') }
 
   belongs_to :need
   belongs_to :author, class_name: 'User'
 
-  validates :action_type, inclusion: { in: ["create", "update", "close", "reopen"] }
+  validates :action_type, presence: true, inclusion: { in: ["create", "update", "close", "reopen"] }
   validates :snapshot, presence: true
 
   before_create :filter_snapshot_data

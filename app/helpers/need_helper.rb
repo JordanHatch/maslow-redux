@@ -77,7 +77,7 @@ module NeedHelper
   end
 
   def bookmark_icon(bookmarks = [], need_id)
-    bookmarks.include?(need_id) ? 'glyphicon-star' : 'glyphicon-star-empty'
+    bookmarks.include?(need_id.to_s) ? 'glyphicon-star' : 'glyphicon-star-empty'
   end
 
   def status_label_class(status_description)

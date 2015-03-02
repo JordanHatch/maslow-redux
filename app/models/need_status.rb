@@ -1,15 +1,11 @@
-require "ostruct"
-require "active_model"
+class NeedStatus < ActiveRecord::Base
 
-class NeedStatus
-  include Mongoid::Document
+  belongs_to :need
 
-  embedded_in :need
-
-  field :description, type: String
-  field :reasons, type: Array
-  field :additional_comments, type: String
-  field :validation_conditions, type: String
+  # field :description, type: String
+  # field :reasons, type: Array
+  # field :additional_comments, type: String
+  # field :validation_conditions, type: String
 
 
   COMMON_REASONS_WHY_INVALID = [

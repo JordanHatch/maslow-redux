@@ -1,15 +1,6 @@
 require 'ability'
 
-class User
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field "name",    type: String
-  field "email",   type: String
-  field "permissions", type: Array
-  field "organisation_slug", type: String
-  field "bookmarks", type: Array, default: Array.new
-
+class User < ActiveRecord::Base
   delegate :can?, :cannot?, :to => :ability
 
   def ability
@@ -34,10 +25,14 @@ class User
 
   def toggle_bookmark(need_id)
     return if need_id <= 0
-    if bookmarks.include?(need_id)
-      bookmarks.delete(need_id)
+
+    # arrays are stored as strings
+    need_id_as_string = need_id.to_s
+
+    if bookmarks.include?(need_id_as_string)
+      bookmarks.delete(need_id_as_string)
     else
-      bookmarks << need_id
+      bookmarks << need_id_as_string
     end
   end
 end

@@ -1,45 +1,39 @@
-class Need
-  include Mongoid::Document
-
-  INITIAL_NEED_ID = 1
-
-  field :need_id, type: Integer
-  field :role, type: String
-  field :goal, type: String
-  field :benefit, type: String
-  field :organisation_ids, type: Array, default: []
-  field :met_when, type: Array, default: []
-  field :yearly_user_contacts, type: Integer
-  field :yearly_site_views, type: Integer
-  field :yearly_need_views, type: Integer
-  field :yearly_searches, type: Integer
-  field :other_evidence, type: String
-  field :legislation, type: String
-  field :applies_to_all_organisations, type: Boolean, default: false
-  field :duplicate_of, type: Integer, default: nil
-
-  has_and_belongs_to_many :organisations
+class Need < ActiveRecord::Base
+  # has_and_belongs_to_many :organisations
   has_many :revisions, class_name: "NeedRevision"
-  embeds_one :status, class_name: "NeedStatus", inverse_of: :need, cascade_callbacks: true
+  has_one :status, class_name: "NeedStatus"
 
-  before_save :assign_new_id, on: :create
   before_validation :default_status_to_proposed
   before_validation :remove_blank_met_when_criteria
 
-  default_scope ->{ order_by([:_id, :desc]) }
+  default_scope ->{ order('id desc') }
 
   validates :role, :goal, :benefit, :status, presence: true
-  validates_associated :status
+  # validates_associated :status
 
   validates :yearly_user_contacts, :yearly_site_views, :yearly_need_views, :yearly_searches,
             numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 0 }
 
+  def need_id
+    id
+  end
+
+  # TODO: Re-implement organisations properly.
+  #
+  def applies_to_all_organisations
+    true
+  end
+
+  def organisations
+    []
+  end
+
   def self.by_ids(ids)
-    Need.in(need_id: ids)
+    Need.where(id: ids)
   end
 
   def self.find_by_need_id(id)
-    self.where(need_id: id).first
+    self.find(id)
   end
 
   def save_as(user)
@@ -90,11 +84,6 @@ private
       snapshot: attributes,
       author: user
     )
-  end
-
-  def assign_new_id
-    last_assigned = Need.order_by([:need_id, :desc]).first
-    self.need_id ||= (last_assigned.present? && last_assigned.need_id >= INITIAL_NEED_ID) ? last_assigned.need_id + 1 : INITIAL_NEED_ID
   end
 
   def default_status_to_proposed

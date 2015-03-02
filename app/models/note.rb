@@ -1,31 +1,16 @@
-class Note
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Note < ActiveRecord::Base
 
-  field :text, type: String
-  field :need_id, type: Integer
-  field :author_id, type: String
-  field :revision, type: String
+  default_scope ->{ order('created_at desc') }
 
-  default_scope ->{ order_by([:created_at, :desc]) }
-
+  belongs_to :need
   belongs_to :author, class_name: 'User'
+  belongs_to :revision, class_name: 'NeedRevision'
 
   validates_presence_of :text, :need_id, :author
-  validate :validate_need_id
 
   def save
-    need = Need.where(need_id: need_id).first
-    self.revision = need.revisions.first.id if need
+    need = Need.where(id: need_id).first
+    self.revision_id = need.revisions.first.id if need
     super
-  end
-
-private
-
-  def validate_need_id
-    need = Need.where(need_id: need_id).first
-    if need.nil?
-      errors.add(:need_id, "A note must have a valid need_id")
-    end
   end
 end
