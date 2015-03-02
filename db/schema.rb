@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301235717) do
+ActiveRecord::Schema.define(version: 20150302230227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(version: 20150301235717) do
     t.string  "goal",                              null: false
     t.string  "benefit",                           null: false
     t.text    "met_when",             default: [],              array: true
-    t.string  "yearly_user_contacts"
-    t.string  "yearly_site_views"
-    t.string  "yearly_need_views"
-    t.integer "yearly_searches"
     t.string  "other_evidence"
     t.string  "legislation"
     t.integer "duplicate_of"
+    t.integer "yearly_user_contacts"
+    t.integer "yearly_site_views"
+    t.integer "yearly_need_views"
+    t.integer "yearly_searches"
   end
 
   create_table "notes", force: :cascade do |t|
