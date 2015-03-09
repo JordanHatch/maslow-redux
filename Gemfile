@@ -10,20 +10,14 @@ gem 'airbrake', '~> 4.0.0'
 gem 'cancan', '1.6.10'
 gem 'lrucache', '0.1.4'
 
-group :development do
+group :development, :test do
+  gem 'jasmine', '2.1.0'
   gem 'web-console', '~> 2.0'
-end
-
-group :test do
   gem 'capybara'
   gem 'database_cleaner', require: false
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'timecop'
-end
-
-group :development, :test do
-  gem 'jasmine', '2.1.0'
 end
 
 group :assets do
