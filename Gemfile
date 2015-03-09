@@ -15,15 +15,11 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '2.1.0'
-  gem 'database_cleaner', '1.1.1', require: false
-  gem 'factory_girl_rails', '4.2.1'
-  gem 'shoulda-context', '1.1.5'
-  gem 'simplecov', '0.7.1'
-  gem 'simplecov-rcov'
-  gem 'mocha', '0.14.0', require: false
-  gem 'webmock', '1.14.0'
-  gem 'timecop', '0.7.1'
+  gem 'capybara'
+  gem 'database_cleaner', require: false
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'timecop'
 end
 
 group :development, :test do
