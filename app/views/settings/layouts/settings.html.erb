@@ -4,7 +4,15 @@
 
     <nav class="col-md-3">
       <ul>
-        
+        <li>
+          <h2>Tags</h2>
+          <ul>
+            <% tag_types.each do |tag_type| %>
+              <li><%= link_to tag_type.name, settings_tag_type_path(tag_type) %></li>
+            <% end %>
+            <li><%= link_to 'add new tag type', new_settings_tag_type_path %></li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <section class="settings-area col-md-9">
