@@ -1,4 +1,4 @@
-<%= semantic_form_for @need do |f| %>
+<%= semantic_form_for need do |f| %>
   <%= f.inputs "User story", :id => "user-story" do %>
     <%= f.input :role, :label => "As a…", :hint => "Who is the user? E.g. a small business, a tax agent, a healthcare practitioner. Put 'user' when there's more than one type of user.", :required => false, :input_html => { :class => 'input-md-8' } %>
     <%= f.input :goal, :label => "I need to…", :hint => "What does the user want to do?", :required => false, :input_html => { :class => 'input-md-8' } %>
@@ -27,7 +27,7 @@
     <% end %>
   <% end %>
 
-  <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(@need.met_when), f: f } %>
+  <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
 
   <%= f.inputs "Provide evidence for this need", :id => "evidence" do %>
     <p class="hint-text">This helps us understand how important this need is in context of all the needs GOV.UK meets.</p>

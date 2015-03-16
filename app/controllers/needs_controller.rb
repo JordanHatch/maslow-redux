@@ -216,12 +216,12 @@ private
   end
 
   def add_criteria
-    @need.add_more_criteria
+    need.add_more_criteria
   end
 
   def remove_criteria
     index = Integer(params[:delete_criteria])
-    @need.remove_criteria(index)
+    need.remove_criteria(index)
   rescue ArgumentError
   end
 
