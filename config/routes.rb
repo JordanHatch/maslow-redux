@@ -22,7 +22,9 @@ Maslow::Application.routes.draw do
   end
 
   namespace :settings do
-    resources :tag_types, path: 'tag-types'
+    resources :tag_types, path: 'tag-types' do
+      resources :tags
+    end
 
     root to: 'root#index'
   end

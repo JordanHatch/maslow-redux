@@ -1,3 +1,28 @@
-<h1><%= tag_type.name %></h1>
+<section class="tag-type">
+  <header>
+    <h1><%= tag_type.name %></h1>
 
-<p><%= link_to 'Edit', edit_settings_tag_type_path(tag_type) %></p>
+    <div class="actions">
+      <%= link_to 'Edit type', edit_settings_tag_type_path(tag_type), class: 'btn btn-default' %>
+      <%= link_to 'Add new tag', new_settings_tag_type_tag_path(tag_type), class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <% if tag_type.tags.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'tag', collection: tag_type.tags %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="no-tags">
+      There are no <%= tag_type.name.downcase.singularize %> tags yet.
+    </p>
+  <% end %>
+</section>
