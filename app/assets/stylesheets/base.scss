@@ -1,24 +1,106 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+$header-color: #666a76;
+$header-border-color: #3b3d43;
+
+body {
+  background: #fcfdfe;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
 header.app-header {
   @extend .navbar;
   @extend .navbar-default;
   @extend .navbar-inverse;
   @extend .navbar-static-top;
 
+  background: $header-color;
+  border-color: $header-border-color;
+  position: relative;
+
   > div {
     @extend .container;
   }
 
-  .app-title {
+  > div .app-title {
     @extend .navbar-header;
+    margin-right: 25px;
+
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      height: 50px;
+      padding-top: 10px;
+
+      .logo, .instance-name, .dropdown-icon {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      h1.logo {
+        font-weight: bold;
+        color: $header-color;
+        font-size: 24px;
+
+        span {
+          display: none;
+        }
+
+        width: 30px;
+        height: 30px;
+        margin: 0 10px 0 0;
+        padding: 3px;
+        background: #fff;
+      }
+
+      .instance-name {
+        color: #fff;
+        font-weight: normal;
+        font-size: 18px;
+        margin-top: 4px;
+      }
+
+      .dropdown-icon {
+        @extend .glyphicon;
+        @extend .glyphicon-menu-down;
+
+        color: #fff;
+        margin: 8px 6px;
+      }
+    }
   }
 
-  nav {
+  nav[role='navigation'] {
     @extend .collapse;
     @extend .navbar-collapse;
 
     > ul {
       @extend .nav;
       @extend .navbar-nav;
+
+      > li > a {
+        color: #fff;
+        font-size: 13px;
+        padding: 16px 15px 14px;
+      }
+    }
+  }
+
+  .primary-actions {
+    float: right;
+    margin-top: -50px;
+    padding-top: 10px;
+
+    a {
+      display: inline-block;
+      background: #fff;
+      color: $header-color;
+      padding: 6px 12px;
+      border-radius: 2px;
     }
   }
 }

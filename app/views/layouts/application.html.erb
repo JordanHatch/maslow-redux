@@ -12,15 +12,28 @@
   <header class="app-header">
     <div>
       <div class="app-title">
-        <%= link_to app_title, root_path, :class => 'navbar-brand' %>
+        <%= link_to root_path do %>
+          <h1 class="logo">M<span>aslow</span></h1>
+          <span class="instance-name"><%= ENV['INSTANCE_NAME'] %></span>
+          <!--<span class="dropdown-icon" aria-hidden="true"></span>-->
+        <% end %>
       </div>
+      <%# render partial: 'project-navigation' %>
+
       <nav role="navigation">
         <ul>
+          <li <% if current_page?(needs_path) %> class="active" <% end %>>
+            <%= link_to "All needs", needs_path %>
+          </li>
           <li <% if current_page?(bookmarks_path) %> class="active" <% end %>>
             <%= link_to "Bookmarked needs", bookmarks_path %>
           </li>
         </ul>
       </nav>
+
+      <div class="primary-actions">
+        <%= link_to 'Add user need', new_need_path %>
+      </div>
     </div>
   </header>
 
