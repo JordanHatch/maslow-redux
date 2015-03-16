@@ -1,7 +1,7 @@
 <% content_for :page_title, "Actions" %>
 
 <article id="single-need">
-  <%= render partial: "needs/breadcrumb", locals: { need: @need, action: "Actions" } %>
+  <%= render partial: "needs/breadcrumb", locals: { need: need, action: "Actions" } %>
   <%= render :partial => "need_header" %>
 
   <div id="actions">
@@ -10,5 +10,5 @@
     <% end %>
   </div>
 
-  <%= render partial: "workflow_buttons", locals: { need: @need } %>
+  <%= render partial: "workflow_buttons", locals: { need: need } %>
 </article>

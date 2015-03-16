@@ -2,7 +2,7 @@
 
 <article class="need">
   <nav class="add-top-margin">
-    <%= render partial: "needs/breadcrumb", locals: { need: @need, action: "Close as a duplicate" } %>
+    <%= render partial: "needs/breadcrumb", locals: { need: need, action: "Close as a duplicate" } %>
   </nav>
 
   <%= render :partial => "need_header" %>
@@ -10,5 +10,5 @@
 
   <%= render partial: "duplicate_of_need" %>
 
-  <%= render partial: "workflow_buttons", locals: { need: @need } %>
+  <%= render partial: "workflow_buttons", locals: { need: need } %>
 </article>
