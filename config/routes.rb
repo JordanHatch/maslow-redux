@@ -21,5 +21,9 @@ Maslow::Application.routes.draw do
     end
   end
 
+  namespace :settings do
+    root to: 'root#index'
+  end
+
   root :to => redirect('/needs')
 end
