@@ -22,7 +22,8 @@
     </table>
   <% else %>
     <p class="no-tags">
-      There are no <%= tag_type.name.downcase.singularize %> tags yet.
+      There are no <%= tag_type.name.downcase.singularize %> tags.
+      <%= link_to 'Add one', new_settings_tag_type_tag_path(tag_type) %>.
     </p>
   <% end %>
 </section>

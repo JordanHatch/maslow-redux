@@ -4,6 +4,6 @@
   <% end %>
 
   <%= f.actions do %>
-    <%= f.button :submit %>
+    <%= f.action :submit, as: :button, button_html: { class: 'btn btn-primary' } %>
   <% end %>
 <% end %>
