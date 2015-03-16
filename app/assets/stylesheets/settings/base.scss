@@ -34,6 +34,29 @@
         ul li {
           padding: 3px 5px;
           list-style: disc inside;
+
+          &.add {
+            list-style: none;
+            background: #eee;
+            margin: 7px 0;
+            padding: 8px;
+
+            a, .icon {
+              display: inline-block;
+              vertical-align: middle;
+            }
+
+            .icon {
+              @extend .glyphicon;
+              @extend .glyphicon-plus;
+
+              font-size: 10px;
+              padding-right: 4px;
+            }
+            a {
+              margin-top: 1px;
+            }
+          }
         }
       }
     }

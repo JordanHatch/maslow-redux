@@ -10,7 +10,10 @@
             <% tag_types.each do |tag_type| %>
               <li><%= link_to tag_type.name, settings_tag_type_path(tag_type) %></li>
             <% end %>
-            <li><%= link_to 'add new tag type', new_settings_tag_type_path %></li>
+            <li class="add">
+              <span class="icon" aria-hidden="true"></span>
+              <%= link_to 'add new tag type', new_settings_tag_type_path %>
+            </li>
           </ul>
         </li>
       </ul>
