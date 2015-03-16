@@ -75,19 +75,14 @@ class NeedsController < ApplicationController
   end
 
   def update
-    authorize! :update, Need
-
-    @need = load_need
-    @need.assign_attributes(prepare_need_params)
-
+    need.assign_attributes(need_params)
     add_or_remove_criteria(:edit) and return if criteria_params_present?
 
-    if @need.save_as(current_user)
+    if need.save_as(current_user)
       redirect_to redirect_url, notice: "Need updated",
-        flash: { need_id: @need.need_id, goal: @need.goal }
+        flash: { need_id: need.need_id, goal: need.goal }
     else
-      flash[:error] = "There were errors in the need form."
-      render "edit", :status => 422
+      render :edit, status: 422
     end
   end
 
