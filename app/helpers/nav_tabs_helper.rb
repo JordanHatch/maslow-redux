@@ -1,6 +1,5 @@
 module NavTabsHelper
   def nav_tabs_for(need)
-    puts need.inspect
     tabs = []
     tabs << [ "View", need_path(need) ]
     tabs << [ "Edit", edit_need_path(need) ] if !need.duplicate? && current_user.can?(:update, Need)
