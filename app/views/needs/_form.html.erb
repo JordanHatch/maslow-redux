@@ -3,28 +3,6 @@
     <%= f.input :role, :label => "As a…", :hint => "Who is the user? E.g. a small business, a tax agent, a healthcare practitioner. Put 'user' when there's more than one type of user.", :required => false, :input_html => { :class => 'input-md-8' } %>
     <%= f.input :goal, :label => "I need to…", :hint => "What does the user want to do?", :required => false, :input_html => { :class => 'input-md-8' } %>
     <%= f.input :benefit, :label => "So that…", :hint => "Why does the user want to do this?", :required => false, :input_html => { :class => 'input-md-8' } %>
-
-    <% if f.object.applies_to_all_organisations %>
-      <p class="all-organisations">
-        This need applies to all organisations.
-      </p>
-    <% else %>
-      <div class="row">
-        <div class="col-md-8">
-          <%= f.input :organisation_ids,
-                    :as => :select,
-                    :collection => Organisation.all,
-                    :member_label => "name_with_abbreviation_and_status",
-                    :hint => "Which government departments and agencies meet this need? You can select more than one.",
-                    :label => "Departments and agencies <br/><span class='optional'>(optional)</span>".html_safe,
-                    :input_html => {
-                      :multiple => true,
-                      :class => "organisation-select",
-                      'data-module' => 'chosen'
-                    } %>
-        </div>
-      </div>
-    <% end %>
   <% end %>
 
   <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>

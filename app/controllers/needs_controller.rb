@@ -184,7 +184,7 @@ private
 
   def prepare_need_params
     need_params.tap {|hash|
-      [:organisation_ids, :met_when].each do |field|
+      [:met_when].each do |field|
         if hash[field]
           hash[field].select!(&:present?)
         end
@@ -223,7 +223,6 @@ private
   def need_params
     params.require(:need).permit(:role, :goal, :benefit, :yearly_user_contacts,
       :yearly_site_views, :yearly_need_views, :yearly_searches, :other_evidence,
-      :legislation, :applies_to_all_organisations,
-      { organisation_ids: [] }, { met_when: [] })
+      :legislation, { met_when: [] })
   end
 end

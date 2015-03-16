@@ -18,16 +18,6 @@ class Need < ActiveRecord::Base
     id
   end
 
-  # TODO: Re-implement organisations properly.
-  #
-  def applies_to_all_organisations
-    true
-  end
-
-  def organisations
-    []
-  end
-
   def self.by_ids(ids)
     Need.where(id: ids)
   end
