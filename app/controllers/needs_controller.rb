@@ -1,6 +1,9 @@
 require 'json'
 
 class NeedsController < ApplicationController
+  skip_authorization_check
+
+  expose(:need)
 
   class Http404 < StandardError
   end
@@ -60,24 +63,15 @@ class NeedsController < ApplicationController
   end
 
   def create
-    authorize! :create, Need
-    @need = Need.new(prepare_need_params)
-
+    need.assign_attributes(need_params)
     add_or_remove_criteria(:new) and return if criteria_params_present?
 
-    if @need.valid?
-      if @need.save_as(current_user)
-        redirect_to redirect_url, notice: "Need created",
-          flash: { need_id: @need.need_id, goal: @need.goal }
-        return
-      else
-        flash[:error] = "There was a problem saving your need."
-      end
+    if need.save_as(current_user)
+      redirect_to redirect_url, notice: "Need created",
+        flash: { need_id: need.need_id, goal: need.goal }
     else
-      flash[:error] = "Please fill in the required fields."
+      render :new, status: 422
     end
-
-    render "new", :status => 422
   end
 
   def update
@@ -190,7 +184,7 @@ class NeedsController < ApplicationController
 private
 
   def redirect_url
-    params["add_new"] ? new_need_path : need_url(@need.need_id)
+    params["add_new"] ? new_need_path : need_url(need.need_id)
   end
 
   def prepare_need_params
