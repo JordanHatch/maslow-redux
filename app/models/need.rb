@@ -3,6 +3,9 @@ class Need < ActiveRecord::Base
   has_many :revisions, class_name: "NeedRevision"
   has_one :status, class_name: "NeedStatus"
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   before_validation :default_status_to_proposed
   before_validation :remove_blank_met_when_criteria
 
