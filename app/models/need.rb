@@ -70,7 +70,36 @@ class Need < ActiveRecord::Base
     status.description == "not valid"
   end
 
+  def tags_of_type(tag_type_id)
+    tags.of_type(tag_type_id)
+  end
+
+  def tag_ids_of_type(tag_type_id)
+    tags_of_type(tag_type_id).map(&:id)
+  end
+
+  def set_tags_of_type(tag_type, tags)
+    set_tag_ids_of_type(tag_type, tags.map(&:id))
+  end
+
+  def set_tag_ids_of_type(tag_type, new_tag_ids)
+    existing_tag_ids = tag_ids_of_type(tag_type)
+    updated_tag_ids = tag_ids - existing_tag_ids + new_tag_ids
+
+    self.tag_ids = updated_tag_ids
+  end
+
 private
+  def method_missing(method, *args, &block)
+    if (m = method.to_s.match(/^tag_ids_of_type_(\d+)$/))
+      return self.send(:tag_ids_of_type, m[1])
+    elsif (m = method.to_s.match(/^tag_ids_of_type_(\d+)=$/))
+      return self.send(:set_tag_ids_of_type, m[1], *args)
+    end
+
+    super(method, *args, &block)
+  end
+
   def record_revision(action, user = nil)
     revisions.create(
       action_type: action,

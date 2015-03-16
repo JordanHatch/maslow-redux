@@ -4,4 +4,6 @@ class Tag < ActiveRecord::Base
 
   has_many :taggings, dependent: :destroy
   has_many :needs, through: :taggings
+
+  scope :of_type, -> (type) { where(tag_type: type) }
 end
