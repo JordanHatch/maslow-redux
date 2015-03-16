@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'creating needs', type: :feature do
 
+  let(:need) { create(:need) }
+
+  let!(:tag_type) { create(:tag_type) }
+  let!(:tags) { create_list(:tag, 5, tag_type: tag_type) }
+
   it 'can create a need' do
     visit '/needs'
     click_on 'Add user need'
@@ -28,6 +33,26 @@ RSpec.describe 'creating needs', type: :feature do
       expect(page).to have_content('the assertions are met')
       expect(page).to have_content('the test passes')
       expect(page).to have_content('the build succeeds')
+    end
+  end
+
+  it 'can assign tags to a need' do
+    visit edit_need_path(need)
+
+    within '.tags' do
+      expect(page).to have_selector('label', text: tag_type.name)
+
+      select tags[0].name, from: tag_type.name
+      select tags[1].name, from: tag_type.name
+      select tags[2].name, from: tag_type.name
+    end
+
+    first(:button, "Save").click
+
+    within '.need-tags' do
+      expect(page).to have_selector('li', text: tags[0].name)
+      expect(page).to have_selector('li', text: tags[1].name)
+      expect(page).to have_selector('li', text: tags[2].name)
     end
   end
 

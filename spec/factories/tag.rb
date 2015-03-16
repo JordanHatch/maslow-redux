@@ -1,8 +1,10 @@
 FactoryGirl.define do
   factory :tag do
-    name 'Ministry of Silly Walks'
+    sequence(:name) {|n|
+      "Tag #{n}"
+    }
     tag_type
   end
 
-  
+
 end

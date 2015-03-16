@@ -91,3 +91,11 @@ p.all-organisations {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+ul.need-tags {
+  padding: 0;
+
+  > li {
+    list-style: none;
+  }
+}

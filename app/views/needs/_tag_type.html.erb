@@ -1,0 +1,8 @@
+<%= f.input "tag_ids_of_type_#{tag_type.id}",
+            as: :select,
+            collection: tag_type.tags,
+            multiple: true,
+            label: tag_type.name,
+            input_html: {
+              'data-module' => 'chosen',
+            } %>

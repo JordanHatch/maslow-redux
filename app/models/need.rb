@@ -5,6 +5,7 @@ class Need < ActiveRecord::Base
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :tag_types, through: :tags
 
   before_validation :default_status_to_proposed
   before_validation :remove_blank_met_when_criteria
@@ -68,6 +69,10 @@ class Need < ActiveRecord::Base
 
   def has_invalid_status?
     status.description == "not valid"
+  end
+
+  def joined_tag_types
+    tag_types.includes(:tags)
   end
 
   def tags_of_type(tag_type_id)

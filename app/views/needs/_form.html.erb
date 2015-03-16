@@ -7,6 +7,10 @@
 
   <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
 
+  <%= f.inputs "Tags", class: 'tags' do %>
+    <%= render partial: "tag_type", collection: TagType.all, locals: { f: f } %>
+  <% end %>
+
   <%= f.inputs "Provide evidence for this need", :id => "evidence" do %>
     <p class="hint-text">This helps us understand how important this need is in context of all the needs GOV.UK meets.</p>
     <%= f.input :legislation,
