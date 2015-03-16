@@ -70,6 +70,9 @@ header.app-header {
 
         color: #fff;
         margin: 8px 6px;
+
+        /* hide this by default - it will be shown by JavaScript */
+        visibility: hidden;
       }
     }
   }

@@ -1,13 +1,8 @@
 <nav class="project">
   <ul>
-    <li class="signed-in-user">
-      <strong></strong>
-      <ul>
-        <li><a href="#">my account</a></li>
-        <li><a href="#">sign out</a></li>
-      </ul>
+    <li class="primary">
+      <%= link_to "Home", root_path %>
     </li>
-    <li><a href="#">Project settings</a></li>
-    <li><a href="#">Manage team members</a></li>
+    <li><%= link_to "Project settings", settings_root_path %></li>
   </ul>
 </nav>

@@ -15,10 +15,9 @@
         <%= link_to root_path do %>
           <h1 class="logo">M<span>aslow</span></h1>
           <span class="instance-name"><%= ENV['INSTANCE_NAME'] %></span>
-          <!--<span class="dropdown-icon" aria-hidden="true"></span>-->
+          <span class="dropdown-icon" aria-hidden="true"></span>
         <% end %>
       </div>
-      <%# render partial: 'project-navigation' %>
 
       <nav role="navigation">
         <ul>
@@ -34,6 +33,8 @@
       <div class="primary-actions">
         <%= link_to 'Add user need', new_need_path %>
       </div>
+
+      <%= render partial: 'layouts/project_navigation' %>
     </div>
   </header>
 
