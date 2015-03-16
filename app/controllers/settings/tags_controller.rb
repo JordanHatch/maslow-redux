@@ -25,6 +25,11 @@ class Settings::TagsController < Settings::BaseController
     end
   end
 
+  def destroy
+    tag_instance.destroy
+    redirect_to settings_tag_type_path(tag_type)
+  end
+
 private
   def tag_attributes
     params.require(:tag).permit(:name)
