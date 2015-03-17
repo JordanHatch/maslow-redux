@@ -72,7 +72,7 @@ class Need < ActiveRecord::Base
   end
 
   def joined_tag_types
-    tag_types.includes(:tags)
+    tag_types.includes(:tags).distinct(:id)
   end
 
   def tags_of_type(tag_type_id)

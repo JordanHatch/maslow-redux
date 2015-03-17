@@ -88,4 +88,18 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#joined_tag_types' do
+    it 'returns only one instance of each tag type' do
+      tag_types = create_list(:tag_type, 2)
+      tags = [
+        create(:tag, tag_type: tag_types[0]),
+        create(:tag, tag_type: tag_types[1]),
+        create(:tag, tag_type: tag_types[1]),
+      ]
+      need = create(:need, tags: tags)
+
+      expect(need.joined_tag_types).to contain_exactly(*tag_types)
+    end
+  end
+
 end
