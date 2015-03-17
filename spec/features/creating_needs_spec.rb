@@ -56,4 +56,25 @@ RSpec.describe 'creating needs', type: :feature do
     end
   end
 
+  it 'can remove tags from a need' do
+    need = create(:need, tags: tags[0..2])
+
+    visit edit_need_path(need)
+
+    within '.tags' do
+      expect(page).to have_selector('label', text: tag_type.name)
+
+      unselect tags[1].name, from: tag_type.name
+      unselect tags[2].name, from: tag_type.name
+    end
+
+    first(:button, "Save").click
+
+    within '.need-tags' do
+      expect(page).to have_selector('li', text: tags[0].name)
+      expect(page).to_not have_selector('li', text: tags[1].name)
+      expect(page).to_not have_selector('li', text: tags[2].name)
+    end
+  end
+
 end
