@@ -138,44 +138,6 @@ class NeedsController < ApplicationController
     render "show", :status => 422
   end
 
-  def status
-    authorize! :validate, Need
-    @need = load_need
-  end
-
-  def update_status
-    authorize! :validate, Need
-    @need = load_need
-
-    status_params = params["need"]["status"]
-
-    reasons = [
-      status_params["common_reasons_why_invalid"],
-      status_params["other_reasons_why_invalid"]
-    ].flatten.select(&:present?)
-
-    need_status = NeedStatus.new(
-      description: status_params["description"],
-      reasons: reasons,
-      additional_comments: status_params["additional_comments"],
-      validation_conditions: status_params["validation_conditions"],
-    )
-
-    unless need_status.valid?
-      flash[:error] = need_status.errors.full_messages.join(". ")
-      redirect_to need_path(@need)
-      return
-    end
-
-    @need.status = need_status
-
-    unless @need.save_as(current_user)
-      flash[:error] = "We had a problem updating the need’s status"
-    end
-
-    redirect_to need_path(@need)
-  end
-
 private
 
   def redirect_url

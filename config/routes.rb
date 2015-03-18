@@ -13,8 +13,6 @@ Maslow::Application.routes.draw do
     member do
       get :revisions
       patch :closed
-      get :status
-      patch :status, to: 'needs#update_status', as: 'update_status'
       delete :closed, to: 'needs#reopen', as: :reopen
       get :actions
       get :close_as_duplicate, path: 'close-as-duplicate'

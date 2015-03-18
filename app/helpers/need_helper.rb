@@ -69,23 +69,7 @@ module NeedHelper
     Need.find_by_need_id(@need.duplicate_of).goal
   end
 
-  def format_decision_made(need)
-    decision = []
-    decision << need.status.description.capitalize
-    decision << "Duplicate" if need.duplicate?
-    decision.join(", ")
-  end
-
   def bookmark_icon(bookmarks = [], need_id)
     bookmarks.include?(need_id.to_s) ? 'glyphicon-star' : 'glyphicon-star-empty'
-  end
-
-  def status_label_class(status_description)
-    case status_description
-    when "valid" then "label-success"
-    when "not valid" then "label-danger"
-    when "valid with conditions" then "label-warning"
-    else "label-info"
-    end
   end
 end

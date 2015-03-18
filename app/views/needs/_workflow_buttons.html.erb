@@ -6,21 +6,7 @@
         <% if need.persisted? && !need.duplicate? && current_user.can?(:update, Need) %>
           <%= link_to "Edit", edit_need_path(need), class: "btn btn-success" %>
         <% end %>
-        <% if need.persisted? && current_user.can?(:validate, Need) %>
-          <span id="decide-on-need">
-            <% unless need.duplicate? %>
-              <%= link_to "Decide on need",
-                          status_need_path(need),
-                          id: 'decide-on-need-button',
-                          class: "btn btn-default add-left-margin" %>
-            <% end %>
-          </span>
-        <% end %>
       </div>
-    <% end %>
-
-    <% if need.persisted? %>
-      <%= render "needs/decide_on_need_modal" %>
     <% end %>
   <% end %>
 </div>

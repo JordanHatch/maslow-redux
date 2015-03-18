@@ -1,19 +1,16 @@
 class Need < ActiveRecord::Base
   # has_and_belongs_to_many :organisations
   has_many :revisions, class_name: "NeedRevision"
-  has_one :status, class_name: "NeedStatus"
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :tag_types, through: :tags
 
-  before_validation :default_status_to_proposed
   before_validation :remove_blank_met_when_criteria
 
   default_scope ->{ order('id desc') }
 
-  validates :role, :goal, :benefit, :status, presence: true
-  # validates_associated :status
+  validates :role, :goal, :benefit, presence: true
 
   validates :yearly_user_contacts, :yearly_site_views, :yearly_need_views, :yearly_searches,
             numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 0 }
@@ -67,10 +64,6 @@ class Need < ActiveRecord::Base
     duplicate_of.present?
   end
 
-  def has_invalid_status?
-    status.description == "not valid"
-  end
-
   def joined_tag_types
     tag_types.includes(:tags).distinct(:id)
   end
@@ -111,10 +104,6 @@ private
       snapshot: attributes,
       author: user
     )
-  end
-
-  def default_status_to_proposed
-    self.status ||= NeedStatus.new(description: NeedStatus::PROPOSED)
   end
 
   def remove_blank_met_when_criteria
