@@ -4,7 +4,7 @@
   margin-bottom: 15px;
 
   .the-need {
-    @extend .col-md-9;
+    @extend .col-md-8;
 
     font-size: 23px;
     line-height: 1.31579;
@@ -17,19 +17,41 @@
     }
   }
 
-  .need-actions {
-    @extend .col-md-3;
-    text-align: right;
+  .status-and-actions {
+    @extend .col-md-4;
+  }
+}
 
-    > ul {
-      float: right;
-      padding: 0;
+.need-actions > ul {
+  float: right;
+  padding: 0;
 
-      > li {
-        list-style: none;
-        float: left;
-        margin: 0 0 0 8px;
-      }
+  > li {
+    list-style: none;
+    float: left;
+    margin: 0 0 0 8px;
+  }
+}
+
+.need-status {
+  float: right;
+  clear: right;
+
+  margin: 21px 0 0;
+
+  li {
+    font-size: 15px;
+    list-style: none;
+    float: left;
+    padding: 6px 8px;
+    color: #fff;
+    margin: 0 0 0 7px;
+
+    &.decision_red {
+      background: #dc1414;
+    }
+    &.decision_green {
+      background: #23be04;
     }
   }
 }

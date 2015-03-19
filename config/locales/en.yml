@@ -9,14 +9,26 @@ en:
       met: Is the need being met?
     outcomes:
       scope:
-        in_scope: This need is in scope
-        out_of_scope: This need is out of scope
+        in_scope:
+          long: This need is in scope
+          short: In scope
+        out_of_scope:
+          long: This need is out of scope
+          short: Out of scope
       completion:
-        complete: This need has all the necessary information
-        incomplete: This need is missing information
+        complete:
+          long: This need has all the necessary information
+          short: Complete
+        incomplete:
+          long: This need is missing information
+          short: Incomplete
       met:
-        met: This need is being sufficiently met by a service
-        not_met: This need is not currently being met
+        met:
+          long: This need is being sufficiently met by a service
+          short: Met
+        not_met:
+          long: This need is not currently being met
+          short: Not met
   time:
     formats:
       short_date: "%-e %B %Y"

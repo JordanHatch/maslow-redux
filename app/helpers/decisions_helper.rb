@@ -7,7 +7,7 @@ module DecisionsHelper
   end
 
   def decision_outcome_options(decision_type_key)
-    Decision.decision_types[decision_type_key].map {|outcome|
+    Decision.decision_type_outcomes(decision_type_key).map {|outcome|
       [decision_outcome_label(decision_type_key, outcome), outcome]
     }
   end
@@ -16,8 +16,8 @@ module DecisionsHelper
     t("decisions.types.#{decision_type}")
   end
 
-  def decision_outcome_label(decision_type, outcome)
-    t("decisions.outcomes.#{decision_type}.#{outcome}")
+  def decision_outcome_label(decision_type, outcome, variant = 'long')
+    t("decisions.outcomes.#{decision_type}.#{outcome}.#{variant}")
   end
-  
+
 end

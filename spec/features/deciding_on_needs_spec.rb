@@ -19,6 +19,10 @@ RSpec.describe 'deciding on needs', type: :feature do
       expect(page).to have_content('This need is in scope')
       expect(page).to have_content('This need is clearly in scope for the project')
     end
+
+    within '.need-status' do
+      expect(page).to have_content('In scope')
+    end
   end
 
 end
