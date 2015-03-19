@@ -5,6 +5,7 @@ class Decision < ActiveRecord::Base
   validate :decision_type_and_outcome_exist
 
   scope :recent_first, -> { order(created_at: :desc) }
+  scope :of_type, -> (type) { where(decision_type: type) }
 
   def self.decision_types
     {
@@ -21,6 +22,10 @@ class Decision < ActiveRecord::Base
         'not_met',
       ],
     }
+  end
+
+  def self.latest(type)
+    of_type(type).recent_first.first
   end
 
 private

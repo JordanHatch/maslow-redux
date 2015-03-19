@@ -26,4 +26,26 @@ RSpec.describe Decision, :type => :model do
     expect(decision.errors).to have_key(:outcome)
   end
 
+  describe '.of_type' do
+    it 'returns decisions only of the given type' do
+      expected = create_list(:scope_decision, 3)
+      create_list(:completion_decision, 5)
+
+      expect(Decision.of_type(:scope)).to contain_exactly(*expected)
+    end
+  end
+
+  describe '.latest' do
+    it 'can return the latest decision for a given type' do
+      create_list(:scope_decision, 5)
+      latest_decision = create(:scope_decision)
+
+      expect(Decision.latest(:scope)).to eq(latest_decision)
+    end
+
+    it 'returns nil if no decisions exist' do
+      expect(Decision.latest(:scope)).to be_nil
+    end
+  end
+
 end

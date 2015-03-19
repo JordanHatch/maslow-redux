@@ -102,4 +102,15 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#latest_decision' do
+    let(:need) { create(:need) }
+
+    it 'returns the most recent decision for a given type' do
+      create_list(:scope_decision, 2, need: need)
+      latest_decision = create(:scope_decision, need: need)
+
+      expect(need.latest_decision(:scope)).to eq(latest_decision)
+    end
+  end
+
 end

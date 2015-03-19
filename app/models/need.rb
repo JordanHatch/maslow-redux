@@ -54,6 +54,10 @@ class Need < ActiveRecord::Base
     }
   end
 
+  def latest_decision(decision_type)
+    decisions.latest(decision_type)
+  end
+
   def add_more_criteria
     met_when << ""
   end
