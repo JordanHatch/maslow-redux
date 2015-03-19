@@ -1,0 +1,29 @@
+<%= render partial: "needs/breadcrumb", locals: { need: need, action: 'Decisions' } %>
+<%= render partial: "needs/need_header" %>
+
+<article class="need-decisions">
+  <header>
+    <h1>Make a decision about this need</h1>
+  </header>
+
+  <%= semantic_form_for [need, decision] do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :decision_type, as: :hidden %>
+
+      <%= f.input :outcome, as: :radio,
+                            collection: decision_outcome_options(f.object.decision_type),
+                            label: decision_type_label(f.object.decision_type) %>
+
+      <%= f.input :note, input_html: { rows: 5 } %>
+
+      <%= f.actions do %>
+        <%= f.action :submit, as: :button,
+                              label: 'Make decision',
+                              button_html: {
+                                class: 'btn btn-primary'
+                              } %>
+      <% end %>
+      
+    <% end %>
+  <% end %>
+</article>

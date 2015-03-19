@@ -4,6 +4,8 @@ class Decision < ActiveRecord::Base
   validates :need, :decision_type, :outcome, presence: true
   validate :decision_type_and_outcome_exist
 
+  scope :recent_first, -> { order(created_at: :desc) }
+
   def self.decision_types
     {
       'scope' => [

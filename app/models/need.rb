@@ -6,6 +6,8 @@ class Need < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :tag_types, through: :tags
 
+  has_many :decisions
+
   before_validation :remove_blank_met_when_criteria
 
   default_scope ->{ order('id desc') }

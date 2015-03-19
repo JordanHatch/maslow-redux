@@ -10,6 +10,8 @@ Maslow::Application.routes.draw do
   resources :notes, only: [:create]
 
   resources :needs, except: [:destroy] do
+    resources :decisions
+
     member do
       get :revisions
       patch :closed
