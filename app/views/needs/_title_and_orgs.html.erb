@@ -1,7 +1,22 @@
 <header class="need-header">
-  <div class="relative">
-    <h1 class="need-title">
-      <%= format_need_goal need.goal %>
-    </h1>
-  </div>
+  <p class="the-need">
+    As a <em><%= need.role %></em><br />
+    I need to <em><%= need.goal %></em><br />
+    So that <em><%= need.benefit %></em>
+  </p>
+
+  <nav class="need-actions">
+    <div class="button-group">
+      <div class="dropdown-button">
+        <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Decide on this need <span></span>
+        </button>
+        <ul role="menu">
+          <% decision_type_options.each do |label, value| %>
+            <li><%= link_to label, new_need_decision_path(need, decision_type: value) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>

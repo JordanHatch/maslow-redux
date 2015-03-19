@@ -20,3 +20,4 @@ en:
   time:
     formats:
       short_date: "%-e %B %Y"
+      short_time: "%-I:%M%P"

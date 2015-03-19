@@ -1,18 +1,36 @@
-.need-title {
-  display: inline-block;
-  margin-right: 240px;
-  margin-top: 0;
-}
-
 .need-header {
+  @extend .row;
+
   margin-bottom: 15px;
 
-  .status {
-    @extend .label;
+  .the-need {
+    @extend .col-md-9;
 
-    display: inline-block;
-    font-size: 14px;
-    padding: .4em .6em .5em;
+    font-size: 23px;
+    line-height: 1.31579;
+    margin: 0 0 10px;
+    color: #000;
+
+    em {
+      font-style: normal;
+      color: #c90c90;
+    }
+  }
+
+  .need-actions {
+    @extend .col-md-3;
+    text-align: right;
+
+    > ul {
+      float: right;
+      padding: 0;
+
+      > li {
+        list-style: none;
+        float: left;
+        margin: 0 0 0 8px;
+      }
+    }
   }
 }
 
@@ -54,12 +72,6 @@
 .impact p {
   padding: 0 1em 0 2em;
   font-weight: bold;
-}
-
-.the-need {
-  font-size: 28px;
-  line-height: 1.31579;
-  margin: 30px 0;
 }
 
 .big-number {

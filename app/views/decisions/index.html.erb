@@ -3,32 +3,25 @@
 
 <article class="need-decisions">
   <header>
-    <h1>Decisions</h1>
-    <nav class="actions">
-      <div class="group">
-        <button type="button" data-toggle="dropdown" aria-expanded="false">
-          Make a new decision <span></span>
-        </button>
-        <ul role="menu">
-          <% decision_type_options.each do |label, value| %>
-            <li><%= link_to label, new_need_decision_path(need, decision_type: value) %></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+    <h1>Decisions on this need</h1>
   </header>
 
   <ul class="feed">
     <% decisions.each do |decision| %>
       <li>
-        <p class="date"><%= l decision.created_at, format: :short_date %></p>
-        <h2><%= decision_outcome_label(decision.decision_type, decision.outcome) %></h2>
+        <p class="datetime">
+          <%= l decision.created_at, format: :short_date %>
+          <span class="time"><%= l decision.created_at, format: :short_time %></span>
+        </p>
+        <div class="item">
+          <h2><%= decision_outcome_label(decision.decision_type, decision.outcome) %></h2>
 
-        <% if decision.note.present? %>
-          <div class="note">
-            <%= simple_format decision.note %>
-          </div>
-        <% end %>
+          <% if decision.note.present? %>
+            <div class="note">
+              <%= simple_format decision.note %>
+            </div>
+          <% end %>
+        </div>
       </li>
     <% end %>
   </ul>
