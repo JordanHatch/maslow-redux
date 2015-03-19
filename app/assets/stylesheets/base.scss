@@ -1,11 +1,11 @@
-@import url(//fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
 
-$header-color: #666a76;
-$header-border-color: #3b3d43;
+$header-color: #475882;
+$header-border-color: #243251;
 
 body {
-  background: #fcfdfe;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  background: #fff;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 }
 
 header.app-header {
@@ -17,6 +17,8 @@ header.app-header {
   background: $header-color;
   border-color: $header-border-color;
   position: relative;
+
+  margin-bottom: 10px;
 
   > div {
     @extend .container;
@@ -34,7 +36,7 @@ header.app-header {
     a {
       display: block;
       height: 50px;
-      padding-top: 10px;
+      padding-top: 11px;
 
       .logo, .instance-name, .dropdown-icon {
         display: inline-block;
@@ -45,6 +47,7 @@ header.app-header {
         font-weight: bold;
         color: $header-color;
         font-size: 24px;
+        text-align: center;
 
         span {
           display: none;
@@ -59,9 +62,9 @@ header.app-header {
 
       .instance-name {
         color: #fff;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 18px;
-        margin-top: 4px;
+        margin-top: 3px;
       }
 
       .dropdown-icon {
@@ -87,8 +90,11 @@ header.app-header {
 
       > li > a {
         color: #fff;
-        font-size: 13px;
+        font-size: 14px;
         padding: 16px 15px 14px;
+      }
+      > li.active > a {
+        background: $header-border-color;
       }
     }
   }
@@ -117,4 +123,30 @@ h1 {
   &.page-title, &.page-title-with-border {
     margin-bottom: 30px;
   }
+}
+
+.workflow {
+  @extend .navbar;
+  @extend .navbar-inverse;
+  @extend .navbar-fixed-bottom;
+
+  background: none;
+  border-color: #dbdcdc;
+
+  .bg {
+    background: #eff0f4;
+    opacity: 0.5;
+    width: 100%;
+    height: 51px;
+
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+  }
+}
+
+.breadcrumb {
+  padding: 0;
+  background: none;
+  font-size: 13px;
 }
