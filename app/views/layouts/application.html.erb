@@ -39,13 +39,12 @@
   </header>
 
   <main>
+    <%= yield(:breadcrumbs) if content_for?(:breadcrumbs) %>
+
     <% [:notice, :alert, :error].select { |k| flash[k].present? }.each do |k| %>
       <div class="main-alert <%= k %>">
+        <span class="icon"></span>
         <%= flash[k] %>
-        <% if flash[:need_id] %>
-          <%= link_to "#{flash[:need_id]}: #{flash[:goal]}",
-                      need_path(flash[:need_id]) %>
-        <% end %>
       </div>
     <% end %>
 
