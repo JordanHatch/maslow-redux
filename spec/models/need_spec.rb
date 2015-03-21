@@ -113,4 +113,29 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#canonical_need' do
+    let(:canonical_need) { create(:need) }
+    let(:valid_attributes) { attributes_for(:need) }
+
+    it 'can be set with a valid need ID' do
+      need = Need.new(valid_attributes.merge(
+        canonical_need_id: canonical_need.id
+      ))
+      expect(need).to be_valid
+
+      need.save
+      need.reload
+
+      expect(need.canonical_need).to eq(canonical_need)
+    end
+
+    it 'is invalid with a need ID that does not exist' do
+      need = Need.new(valid_attributes.merge(
+        canonical_need_id: 1234
+      ))
+      expect(need).to_not be_valid
+      expect(need.errors).to have_key(:canonical_need)
+    end
+  end
+
 end

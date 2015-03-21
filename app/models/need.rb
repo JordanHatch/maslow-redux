@@ -8,6 +8,8 @@ class Need < ActiveRecord::Base
 
   has_many :decisions
 
+  belongs_to :canonical_need, class_name: 'Need'
+
   before_validation :remove_blank_met_when_criteria
 
   default_scope ->{ order('id desc') }
@@ -16,6 +18,7 @@ class Need < ActiveRecord::Base
 
   validates :yearly_user_contacts, :yearly_site_views, :yearly_need_views, :yearly_searches,
             numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 0 }
+  validates :canonical_need, presence: true, if: -> { canonical_need_id.present? }
 
   def need_id
     id
@@ -35,7 +38,7 @@ class Need < ActiveRecord::Base
   end
 
   def reopen_as(author)
-    self.duplicate_of = nil
+    self.canonical_need = nil
     save_as(author)
   end
 
@@ -67,7 +70,7 @@ class Need < ActiveRecord::Base
   end
 
   def duplicate?
-    duplicate_of.present?
+    canonical_need.present?
   end
 
   def closed?

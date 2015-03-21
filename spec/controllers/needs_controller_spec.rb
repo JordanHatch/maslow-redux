@@ -133,4 +133,46 @@ RSpec.describe NeedsController, type: :controller do
     end
   end
 
+  describe '#closed' do
+    let(:existing_need) { create(:need) }
+    let(:need) { create(:need) }
+
+    it 'updates the "canonical_need_id" field for a need' do
+      patch :closed, id: need, need: { canonical_need_id: existing_need.id }
+
+      controller.need.reload
+      expect(controller.need.canonical_need_id).to eq(existing_need.id)
+    end
+
+    it 'redirects to the need' do
+      patch :closed, id: need, need: { canonical_need_id: existing_need.id }
+
+      expect(controller).to redirect_to(action: :show, id: need.id)
+    end
+
+    it 'displays the form again given invalid data' do
+      expect(controller.need).to receive(:valid?).and_return(false)
+      patch :closed, id: need, need: { canonical_need_id: 1234 }
+
+      expect(controller).to render_template(:close_as_duplicate)
+    end
+  end
+
+  describe '#reopen' do
+    let(:closed_need) { create(:closed_need) }
+
+    it 'clears the "canonical_need_id" field for a need' do
+      delete :reopen, id: closed_need
+
+      controller.need.reload
+      expect(controller.need.canonical_need_id).to eq(nil)
+    end
+
+    it 'redirects to the need' do
+      delete :reopen, id: closed_need
+
+      expect(controller).to redirect_to(action: :show, id: closed_need.id)
+    end
+  end
+
 end

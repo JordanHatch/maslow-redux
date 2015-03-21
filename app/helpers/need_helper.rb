@@ -66,7 +66,8 @@ module NeedHelper
   end
 
   def canonical_need_goal(need)
-    Need.find_by_need_id(need.duplicate_of).goal
+    return unless need.canonical_need
+    need.canonical_need.goal
   end
 
   def bookmark_icon(bookmarks = [], need_id)

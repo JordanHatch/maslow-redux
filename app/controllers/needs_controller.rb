@@ -95,42 +95,24 @@ class NeedsController < ApplicationController
   def closed
     authorize! :close, Need
 
-    @need = load_need
-    @need.duplicate_of = params["need"]["duplicate_of"].to_i
+    need.canonical_need_id = params[:need][:canonical_need_id].to_i
 
-    @canonical_need = Need.find_by_need_id(@need.duplicate_of)
-
-    if @need.valid? && @canonical_need.present?
-      if @need.save_as(current_user)
-        redirect_to need_url(@need.need_id), notice: "Need closed as a duplicate of",
-          flash: { need_id: @canonical_need.need_id, goal: @canonical_need.goal }
-        return
-      else
-        flash[:error] = "There was a problem closing the need as a duplicate"
-      end
+    if need.save_as(current_user)
+      redirect_to need_url(need.need_id)
     else
-      flash[:error] = "The Need ID entered is invalid"
+      render :close_as_duplicate, :status => 422
     end
-
-    @need.duplicate_of = nil
-    render "actions", :status => 422
   end
 
   def reopen
     authorize! :reopen, Need
 
-    @need = load_need
-    old_canonical_id = @need.duplicate_of
-
-    if @need.reopen_as(current_user)
-      redirect_to need_url(@need.need_id), notice: "Need is no longer a duplicate of",
-        flash: { need_id: old_canonical_id, goal: Need.find_by_need_id(old_canonical_id).goal }
-      return
+    if need.reopen_as(current_user)
+      redirect_to need_url(need.need_id), notice: "Need re-opened"
     else
       flash[:error] = "There was a problem reopening the need"
+      render :show, status: 422
     end
-
-    render "show", :status => 422
   end
 
 private

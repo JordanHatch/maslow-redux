@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318165419) do
+ActiveRecord::Schema.define(version: 20150321160010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20150318165419) do
     t.datetime "updated_at"
   end
 
+  create_table "need_statuses", force: :cascade do |t|
+    t.integer "need_id",                            null: false
+    t.text    "description"
+    t.text    "reasons",               default: [],              array: true
+    t.text    "additional_comments"
+    t.text    "validation_conditions"
+  end
+
   create_table "needs", force: :cascade do |t|
     t.string  "role",                              null: false
     t.string  "goal",                              null: false
@@ -41,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150318165419) do
     t.text    "met_when",             default: [],              array: true
     t.string  "other_evidence"
     t.string  "legislation"
-    t.integer "duplicate_of"
+    t.integer "canonical_need_id"
     t.integer "yearly_user_contacts"
     t.integer "yearly_site_views"
     t.integer "yearly_need_views"
