@@ -123,4 +123,14 @@ RSpec.describe NeedsController, type: :controller do
     end
   end
 
+  describe '#close_as_duplicate' do
+    let(:closed_need) { create(:closed_need) }
+
+    it 'redirects to the need page if already closed' do
+      get :close_as_duplicate, id: closed_need
+
+      expect(controller).to redirect_to(action: :show, id: closed_need.id)
+    end
+  end
+
 end
