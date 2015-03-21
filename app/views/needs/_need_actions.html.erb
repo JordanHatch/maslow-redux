@@ -1,0 +1,12 @@
+<nav class="need-actions button-group">
+  <div class="dropdown-button">
+    <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      Decide on this need <span></span>
+    </button>
+    <ul role="menu">
+      <% decision_type_options.each do |label, value| %>
+        <li><%= link_to label, new_need_decision_path(need, decision_type: value) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

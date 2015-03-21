@@ -1,3 +1,16 @@
-<%= render partial: "needs/title_and_orgs" %>
 <%= render partial: "needs/need_status" %>
+<header class="need-header">
+  <p class="the-need">
+    As a <em><%= need.role %></em><br />
+    I need to <em><%= need.goal %></em><br />
+    So that <em><%= need.benefit %></em>
+  </p>
+
+  <div class="status-and-actions">
+      <%= render partial: 'needs/need_actions' %>
+
+    <%= render partial: 'needs/need_latest_decisions' %>
+  </div>
+</header>
+
 <%= render partial: "needs/nav_tabs", locals: { titles_to_links: nav_tabs_for(need) } %>

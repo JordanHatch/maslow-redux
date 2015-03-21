@@ -1,0 +1,9 @@
+<ul class="need-status">
+  <% decision_type_options.each do |label, value| %>
+    <% if (decision = need.latest_decision(value)) %>
+      <li class="decision_<%= decision.colour %>">
+        <%= decision_outcome_label decision.decision_type, decision.outcome, 'short' %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
