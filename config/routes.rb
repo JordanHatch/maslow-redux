@@ -16,7 +16,6 @@ Maslow::Application.routes.draw do
       get :revisions
       patch :closed
       delete :closed, to: 'needs#reopen', as: :reopen
-      get :actions
       get :close_as_duplicate, path: 'close-as-duplicate'
     end
   end
