@@ -70,6 +70,10 @@ class Need < ActiveRecord::Base
     duplicate_of.present?
   end
 
+  def closed?
+    duplicate?
+  end
+
   def joined_tag_types
     tag_types.includes(:tags).distinct(:id)
   end

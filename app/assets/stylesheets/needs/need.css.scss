@@ -56,6 +56,50 @@
   }
 }
 
+.closed-need {
+  margin: 20px 0;
+
+  .message {
+    padding: 14px;
+    background: #e72a2a;
+    color: #fff;
+
+    h2 {
+      margin: 0 0 7px;
+      font-size: 23px;
+    }
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  .reopen-action {
+    border: 1px solid #eee;
+    border-top: none;
+    padding: 8px 8px 8px 14px;
+    overflow: auto;
+
+    p {
+      font-size: 17px;
+      padding: 6px 0 0;
+      margin: 0;
+      float: left;
+    }
+
+    input[type='submit'] {
+      @extend .btn;
+      @extend .btn-primary;
+      float: right;
+    }
+  }
+}
+
 .need-btn-group {
   @extend .btn-group;
   text-align: right;
