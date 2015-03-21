@@ -65,8 +65,8 @@ module NeedHelper
     paginate needs
   end
 
-  def canonical_need_goal
-    Need.find_by_need_id(@need.duplicate_of).goal
+  def canonical_need_goal(need)
+    Need.find_by_need_id(need.duplicate_of).goal
   end
 
   def bookmark_icon(bookmarks = [], need_id)
