@@ -37,7 +37,16 @@ class Need < ActiveRecord::Base
 
   def save_as(user)
     action = persisted? ? 'update' : 'create'
-    save && reload && record_revision(action, user)
+
+    # This uses ActiveModel::Dirty's `changes` method to return a list of
+    # changed attributes, along with their previous/next values, before saving.
+    #
+    # We have to assign it before we save, because it gets cleared once a record
+    # is saved.
+    #
+    changed_attributes = changes
+
+    save && record_revision(action, user, changed_attributes)
   end
 
   def reopen_as(author)
@@ -114,11 +123,14 @@ private
     super(method, *args, &block)
   end
 
-  def record_revision(action, user = nil)
-    revisions.create(
-      action_type: action,
-      snapshot: attributes,
-      author: user
+  def record_revision(action, user, changes)
+    activity_items.create(
+      item_type: action,
+      user: user,
+      data: {
+        changes: changes,
+        snapshot: attributes,
+      }
     )
   end
 
