@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe NeedsController, type: :controller do
 
+  describe '#index' do
+    it 'filters needs by a tag given a tag_id' do
+      tag = create(:tag)
+      need = create(:need, tagged_with: tag)
+
+      get :index, tag_id: tag.id
+      expect(assigns(:needs)).to contain_exactly(need)
+    end
+  end
+
   describe '#create' do
     let(:need_attributes) { attributes_for(:need) }
 

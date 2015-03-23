@@ -5,6 +5,8 @@ class NeedsController < ApplicationController
 
   expose(:need)
 
+  has_scope :with_tag_id, as: :tag_id, type: :default
+
   class Http404 < StandardError
   end
 
@@ -19,7 +21,7 @@ class NeedsController < ApplicationController
     @bookmarks = current_user.bookmarks
     @current_page = needs_path
 
-    @needs = Need.page(params[:page])
+    @needs = apply_scopes(Need).page(params[:page])
 
     respond_to do |format|
       format.html
