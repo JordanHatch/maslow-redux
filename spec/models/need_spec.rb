@@ -138,4 +138,18 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '.with_tag_id' do
+    let(:tag) { create(:tag) }
+
+    it 'returns needs tagged with the given tag ID' do
+      other_needs = create_list(:need, 5)
+
+      expected_need = create(:need)
+      tagging = create(:tagging, tag: tag, need: expected_need)
+
+      results = Need.with_tag_id(tag.id)
+      expect(results).to contain_exactly(*expected_need)
+    end
+  end
+
 end

@@ -13,6 +13,9 @@ class Need < ActiveRecord::Base
   before_validation :remove_blank_met_when_criteria
 
   default_scope ->{ order('id desc') }
+  scope :with_tag_id, -> (tag_id) {
+    joins(:taggings).where("taggings.tag_id" => tag_id)
+  }
 
   validates :role, :goal, :benefit, presence: true
 
