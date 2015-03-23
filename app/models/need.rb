@@ -6,6 +6,7 @@ class Need < ActiveRecord::Base
   has_many :tag_types, through: :tags
 
   has_many :decisions
+  has_many :activity_items
 
   belongs_to :canonical_need, class_name: 'Need'
 
