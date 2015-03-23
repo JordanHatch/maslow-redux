@@ -1,21 +1,26 @@
-require 'json'
-
 class NotesController < ApplicationController
+  expose(:need)
+
+  expose(:notes, model: :activity_item, ancestor: :need)
+  expose(:note)
+
   def create
     authorize! :create, Note
 
-    @need = Need.find_by_need_id(params[:need_id])
-    @note = Note.new(
-      text: params[:notes][:text],
-      need_id: @need.need_id,
-      author: current_user,
+    note.assign_attributes(
+      item_type: 'note',
+      user: current_user,
+      data: {
+        body: params[:note][:body]
+      }
     )
 
-    if @note.save
-      flash[:notice] = "Note saved"
+    if note.save
+      flash.notice = "Note saved"
     else
-      flash[:error] = "Note couldn't be saved: #{@note.errors.messages}"
+      flash.alert = "Note must not be blank"
     end
-    redirect_to revisions_need_path(@need)
+
+    redirect_to need_activity_items_path(need)
   end
 end

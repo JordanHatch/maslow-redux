@@ -88,6 +88,34 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#save_as' do
+    let(:need) { create(:need) }
+    let(:user) { create(:user) }
+
+    it 'saves the need' do
+      expect(need).to receive(:save)
+
+      need.save_as(user)
+    end
+
+    it 'creates an activity item with a hash of changes' do
+      original_goal = need.goal
+      need.goal = 'test the changes'
+
+      expect{ need.save_as(user) }.to change{ need.activity_items.count }.by(1)
+
+      latest_revision = need.activity_items.first
+
+      expect(latest_revision.user).to eq(user)
+      expect(latest_revision.item_type).to eq('update')
+
+      expect(latest_revision.data[:snapshot]).to eq(need.attributes)
+      expect(latest_revision.data[:changes]).to eq({
+        'goal' => [original_goal, need.goal]
+      })
+    end
+  end
+
   describe '#joined_tag_types' do
     it 'returns only one instance of each tag type' do
       tag_types = create_list(:tag_type, 2)

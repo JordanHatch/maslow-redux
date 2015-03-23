@@ -1,0 +1,13 @@
+<p class="change-summary">
+  Updated <%= format_changed_fields_list(item.data[:changes].keys) %>
+</p>
+
+<ul class="change-detail">
+  <% item.data[:changes].each do |field,(previous,current)| %>
+    <li>
+      <h3><%= format_field_name(field) %></h3>
+      <span class="previous-value"><%= format_field_value(previous) %></span> to
+      <span class="changed-value"><%= format_field_value(current) %></span>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,15 @@
+<% content_for :page_title, "Activity" %>
+<%= render partial: "needs/breadcrumb", locals: { need: need, action: "Activity" } %>
+<%= render :partial => "needs/need_header" %>
+
+<article class="need">
+  <% if current_user.can?(:create, Note) %>
+    <div class="feed-add">
+      <%= render partial: 'new_note_form', locals: { need: need } %>
+    </div>
+  <% end %>
+
+  <ul class="feed">
+    <%= render partial: 'item', collection: activity_items %>
+  </ul>
+</article>

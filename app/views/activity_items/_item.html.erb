@@ -1,0 +1,13 @@
+<li class="feed-item">
+  <p class="feed-metadata">
+    <span class="date"><%= l item.created_at, format: :short_date %></span>
+    <span class="time"><%= l item.created_at, format: :short_time %></span>
+    <span class="author"><%= item.user.name %></span>
+  </p>
+
+  <div class="feed-content">
+    <div class="inner">
+      <%= render partial: "activity_items/items/#{item.item_type}", locals: { item: item } %>
+    </div>
+  </div>
+</li>

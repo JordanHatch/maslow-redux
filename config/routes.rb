@@ -7,10 +7,10 @@ Maslow::Application.routes.draw do
     end
   end
 
-  resources :notes, only: [:create]
-
   resources :needs, except: [:destroy] do
     resources :decisions
+    resources :activity_items, path: 'activity', only: :index
+    resources :notes, only: :create
 
     member do
       get :revisions
