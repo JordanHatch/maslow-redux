@@ -1,1 +1,8 @@
-# This file is overwritten on deploy
+if ENV['AIRBRAKE_ENABLED'] == true
+  Airbrake.configure do |config|
+    config.api_key = ENV['AIRBRAKE_API_KEY']
+    config.host    = ENV['AIRBRAKE_HOST']
+    config.port    = 80
+    config.secure  = config.port == 443
+  end
+end

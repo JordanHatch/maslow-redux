@@ -37,7 +37,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    airbrake (4.0.0)
+    airbrake (4.1.0)
       builder
       multi_json
     arel (6.0.0)
@@ -219,7 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (~> 4.0.0)
+  airbrake (~> 4.1.0)
   bootstrap-sass
   cancan (= 1.6.10)
   capybara
