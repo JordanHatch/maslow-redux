@@ -11,7 +11,7 @@ RSpec.describe ActivityItem, :type => :model do
       user: user,
       item_type: 'note',
       data: {
-        text: 'This is a note',
+        body: 'This is a note',
       },
     }
   }
@@ -62,15 +62,27 @@ RSpec.describe ActivityItem, :type => :model do
     expect(activity_item.errors).to have_key(:item_type)
   end
 
+  it 'is invalid without a body when item type is a note' do
+    activity_item = ActivityItem.new(valid_attributes.merge(
+      item_type: 'note',
+      data: {
+        something_else: 'foo',
+      }
+    ))
+
+    expect(activity_item).to_not be_valid
+    expect(activity_item.errors).to have_key(:body)
+  end
+
   describe '#data' do
     it 'returns a hash which supports indifferent access' do
       activity_item = ActivityItem.new(valid_attributes)
 
-      expect(activity_item.data).to have_key('text')
-      expect(activity_item.data).to have_key(:text)
+      expect(activity_item.data).to have_key('body')
+      expect(activity_item.data).to have_key(:body)
 
-      expect(activity_item.data['text']).to eq('This is a note')
-      expect(activity_item.data[:text]).to eq('This is a note')
+      expect(activity_item.data['body']).to eq('This is a note')
+      expect(activity_item.data[:body]).to eq('This is a note')
     end
 
     it 'returns an empty hash when empty' do
