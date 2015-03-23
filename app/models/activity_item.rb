@@ -12,4 +12,8 @@ class ActivityItem < ActiveRecord::Base
 
   validates :need, :user, :item_type, presence: true
   validates :item_type, inclusion: { in: ITEM_TYPES }
+
+  def data
+    attributes['data'].with_indifferent_access
+  end
 end

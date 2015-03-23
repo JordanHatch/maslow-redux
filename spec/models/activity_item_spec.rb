@@ -62,4 +62,16 @@ RSpec.describe ActivityItem, :type => :model do
     expect(activity_item.errors).to have_key(:item_type)
   end
 
+  describe '#data' do
+    it 'returns a hash which supports indifferent access' do
+      activity_item = ActivityItem.new(valid_attributes)
+
+      expect(activity_item.data).to have_key('text')
+      expect(activity_item.data).to have_key(:text)
+
+      expect(activity_item.data['text']).to eq('This is a note')
+      expect(activity_item.data[:text]).to eq('This is a note')
+    end
+  end
+
 end
