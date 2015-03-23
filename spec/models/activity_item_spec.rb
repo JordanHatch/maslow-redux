@@ -72,6 +72,12 @@ RSpec.describe ActivityItem, :type => :model do
       expect(activity_item.data['text']).to eq('This is a note')
       expect(activity_item.data[:text]).to eq('This is a note')
     end
+
+    it 'returns an empty hash when empty' do
+      activity_item = ActivityItem.new
+
+      expect(activity_item.data).to eq({})
+    end
   end
 
 end

@@ -14,6 +14,6 @@ class ActivityItem < ActiveRecord::Base
   validates :item_type, inclusion: { in: ITEM_TYPES }
 
   def data
-    attributes['data'].with_indifferent_access
+    (attributes['data'] || {}).with_indifferent_access
   end
 end
