@@ -8,19 +8,21 @@
 
   <ul class="feed">
     <% decisions.each do |decision| %>
-      <li>
-        <p class="datetime">
-          <%= l decision.created_at, format: :short_date %>
+      <li class="feed-item">
+        <p class="feed-metadata">
+          <span class="date"><%= l decision.created_at, format: :short_date %></span>
           <span class="time"><%= l decision.created_at, format: :short_time %></span>
         </p>
-        <div class="item">
-          <h2><%= decision_outcome_label(decision.decision_type, decision.outcome) %></h2>
+        <div class="feed-content">
+          <div class="inner">
+            <h2><%= decision_outcome_label(decision.decision_type, decision.outcome) %></h2>
 
-          <% if decision.note.present? %>
-            <div class="note">
-              <%= simple_format decision.note %>
-            </div>
-          <% end %>
+            <% if decision.note.present? %>
+              <div class="note">
+                <%= simple_format decision.note %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </li>
     <% end %>

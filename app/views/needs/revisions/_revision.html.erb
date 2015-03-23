@@ -1,39 +1,47 @@
 <% revision.notes.each do |n| %>
-  <li class="revision">
-    <h3 class="revision-title">
-      <%#= Time.zone.parse(n.created_at).to_s(:govuk_date) %>
-      <%= n.created_at %> &mdash;
-      Note by <%= n.author.name %>
-      <% if n.author.email.present? %>
-        &lt;<%= n.author.email %>&gt;
-      <% end %>
-    </h3>
-    <%= n.text %>
+  <li class="feed-item">
+    <p class="feed-metadata">
+      <span class="date"><%= l n.created_at, format: :short_date %></span>
+      <span class="time"><%= l n.created_at, format: :short_time %></span>
+      <span class="author"><%= n.author.name %></span>
+    </p>
+
+    <div class="feed-content">
+      <div class="inner">
+        <div class="note">
+          <%= simple_format n.text %>
+        </div>
+      </div>
+    </div>
   </li>
 <% end %>
 
-<li class="revision">
-  <h3 class="revision-title">
-    <%#= Time.zone.parse(revision.created_at).to_s(:govuk_date) %>
-    <%= revision.created_at %> &mdash;
-    <%= revision.action_type.capitalize %> by
-    <% if revision.author.present? -%>
-      <%= revision.author.name %>
-      <% if revision.author.email.present? %>
-        &lt;<%= revision.author.email %>&gt;
+<li class="feed-item">
+  <p class="feed-metadata">
+    <span class="date"><%= l revision.created_at, format: :short_date %></span>
+    <span class="time"><%= l revision.created_at, format: :short_time %></span>
+    <span class="author">
+      <% if revision.author.present? -%>
+        <%= revision.author.name %>
+      <% else %>
+        unknown
       <% end %>
-    <% else %>
-      unknown author
-    <% end %>
-  </h3>
+    </span>
+  </p>
 
-  <ul class="changes">
-    <% revision.changes.each do |field,(previous,current)| %>
-      <li>
-        <%= format_field_name(field) %>:
-        <span class="changed-value"><%= format_field_value(previous) %></span> &rarr;
-        <span class="changed-value"><%= format_field_value(current) %></span>
-      </li>
-    <% end %>
-  </ul>
+  <div class="feed-content">
+    <div class="inner">
+      <%= revision.action_type.capitalize %>
+
+      <ul class="changes">
+        <% revision.changes.each do |field,(previous,current)| %>
+          <li>
+            <%= format_field_name(field) %>:
+            <span class="changed-value"><%= format_field_value(previous) %></span> &rarr;
+            <span class="changed-value"><%= format_field_value(current) %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </li>

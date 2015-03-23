@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require chosen-jquery
+//= require autosize
 //= require bootstrap
 //= require_tree .
 

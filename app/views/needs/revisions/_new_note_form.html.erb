@@ -1,11 +1,18 @@
 <%= semantic_form_for(:notes, url: notes_url) do |f| %>
   <%= f.inputs do %>
     <%= hidden_field_tag :need_id, need.need_id %>
-    <%= f.input :text, :label => 'Note', :as => :text, :hint => "Don't forget to save your note when you have finished.", input_html: { class: "col-md-12 add-bottom-margin" } %>
+
+    <%= f.input :text, label: 'Add a note',
+                       as: :text,
+                       required: false, # prevents an asterisk from appearing
+                       input_html: {
+                         :rows => 3, 
+                         'data-module' => 'expand',
+                       } %>
   <% end %>
   <%= f.action :submit,
                :button_html => {
-                 :value => "Add note",
+                 :value => "Post",
                  :class => "btn btn-primary"
                } %>
 <% end %>
