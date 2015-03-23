@@ -1,0 +1,16 @@
+<%= semantic_form_for(:note, url: need_notes_path(need)) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :body, label: 'Add a note',
+                       as: :text,
+                       required: false, # prevents an asterisk from appearing
+                       input_html: {
+                         :rows => 3,
+                         'data-module' => 'expand',
+                       } %>
+  <% end %>
+  <%= f.action :submit,
+               :button_html => {
+                 :value => "Post",
+                 :class => "btn btn-primary"
+               } %>
+<% end %>

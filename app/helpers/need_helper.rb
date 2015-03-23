@@ -26,10 +26,6 @@ module NeedHelper
     end
   end
 
-  def format_field_name(name)
-    name.titleize
-  end
-
   # If no criteria present, insert a blank
   # one.
   def criteria_with_blank_value(criteria)
