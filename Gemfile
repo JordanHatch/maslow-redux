@@ -36,5 +36,7 @@ gem 'formtastic-bootstrap', '3.0.0'
 gem 'decent_exposure'
 gem 'has_scope'
 
+gem 'devise'
+
 gem 'foreman'
 gem 'rails_12factor', group: :production

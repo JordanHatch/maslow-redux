@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  check_authorization
+
+  # TODO: Re-instate the authorization checks once we have added an exception for
+  # the Devise controllers and assigned permissions properly to the user.
+  #
+  # check_authorization
+
   include ApplicationHelper
+
+  before_action :authenticate_user!
 
   rescue_from ActionController::InvalidAuthenticityToken do
     render text: "Invalid authenticity token", status: 403

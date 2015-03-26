@@ -1,6 +1,9 @@
 require 'ability'
 
 class User < ActiveRecord::Base
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable
+         
   delegate :can?, :cannot?, :to => :ability
 
   def ability
