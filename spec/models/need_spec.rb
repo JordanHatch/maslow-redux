@@ -114,6 +114,17 @@ RSpec.describe Need, type: :model do
         'goal' => [original_goal, need.goal]
       })
     end
+
+    it 'does not save a change for the "met_when" field when both previous and new values are blank' do
+      need.met_when = []
+      need.save!
+
+      need.met_when = ['']
+      need.save_as(user)
+
+      latest_revision = need.activity_items.first
+      expect(latest_revision.data[:changes]).to_not have_key('met_when')
+    end
   end
 
   describe '#joined_tag_types' do

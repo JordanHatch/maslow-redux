@@ -128,10 +128,22 @@ private
       item_type: action,
       user: user,
       data: {
-        changes: changes,
+        changes: filtered_changes(changes),
         snapshot: attributes,
       }
     )
+  end
+
+  def filtered_changes(changes)
+    changes.tap {|changes|
+      met_when = changes['met_when']
+
+      if met_when.present? &&
+          met_when.first.empty? &&
+          met_when.last.reject(&:blank?).empty?
+        changes.delete('met_when')
+      end
+    }
   end
 
   def remove_blank_met_when_criteria
