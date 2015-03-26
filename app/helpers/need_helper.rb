@@ -18,14 +18,6 @@ module NeedHelper
     words.join(" ")
   end
 
-  def format_field_value(value)
-    if value.nil? or value.to_s.strip == ""
-      "<em>blank</em>".html_safe
-    else
-      value.to_s
-    end
-  end
-
   # If no criteria present, insert a blank
   # one.
   def criteria_with_blank_value(criteria)
