@@ -1,7 +1,12 @@
 Maslow::Application.routes.draw do
   get "/healthcheck" => Proc.new { [200, {"Content-type" => "text/plain"}, ["OK"]] }
 
-  devise_for :users
+  devise_for :users,
+          controllers: {
+            sessions: 'sessions',
+            passwords: 'passwords',
+          }
+
 
   resources :bookmarks, only: [:index] do
     collection do

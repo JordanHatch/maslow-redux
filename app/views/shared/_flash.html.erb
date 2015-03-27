@@ -1,0 +1,6 @@
+<% [:notice, :alert, :error].select { |k| flash[k].present? }.each do |k| %>
+  <div class="main-alert <%= k %>">
+    <span class="icon"></span>
+    <span class="message"><%= flash[k] %></span>
+  </div>
+<% end %>
