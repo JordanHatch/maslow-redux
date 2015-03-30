@@ -4,18 +4,28 @@
   padding: 11px 14px;
   margin-bottom: 20px;
   color: #fff;
+  overflow: auto;
 
   .icon {
     @extend .glyphicon;
     @extend .glyphicon-ok;
+
+    float: left;
+    width: 2em;
+
     padding-right: 10px;
+    margin-top: 2px;
   }
 
-  .icon, .message {
-    display: inline-block;
-    vertical-align: top;
-    line-height: 1;
-    margin-top: 4px;
+  .message {
+    float: left;
+    width: 85%;
+  }
+
+  &.mini {    
+    .icon {
+      margin-top: 4px;
+    }
   }
 
   a {

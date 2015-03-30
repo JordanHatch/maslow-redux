@@ -71,6 +71,8 @@ body.signed-out {
 
   .main-alert {
     @extend .center-column;
+    @extend .mini;
+
     margin: 0 auto 10px;
     font-size: 15px;
 
