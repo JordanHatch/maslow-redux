@@ -3,9 +3,15 @@ Maslow::Application.routes.draw do
 
   devise_for :users,
           controllers: {
-            sessions: 'sessions',
             passwords: 'passwords',
-          }
+          },
+          skip: [:sessions]
+
+  as :user do
+    get 'sign-in', to: 'sessions#new', as: :new_user_session
+    post 'sign-in', to: 'sessions#create', as: :user_session
+    get 'sign-out', to: 'sessions#destroy', as: :destroy_user_session
+  end
 
 
   resources :bookmarks, only: [:index] do

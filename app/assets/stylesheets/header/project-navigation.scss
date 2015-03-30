@@ -38,6 +38,7 @@ nav.project {
   .signed-in-user {
     @extend .without-link;
 
+    padding: 5px;
     strong { font-size: 18px; }
 
     ul { padding: 0; }
@@ -74,12 +75,16 @@ nav.project {
         display: block;
         padding: 0;
 
+        &.signed-in-user {
+          padding: 10px 14px;
+        }
+
         &:last-child {
           border-bottom: none;
         }
 
         > a {
-          padding: 10px 14px;
+          padding: 7px 14px;
           display: block;
           color: #111;
 

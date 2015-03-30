@@ -1,5 +1,11 @@
 <nav class="project">
   <ul>
+    <li class="signed-in-user">
+      <strong><%= current_user.name %></strong>
+      <ul>
+        <li><%= link_to 'sign out', destroy_user_session_path %></li>
+      </ul>
+    </li>
     <li class="primary">
       <%= link_to "Home", root_path %>
     </li>
