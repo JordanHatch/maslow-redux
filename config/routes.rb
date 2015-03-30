@@ -37,6 +37,7 @@ Maslow::Application.routes.draw do
     resources :tag_types, path: 'tag-types' do
       resources :tags
     end
+    resources :users
 
     root to: 'root#index'
   end

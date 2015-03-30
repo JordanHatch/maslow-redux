@@ -5,6 +5,12 @@
     <nav class="col-md-3">
       <ul>
         <li>
+          <h2>Project</h2>
+          <ul>
+            <li><%= link_to 'Team members', settings_users_path %></li>
+          </ul>
+        </li>
+        <li>
           <h2>Tags</h2>
           <ul>
             <% tag_types.each do |tag_type| %>

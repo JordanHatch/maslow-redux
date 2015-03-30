@@ -1,0 +1,19 @@
+<%= semantic_form_for [:settings, user] do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+  <% end %>
+
+  <% if f.object.new_record? %>
+    <%= f.inputs do %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation, required: true %>
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit,  button_html: { class: 'btn btn-primary' } %>
+  <% end %>
+
+<% end %>
