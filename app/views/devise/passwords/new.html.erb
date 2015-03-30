@@ -1,0 +1,13 @@
+<section class="reset-password">
+  <h2>Forgot your password?</h2>
+
+  <%= semantic_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :email, html: { autofocus: true } %>
+    <% end %>
+
+    <%= f.actions do %>
+      <%= f.action :submit, label: 'Send me reset instructions' %>
+    <% end %>
+  <% end %>
+</section>

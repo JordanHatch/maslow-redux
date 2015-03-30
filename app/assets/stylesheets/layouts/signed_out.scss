@@ -1,0 +1,87 @@
+body.signed-out {
+  background: $primary-color;
+  color: #fff;
+
+  .center-column {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  header {
+    @extend .center-column;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    h1 {
+      font-weight: bold;
+      font-size: 25px;
+      margin: 0 0 5px;
+    }
+
+    h2 {
+      font-weight: normal;
+      font-size: 23px;
+      margin: 0;
+      color: $inverse-text-color;
+    }
+  }
+
+  .page-area {
+    @extend .center-column;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    background: #fff;
+    color: #000;
+    padding: 15px 20px;
+
+    h2 {
+      font-size: 21px;
+      font-weight: normal;
+      margin: 5px 0 0;
+    }
+
+    form {
+      margin: 20px 0 10px;
+
+      input[type=submit] {
+        margin-top: 5px;
+        font-size: 16px;
+
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-block;
+      }
+    }
+  }
+
+  .signed-out-actions {
+    @extend .center-column;
+
+    text-align: center;
+    font-size: 13px;
+    padding: 15px 0;
+
+    a { color: $inverse-text-color; }
+  }
+
+  .main-alert {
+    @extend .center-column;
+    @extend .mini;
+
+    margin: 0 auto 10px;
+    font-size: 15px;
+
+    &.alert {
+      background: #fb3a3a;
+    }
+  }
+}
+
+section.login, section.reset-password {
+  @extend .page-area;
+}

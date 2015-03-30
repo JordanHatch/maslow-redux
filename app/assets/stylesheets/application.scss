@@ -22,12 +22,15 @@
 
 @import "base";
 
+// Alternate layouts
+@import "layouts/signed_out";
+
 // Elements
 @import 'elements/buttons';
 @import 'elements/alerts';
 @import 'elements/feeds';
 
-// Header
+// Views
 @import "header/project-navigation";
 
 @import "needs/need";

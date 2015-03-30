@@ -1,39 +1,4 @@
 .tag-type {
-  header {
-    margin: 0 0 20px;
-    overflow: auto;
-
-    h1 { float: left; }
-    .actions { float: right; }
-  }
-
-  table {
-    @extend .table;
-    @extend .table-striped;
-
-    .actions {
-      text-align: right;
-
-      ul {
-        margin: 0;
-
-        li {
-          display: inline;
-          padding: 0 0 0 4px;
-        }
-      }
-
-      a {
-        @extend .btn;
-        @extend .btn-default;
-        @extend .btn-xs;
-
-        &[data-method='delete'] {
-          @extend .btn-danger;
-        }
-      }
-    }
-  }
 }
 
 .no-tags {
