@@ -74,6 +74,18 @@ RSpec.describe ActivityItem, :type => :model do
     expect(activity_item.errors).to have_key(:body)
   end
 
+  it 'is invalid without a decision_id when item type is a decision' do
+    activity_item = ActivityItem.new(valid_attributes.merge(
+      item_type: 'decision',
+      data: {
+        something_else: 'foo',
+      }
+    ))
+
+    expect(activity_item).to_not be_valid
+    expect(activity_item.errors).to have_key(:decision_id)
+  end
+
   describe '#data' do
     it 'returns a hash which supports indifferent access' do
       activity_item = ActivityItem.new(valid_attributes)
@@ -89,6 +101,19 @@ RSpec.describe ActivityItem, :type => :model do
       activity_item = ActivityItem.new
 
       expect(activity_item.data).to eq({})
+    end
+  end
+
+  describe '#decision' do
+    it 'returns a decision object for the need' do
+      mock_decision = double('Decision')
+      activity_item = ActivityItem.new(valid_attributes.merge(
+                                         item_type: 'decision',
+                                         data: { decision_id: 1 }
+                                       ))
+
+      expect(need.decisions).to receive(:find).with(1).and_return(mock_decision)
+      expect(activity_item.decision).to eq(mock_decision)
     end
   end
 

@@ -14,6 +14,7 @@ class ActivityItem < ActiveRecord::Base
   validates :item_type, inclusion: { in: ITEM_TYPES }
 
   validate :note_body_is_present, if: -> { item_type == 'note' }
+  validate :decision_id_is_present, if: -> { item_type == 'decision' }
 
   default_scope -> { order(created_at: :desc) }
 
@@ -25,6 +26,10 @@ class ActivityItem < ActiveRecord::Base
     data[:body]
   end
 
+  def decision
+    need.decisions.find(data[:decision_id])
+  end
+
   def changes
     data[:changes]
   end
@@ -33,6 +38,10 @@ private
 
   def note_body_is_present
     errors.add(:body, 'is missing') unless data[:body].present?
+  end
+
+  def decision_id_is_present
+    errors.add(:decision_id, 'is missing') unless data[:decision_id].present?
   end
 
 end
