@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331141235) do
+ActiveRecord::Schema.define(version: 20150331150851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 20150331141235) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "need_revisions", force: :cascade do |t|
-    t.integer  "need_id",     null: false
-    t.integer  "author_id",   null: false
-    t.string   "action_type", null: false
-    t.json     "snapshot"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "needs", force: :cascade do |t|
     t.string  "role",                              null: false
     t.string  "goal",                              null: false
@@ -54,20 +45,6 @@ ActiveRecord::Schema.define(version: 20150331141235) do
     t.integer "yearly_site_views"
     t.integer "yearly_need_views"
     t.integer "yearly_searches"
-  end
-
-  create_table "notes", force: :cascade do |t|
-    t.integer  "need_id",     null: false
-    t.integer  "author_id",   null: false
-    t.integer  "revision_id"
-    t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organisations", force: :cascade do |t|
-    t.string "name",         null: false
-    t.string "abbreviation"
   end
 
   create_table "tag_types", force: :cascade do |t|
