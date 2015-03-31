@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  force_ssl if: :ssl_enabled?
 
   include ApplicationHelper
 
@@ -18,8 +19,12 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
 
-  private
-    def verify_authenticity_token
-      raise ActionController::InvalidAuthenticityToken unless verified_request?
-    end
+private
+  def verify_authenticity_token
+    raise ActionController::InvalidAuthenticityToken unless verified_request?
+  end
+
+  def ssl_enabled?
+    ENV['FORCE_SSL'].present?
+  end
 end

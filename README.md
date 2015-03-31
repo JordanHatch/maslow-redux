@@ -25,6 +25,7 @@ it easier for other teams to set up their own instances.
 - `INSTANCE_NAME`: the name to give to this instance of Maslow (eg. your team or
   product name).
 - `DATABASE_URI`: the URL to a PostgreSQL database in the production environment
+- `FORCE_SSL`: when present, will force all requests to use SSL.
 
 ### Basic authentication
 
