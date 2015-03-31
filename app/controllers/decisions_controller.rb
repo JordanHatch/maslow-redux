@@ -13,6 +13,7 @@ class DecisionsController < ApplicationController
 
   def create
     decision.assign_attributes(decision_params)
+    decision.user = current_user
 
     if decision.save
       redirect_to need_decisions_path(need)

@@ -1,8 +1,12 @@
 class Decision < ActiveRecord::Base
+  attr_accessor :user
+
   belongs_to :need
 
-  validates :need, :decision_type, :outcome, presence: true
+  validates :need, :decision_type, :outcome, :user, presence: true
   validate :decision_type_and_outcome_exist
+
+  after_create :create_activity_item
 
   scope :recent_first, -> { order(created_at: :desc) }
   scope :of_type, -> (type) { where(decision_type: type) }
@@ -45,5 +49,16 @@ private
     elsif ! decision_types[decision_type].keys.include?(outcome)
       errors.add(:outcome, :is_unknown)
     end
+  end
+
+  def create_activity_item
+    need.activity_items.create!(
+      item_type: 'decision',
+      user: user,
+      data: {
+        decision_id: self.id,
+        body: note,
+      },
+    )
   end
 end

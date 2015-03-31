@@ -1,0 +1,8 @@
+<h2>
+  <span class="item-type-label">Decision:</span>
+  <%= decision_outcome_label(item.decision.decision_type, item.decision.outcome) %>
+</h2>
+
+<div class="note">
+  <%= simple_format item.body %>
+</div>

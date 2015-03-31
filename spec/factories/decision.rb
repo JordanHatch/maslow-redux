@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :decision do
     need
     note 'Background to the decision'
+    user { create(:user) }
 
     trait :scope do
       decision_type 'scope'
