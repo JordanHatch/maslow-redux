@@ -1,5 +1,5 @@
 class Decision < ActiveRecord::Base
-  attr_accessor :user
+  attr_accessor :user, :note
 
   belongs_to :need
 
