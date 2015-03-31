@@ -21,6 +21,14 @@ class ActivityItem < ActiveRecord::Base
     (attributes['data'] || {}).with_indifferent_access
   end
 
+  def body
+    data[:body]
+  end
+
+  def changes
+    data[:changes]
+  end
+
 private
 
   def note_body_is_present
