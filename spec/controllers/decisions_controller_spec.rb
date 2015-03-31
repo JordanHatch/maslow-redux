@@ -11,7 +11,7 @@ RSpec.describe DecisionsController, :type => :controller do
     it 'redirects to the need decisions page' do
       post :create, need_id: need, decision: decision_attributes
 
-      expect(controller).to redirect_to(need_decisions_path(need))
+      expect(controller).to redirect_to(need_activity_items_path(need))
     end
 
     it 'creates a decision for the need' do

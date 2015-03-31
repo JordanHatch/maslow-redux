@@ -7,7 +7,7 @@ RSpec.describe 'deciding on needs', type: :feature do
   it 'can mark a need as in scope' do
     visit need_path(need)
 
-    click_on 'Decisions'
+    click_on 'Decide on this need'
     click_on 'Is the need in scope?'
 
     choose 'This need is in scope'
