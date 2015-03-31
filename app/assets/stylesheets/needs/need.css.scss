@@ -100,20 +100,6 @@
   }
 }
 
-.need-btn-group {
-  @extend .btn-group;
-  text-align: right;
-  position: absolute;
-  bottom: 14px;
-  right: 0;
-  width: 340px;
-}
-
-.need-btn-group .dropdown-menu {
-  left: auto;
-  right: 0;
-}
-
 .need-organisations {
   @extend .muted;
   font-size: 19px;
