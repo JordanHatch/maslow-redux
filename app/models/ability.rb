@@ -10,7 +10,6 @@ class Ability
 
     if user.editor?
       can [ :create, :update, :close, :reopen, :perform_actions_on ], Need
-      can :create, Note
     end
 
     can :validate, Need if user.admin?

@@ -1,12 +1,12 @@
 class NotesController < ApplicationController
+  skip_authorization_check
+
   expose(:need)
 
   expose(:notes, model: :activity_item, ancestor: :need)
-  expose(:note)
+  expose(:note, model: :activity_item, ancestor: :notes)
 
   def create
-    authorize! :create, Note
-
     note.assign_attributes(
       item_type: 'note',
       user: current_user,
