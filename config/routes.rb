@@ -33,6 +33,13 @@ Maslow::Application.routes.draw do
     end
   end
 
+  resource :user, only: [] do
+    collection do
+      get :password, to: 'user#edit_password', as: :edit_password
+      put :password, to: 'user#update_password', as: :password
+    end
+  end
+
   namespace :settings do
     resources :tag_types, path: 'tag-types' do
       resources :tags

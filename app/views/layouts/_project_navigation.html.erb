@@ -3,6 +3,7 @@
     <li class="signed-in-user">
       <strong><%= current_user.name %></strong>
       <ul>
+        <li><%= link_to 'change password', edit_password_user_path %></li>
         <li><%= link_to 'sign out', destroy_user_session_path %></li>
       </ul>
     </li>
