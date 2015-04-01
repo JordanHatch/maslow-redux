@@ -1,12 +1,17 @@
 require 'ability'
 
 class User < ActiveRecord::Base
+  ROLES = [
+    "admin"
+  ]
+
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   delegate :can?, :cannot?, :to => :ability
 
   validates :name, presence: true
+  validate :roles_exist_in_list
 
   def ability
     @ability ||= Ability.new(self)
@@ -34,6 +39,14 @@ class User < ActiveRecord::Base
       bookmarks.delete(need_id_as_string)
     else
       bookmarks << need_id_as_string
+    end
+  end
+
+private
+
+  def roles_exist_in_list
+    if roles.reject {|role| ROLES.include?(role) }.any?
+      errors.add(:roles, 'not included in the list')
     end
   end
 end

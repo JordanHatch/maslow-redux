@@ -58,6 +58,27 @@ RSpec.describe User, :type => :model do
     expect(user.errors).to have_key(:password_confirmation)
   end
 
+  describe 'roles' do
+    it 'is created with no roles by default' do
+      user = User.new(valid_attributes)
+
+      expect(user.roles).to be_empty
+    end
+
+    it 'is valid with a known role' do
+      user = User.new(valid_attributes.merge(roles: ['admin']))
+
+      expect(user).to be_valid
+    end
+
+    it 'is invalid with an unknown role' do
+      user = User.new(valid_attributes.merge(roles: ['foo']))
+
+      expect(user).to_not be_valid
+      expect(user.errors).to have_key(:roles)
+    end
+  end
+
   describe '#toggle_bookmark' do
     let(:other_need_ids) {
       create_list(:need, 3).map {|need| need.id.to_s }
