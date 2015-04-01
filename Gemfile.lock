@@ -71,6 +71,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    colorize (0.7.5)
     compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -240,6 +241,7 @@ DEPENDENCIES
   cancan (= 1.6.10)
   capybara
   chosen-rails
+  colorize
   database_cleaner
   decent_exposure
   devise
