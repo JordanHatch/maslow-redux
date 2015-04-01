@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
     @ability ||= Ability.new(self)
   end
 
-  def self.find_by_uid(uid)
-    where(uid: uid).first
-  end
-
   def viewer?
     true
   end
