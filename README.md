@@ -11,13 +11,15 @@ it easier for other teams to set up their own instances.
 ## Dependencies
 
 - Ruby (2.1.5)
-- Bundler
 - A running PostgreSQL instance
 
 ## Getting started
 
-    bundle install
-    bin/rake users:create_mock_user
+    # Installs gem dependencies, creates database tables, and creates the first
+    # user account
+    bin/setup
+
+    # Starts the Maslow server
     foreman start
 
 ## Configuration
@@ -47,13 +49,6 @@ You can protect the app with HTTP Basic Authentication by setting the `USER` and
   requests to an external API.
 
 ## Caveats
-
-- We've got here so far by crudely stripping out any internal dependencies and
-merging some Need API behavior. As a result, there are plenty of bugs, and some
-features might not work.
-
-- There's no user authentication feature: for simplicity, all sessions are
-configured to use the same user in the database.
 
 - We're currently missing the search and organisation filtering features. These
 could be added back in the future.
