@@ -31,8 +31,8 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem 'unicorn'
-gem 'formtastic', '2.3.0'
-gem 'formtastic-bootstrap', '3.0.0'
+gem 'formtastic', '~> 3.1.2'
+gem 'formtastic-bootstrap', '~> 3.1.0'
 gem 'decent_exposure'
 gem 'has_scope'
 
