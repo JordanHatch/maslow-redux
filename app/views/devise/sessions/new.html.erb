@@ -5,7 +5,9 @@
     <%= f.inputs do %>
       <%= f.input :email, input_html: { autofocus: true } %>
       <%= f.input :password, input_html: { autocomplete: 'off' } %>
-      <%= f.input :remember_me, as: :boolean %>
+      <%= f.input :remember_me, as: :boolean,
+                                label: false # This prevents the label from appearing twice
+                                %>
     <% end %>
 
     <%= f.actions do %>
