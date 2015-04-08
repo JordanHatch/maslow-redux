@@ -86,6 +86,34 @@ RSpec.describe User, :type => :model do
     end
   end
 
+  describe '#admin?' do
+    it 'returns true when the user has the admin role' do
+      user = User.new(valid_attributes.merge(roles: ['admin']))
+
+      expect(user).to be_admin
+    end
+
+    it 'returns false when the user does not have the admin role' do
+      user = User.new(valid_attributes.merge(roles: ['commenter']))
+
+      expect(user).to_not be_admin
+    end
+  end
+
+  describe '#commenter?' do
+    it 'returns true when the user has the commenter role' do
+      user = User.new(valid_attributes.merge(roles: ['commenter']))
+
+      expect(user).to be_commenter
+    end
+
+    it 'returns false when the user does not have the commenter role' do
+      user = User.new(valid_attributes.merge(roles: ['admin']))
+
+      expect(user).to_not be_commenter
+    end
+  end
+
   describe '#toggle_bookmark' do
     let(:other_need_ids) {
       create_list(:need, 3).map {|need| need.id.to_s }

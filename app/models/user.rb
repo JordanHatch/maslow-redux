@@ -20,16 +20,12 @@ class User < ActiveRecord::Base
     @ability ||= Ability.new(self)
   end
 
-  def viewer?
-    true
-  end
-
-  def editor?
-    true
+  def commenter?
+    roles.include?('commenter')
   end
 
   def admin?
-    true
+    roles.include?('admin')
   end
 
   def toggle_bookmark(need_id)
