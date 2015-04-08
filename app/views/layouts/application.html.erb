@@ -31,7 +31,9 @@
       </nav>
 
       <div class="primary-actions">
-        <%= link_to 'Add user need', new_need_path %>
+        <% if current_user.can?(:create, Need) %>
+          <%= link_to 'Add user need', new_need_path %>
+        <% end %>
       </div>
 
       <%= render partial: 'layouts/project_navigation' %>
