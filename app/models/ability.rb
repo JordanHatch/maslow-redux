@@ -3,9 +3,9 @@ class Ability
 
   def initialize(user)
     can [ :read, :index ], Need
+    can [ :index, :create ], :bookmark
 
     if user.viewer?
-      can [ :index, :create ], :bookmark
     end
 
     if user.admin?
