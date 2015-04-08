@@ -26,7 +26,6 @@ Maslow::Application.routes.draw do
     resources :notes, only: :create
 
     member do
-      get :revisions
       patch :closed
       delete :closed, to: 'needs#reopen', as: :reopen
       get :close_as_duplicate, path: 'close-as-duplicate'

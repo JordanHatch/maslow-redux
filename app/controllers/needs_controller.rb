@@ -37,11 +37,6 @@ class NeedsController < ApplicationController
     @need = load_need
   end
 
-  def revisions
-    authorize! :see_revisions_of, Need
-    @need = load_need
-  end
-
   def edit
     authorize! :update, Need
     @need = load_need
