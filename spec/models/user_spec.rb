@@ -77,6 +77,13 @@ RSpec.describe User, :type => :model do
       expect(user).to_not be_valid
       expect(user.errors).to have_key(:roles)
     end
+
+    it 'strips away empty values in the roles array' do
+      user = User.new(valid_attributes.merge(roles: ['admin', '', nil]))
+      user.save!
+
+      expect(user.roles).to contain_exactly('admin')
+    end
   end
 
   describe '#toggle_bookmark' do

@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validate :roles_exist_in_list
 
+  before_validation :remove_blank_roles
+
   def ability
     @ability ||= Ability.new(self)
   end
@@ -44,6 +46,12 @@ class User < ActiveRecord::Base
   end
 
 private
+
+  def remove_blank_roles
+    if roles
+      roles.delete_if(&:blank?)
+    end
+  end
 
   def roles_exist_in_list
     if roles.reject {|role| ROLES.include?(role) }.any?
