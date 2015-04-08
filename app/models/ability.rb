@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     can [ :read, :index ], Need
     can [ :index, :create ], :bookmark
+    can :index, ActivityItem
 
     if user.commenter? || user.admin?
       can :create, :note

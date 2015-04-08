@@ -1,10 +1,9 @@
 class ActivityItemsController < ApplicationController
-  skip_authorization_check
-
   expose(:need)
   expose(:activity_items, ancestor: :need)
 
   def index
+    authorize! :index, ActivityItem
   end
 
 private
