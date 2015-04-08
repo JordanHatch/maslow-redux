@@ -2,7 +2,8 @@ require 'ability'
 
 class User < ActiveRecord::Base
   ROLES = [
-    "admin"
+    "admin",
+    "commenter",
   ]
 
   devise :database_authenticatable,
