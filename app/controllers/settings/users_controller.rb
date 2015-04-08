@@ -28,10 +28,10 @@ class Settings::UsersController < Settings::BaseController
 private
 
   def creation_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, roles: [])
   end
 
   def update_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, roles: [])
   end
 end

@@ -3,6 +3,12 @@
   <%= f.inputs do %>
     <%= f.input :name %>
     <%= f.input :email %>
+    <%= f.input :roles, as: :select,
+                        multiple: true,
+                        collection: User::ROLES,
+                        input_html: {
+                          'data-module' => 'chosen',
+                        } %>
   <% end %>
 
   <% if f.object.new_record? %>
