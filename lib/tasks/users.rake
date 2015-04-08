@@ -20,9 +20,7 @@ namespace :users do
       name: name,
       password: password,
       password_confirmation: password,
-      permissions: [
-        'signin',
-        'editor',
+      roles: [
         'admin',
       ]
     )
