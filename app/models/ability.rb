@@ -2,14 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can [ :read, :index, :see_revisions_of ], Need
+    can [ :read, :index ], Need
 
     if user.viewer?
       can [ :index, :create ], :bookmark
     end
 
-    if user.editor?
-      can [ :create, :update, :close, :reopen, :perform_actions_on ], Need
+    if user.admin?
+      can [ :create, :update, :close, :reopen ], Need
     end
 
     can :validate, Need if user.admin?

@@ -1,8 +1,6 @@
 require 'json'
 
 class NeedsController < ApplicationController
-  skip_authorization_check
-
   expose(:need)
 
   has_scope :with_tag_id, as: :tag_id, type: :default
@@ -54,6 +52,8 @@ class NeedsController < ApplicationController
   end
 
   def create
+    authorize! :create, Need
+
     need.assign_attributes(need_params)
     add_or_remove_criteria(:new) and return if criteria_params_present?
 
@@ -66,6 +66,8 @@ class NeedsController < ApplicationController
   end
 
   def update
+    authorize! :update, Need
+
     need.assign_attributes(need_params)
     add_or_remove_criteria(:edit) and return if criteria_params_present?
 
