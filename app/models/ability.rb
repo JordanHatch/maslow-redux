@@ -15,7 +15,5 @@ class Ability
       can [ :create, :update, :close, :reopen ], Need
       can :manage, :settings
     end
-
-    can :validate, Need if user.admin?
   end
 end
