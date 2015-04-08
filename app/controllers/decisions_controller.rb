@@ -5,13 +5,15 @@ class DecisionsController < ApplicationController
   }
   expose(:decision)
 
-  skip_authorization_check
-
   def new
+    authorize! :create, Decision
+
     decision.decision_type ||= default_decision_type
   end
 
   def create
+    authorize! :create, Decision
+
     decision.assign_attributes(decision_params)
     decision.user = current_user
 

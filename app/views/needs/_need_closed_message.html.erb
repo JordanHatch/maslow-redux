@@ -7,10 +7,12 @@
     </p>
   </div>
 
-  <div class="reopen-action">
-    <p>If this need is no longer a duplicate, you can re-open it.</p>
-    <%= button_to "Reopen this need",
-                  reopen_need_path(need),
-                  method: "delete" %>
-  </div>
+  <% if current_user.can?(:reopen, Need) %>
+    <div class="reopen-action">
+      <p>If this need is no longer a duplicate, you can re-open it.</p>
+      <%= button_to "Reopen this need",
+                    reopen_need_path(need),
+                    method: "delete" %>
+    </div>
+  <% end %>
 </div>

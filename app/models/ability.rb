@@ -9,6 +9,7 @@ class Ability
     end
 
     if user.admin?
+      can :create, Decision
       can [ :create, :update, :close, :reopen ], Need
     end
 
