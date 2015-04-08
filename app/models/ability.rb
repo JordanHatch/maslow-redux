@@ -5,7 +5,8 @@ class Ability
     can [ :read, :index ], Need
     can [ :index, :create ], :bookmark
 
-    if user.viewer?
+    if user.commenter? || user.admin?
+      can :create, :note
     end
 
     if user.admin?

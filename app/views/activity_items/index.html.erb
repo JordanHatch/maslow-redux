@@ -3,9 +3,11 @@
 <%= render :partial => "needs/need_header" %>
 
 <article class="need">
-  <div class="feed-add">
-    <%= render partial: 'new_note_form', locals: { need: need } %>
-  </div>
+  <% if current_user.can?(:create, :note) %>
+    <div class="feed-add">
+      <%= render partial: 'new_note_form', locals: { need: need } %>
+    </div>
+  <% end %>
 
   <ul class="feed">
     <%= render partial: 'item', collection: activity_items %>
