@@ -13,7 +13,7 @@ RSpec.configure do |config|
   config.include FeatureAuthenticationHelper, type: :feature
 
   config.before(:each, type: :feature) do
-    @user = create(:user)
+    @user = create(:admin_user)
     sign_in @user
   end
 end

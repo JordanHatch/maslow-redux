@@ -5,5 +5,11 @@ FactoryGirl.define do
     password 'not a secure password'
     password_confirmation 'not a secure password'
     roles []
+
+    trait :admin do
+      roles ['admin']
+    end
+
+    factory :admin_user, traits: [:admin]
   end
 end
