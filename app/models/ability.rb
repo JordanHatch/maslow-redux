@@ -12,6 +12,7 @@ class Ability
     if user.admin?
       can :create, Decision
       can [ :create, :update, :close, :reopen ], Need
+      can :manage, :settings
     end
 
     can :validate, Need if user.admin?
