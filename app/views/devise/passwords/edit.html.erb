@@ -1,0 +1,22 @@
+<section class="reset-password">
+  <h2>Change your password</h2>
+
+  <%= semantic_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <%= f.inputs do %>
+      <%= f.input :password, label: 'New password',
+                             html: {
+                               autofocus: true,
+                               autocomplete: 'off'
+                             } %>
+      <%= f.input :password_confirmation, label: 'Confirm new password',
+                            html: { autocomplete: 'off' } %>
+    <% end %>
+
+    <%= f.actions do %>
+      <%= f.action :submit, label: "Change my password" %>
+    <% end %>
+  <% end %>
+</section>
