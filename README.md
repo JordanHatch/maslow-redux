@@ -28,10 +28,19 @@ it easier for other teams to set up their own instances.
   product name).
 - `DATABASE_URI`: the URL to a PostgreSQL database in the production environment
 - `FORCE_SSL`: when present, will force all requests to use SSL.
+- `MASLOW_HOST`: the hostname on which Maslow is running, used to build URLs
+
+### Email
+
+- `EMAIL_FROM_ADDRESS`: the address which emails appear to be sent from
+- `SMTP_HOST`: the hostname of the SMTP server used to send outbound emails
+- `SMTP_USERNAME`: the username used to connect to the SMTP server
+- `SMTP_PASSWORD`: the password used to connect to the SMTP server
+- `SMTP_DOMAIN`: the HELO domain used when sending emails (optional)
 
 ### Basic authentication
 
-In addition to the user authentication, you can protect the app with HTTP Basic 
+In addition to the user authentication, you can protect the app with HTTP Basic
 Authentication by setting the `USER` and `PASSWORD` configurations appropriately
 in your environment.
 

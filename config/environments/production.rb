@@ -62,4 +62,16 @@ Maslow::Application.configure do
   config.active_support.deprecation = :notify
 
   config.eager_load = false
+
+  config.action_mailer.default_url_options = { host: ENV['MASLOW_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address        => ENV['SMTP_HOST'],
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SMTP_USERNAME'],
+    :password       => ENV['SMTP_PASSWORD'],
+    :domain         => ENV['SMTP_DOMAIN'],
+    :enable_starttls_auto => true
+  }
 end
