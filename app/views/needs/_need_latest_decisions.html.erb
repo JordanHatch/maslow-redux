@@ -1,9 +1,17 @@
-<ul class="need-status">
-  <% decision_type_options.each do |label, value| %>
-    <% if (decision = need.latest_decision(value)) %>
-      <li class="decision_<%= decision.colour %>">
-        <%= decision_outcome_label decision.decision_type, decision.outcome, 'short' %>
+<div class="need-decisions">
+  <ul class="need-status">
+    <% decision_type_options.each do |label, value| %>
+      <li class="decision_<%= value %>">
+        <h3><%= label %></h3>
+
+        <% if (decision = need.latest_decision(value)) %>
+          <span class="decision_<%= decision.colour %>">
+            <%= decision_outcome_label decision.decision_type, decision.outcome, 'short' %>
+          </span>
+        <% end %>
+
+        <%= link_to "Update", new_need_decision_path(need, decision_type: value) %>
       </li>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+</div>

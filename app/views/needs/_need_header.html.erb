@@ -4,17 +4,4 @@
     I need to <em><%= need.goal %></em><br />
     So that <em><%= need.benefit %></em>
   </p>
-
-  <div class="status-and-actions">
-    <% unless need.closed? %>
-      <%= render partial: 'needs/need_actions' %>
-      <%= render partial: 'needs/need_latest_decisions' %>
-    <% end %>
-  </div>
 </header>
-
-<% if need.closed? %>
-  <%= render partial: "needs/need_closed_message" %>
-<% end %>
-
-<%= render partial: "needs/nav_tabs", locals: { titles_to_links: nav_tabs_for(need) } %>

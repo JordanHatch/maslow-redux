@@ -1,0 +1,9 @@
+<% if current_user.can?(:create, :note) %>
+  <div class="feed-add">
+    <%= render partial: 'activity_items/new_note_form', locals: { need: need } %>
+  </div>
+<% end %>
+
+<ul class="feed">
+  <%= render partial: 'activity_items/item', collection: activity_items %>
+</ul>

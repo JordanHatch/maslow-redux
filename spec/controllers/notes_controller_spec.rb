@@ -15,13 +15,13 @@ RSpec.describe NotesController, type: :controller do
     it 'redirects to the need activity page' do
       post :create, need_id: need, note: { body: 'This is a note' }
 
-      expect(controller).to redirect_to(need_activity_items_path(controller.need.id))
+      expect(controller).to redirect_to(need_path(controller.need.id))
     end
 
     it 'redirects to the need activity page with an error given an invalid note' do
       post :create, need_id: need, note: { body: '' }
 
-      expect(controller).to redirect_to(need_activity_items_path(controller.need.id))
+      expect(controller).to redirect_to(need_path(controller.need.id))
       expect(controller.flash.alert).to be_present
     end
   end

@@ -22,7 +22,6 @@ Maslow::Application.routes.draw do
 
   resources :needs, except: [:destroy] do
     resources :decisions, only: [:new, :create]
-    resources :activity_items, path: 'activity', only: :index
     resources :notes, only: :create
 
     member do

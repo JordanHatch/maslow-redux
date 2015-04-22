@@ -18,7 +18,7 @@ class DecisionsController < ApplicationController
     decision.user = current_user
 
     if decision.save
-      redirect_to need_activity_items_path(need)
+      redirect_to need_path(need)
     else
       render action: :new
     end

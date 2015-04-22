@@ -1,6 +1,5 @@
-require 'json'
-
 class NeedsController < ApplicationController
+  layout 'skeleton', only: :show
   expose(:need)
 
   has_scope :with_tag_id, as: :tag_id, type: :default

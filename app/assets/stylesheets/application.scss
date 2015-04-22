@@ -23,7 +23,9 @@
 @import "base";
 
 // Alternate layouts
+@import "layouts/default";
 @import "layouts/signed_out";
+@import "layouts/skeleton";
 
 // Elements
 @import 'elements/buttons';

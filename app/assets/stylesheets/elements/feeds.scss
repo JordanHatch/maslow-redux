@@ -2,17 +2,19 @@ ul.feed {
   padding: 0;
 
   li.feed-item {
-    @extend .row;
-
     list-style: none;
     margin-bottom: 19px;
 
     .feed-metadata {
-      @extend .col-md-2;
+      display: block;
 
       font-size: 14px;
       color: #666;
       padding-top: 3px;
+
+      span {
+        display: inline;
+      }
 
       .date {
         font-weight: bold;
@@ -20,14 +22,11 @@ ul.feed {
       }
 
       .time {
-        display: block;
         font-weight: normal;
       }
     }
 
     .feed-content {
-      @extend .col-md-10;
-
       .inner {
         border: 1px solid #e7e7e7;
         padding: 13px 15px 15px 13px;
@@ -50,15 +49,11 @@ ul.feed {
 }
 
 .feed-add {
-  @extend .row;
   margin: 0px 0 25px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
 
   form {
-    @extend .col-md-10;
-    @extend .col-md-offset-2;
-
     padding: 0;
 
     .form-group {
