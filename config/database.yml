@@ -2,6 +2,10 @@ development:
   adapter: postgresql
   database: maslow_development
   pool: 5
+  username: <%= ENV['POSTGRES_ENV_POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_1_PORT_5432_TCP_ADDR'] %>
+  port: <%= ENV['POSTGRES_1_PORT_5432_TCP_PORT'] %>
 test:
   adapter: postgresql
   database: maslow_test
