@@ -8,9 +8,18 @@
           <span class="decision_<%= decision.colour %>">
             <%= decision_outcome_label decision.decision_type, decision.outcome, 'short' %>
           </span>
+        <% else %>
+          <span class="no-decision">
+            No decision
+          </span>
         <% end %>
 
-        <%= link_to "Update", new_need_decision_path(need, decision_type: value) %>
+        <% if current_user.can?(:create, Decision) %>
+          <%= link_to new_need_decision_path(need, decision_type: value) do %>
+            <span class="icon" aria-hidden="true"></span>
+            Update
+          <% end %>
+        <% end %>
       </li>
     <% end %>
   </ul>

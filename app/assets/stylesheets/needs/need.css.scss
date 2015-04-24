@@ -82,7 +82,6 @@
 
   em {
     font-style: normal;
-    // color: $inverse-text-color;
   }
 }
 
@@ -121,8 +120,8 @@
 
 .need-decisions {
   display: block;
-  background: #fff;
-  color: #000;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .need-status {
@@ -133,10 +132,14 @@
     font-size: 15px;
     list-style: none;
     display: block;
-    padding: 6px 8px;
-    margin: 0 0 0 7px;
-    border-bottom: 1px solid #eee;
+    padding: 6px 12px;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     overflow: auto;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
 
     h3, span, a {
       display: inline-block;
@@ -146,16 +149,36 @@
     h3 {
       width: 35%;
       font-weight: bold;
-      margin: 8px 0 0;
+      margin: 7px 0 0;
     }
     span {
       width: 20%;
     }
+    .no-decision {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
     a {
-      @extend .btn;
-      @extend .btn-default;
+      color: $inverse-text-color;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: block;
+      text-decoration: none;
       font-size: 13px;
       float: right;
+
+      &:hover {
+        background: $header-border-color;
+        color: #fff;
+      }
+
+      .icon {
+        @extend .glyphicon;
+        @extend .glyphicon-pencil;
+        padding-right: 4px;
+        font-size: 11px;
+        width: auto;
+      }
     }
 
     &.decision_red {
