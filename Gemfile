@@ -9,6 +9,7 @@ gem 'kaminari', '0.14.1'
 gem 'airbrake', '~> 4.1.0'
 gem 'cancan', '1.6.10'
 gem 'lrucache', '0.1.4'
+gem 'link_header', '0.0.8'
 
 group :development, :test do
   gem 'jasmine', '2.1.0'

@@ -127,6 +127,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    link_header (0.0.8)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     lrucache (0.1.4)
@@ -253,6 +254,7 @@ DEPENDENCIES
   jasmine (= 2.1.0)
   jquery-rails
   kaminari (= 0.14.1)
+  link_header (= 0.0.8)
   lrucache (= 0.1.4)
   pg
   rails (~> 4.2.0)
