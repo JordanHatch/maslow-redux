@@ -1,1 +1,1 @@
-web: bundle exec rails s -p $PORT
+web: bin/puma -p $PORT
