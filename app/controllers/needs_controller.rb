@@ -26,6 +26,10 @@ class NeedsController < ApplicationController
                   filename: "#{params["organisation_id"]}.csv",
                   type: "text/csv; charset=utf-8"
       end
+      format.json do
+        presenter = NeedResultSetPresenter.new(@needs, view_context, :scope_params => params.slice(:ids))
+        render json: presenter.as_json
+      end
     end
   end
 
@@ -170,5 +174,13 @@ private
       key = "tag_ids_of_type_#{tag_type.id}"
       whitelisted[key] = params[:need][key]
     end
+  end
+
+  def response_info(status)
+    {
+      _response_info: {
+        status: status
+      }
+    }
   end
 end
