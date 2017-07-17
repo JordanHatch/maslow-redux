@@ -33,3 +33,19 @@ en:
     formats:
       short_date: "%-e %B %Y"
       short_time: "%-I:%M%P"
+  enumerize:
+    need_response:
+      response_type:
+        content: 'Content item'
+        service: 'Service'
+        other: 'Other'
+  activerecord:
+    attributes:
+      need_response:
+        url: 'URL'
+  formtastic:
+    actions:
+      need_response:
+        create: 'Add response'
+        update: 'Save'
+        cancel: 'Cancel and go back'

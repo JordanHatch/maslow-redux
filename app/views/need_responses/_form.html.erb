@@ -1,0 +1,10 @@
+<%= f.inputs do %>
+  <%= f.input :response_type, as: :radio %>
+  <%= f.input :name %>
+  <%= f.input :url %>
+
+  <%= f.actions do %>
+    <%= f.action :submit %>
+    <%= f.action :cancel, as: :link %>
+  <% end %>
+<% end %>

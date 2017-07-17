@@ -1,0 +1,12 @@
+<h2>
+  <span class="item-type-label">
+    A new <%= item.need_response.response_type_text.downcase %> is responding to this need
+  </span>
+</h2>
+
+<div class="note">
+  <%= item.need_response.name %>
+  <% if item.need_response.url.present? %>
+    <em><%= link_to item.need_response.url %></em>
+  <% end %>
+</div>

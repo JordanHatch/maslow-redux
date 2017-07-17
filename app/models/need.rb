@@ -9,6 +9,7 @@ class Need < ActiveRecord::Base
 
   has_many :decisions
   has_many :activity_items
+  has_many :need_responses
 
   belongs_to :canonical_need, class_name: 'Need'
 

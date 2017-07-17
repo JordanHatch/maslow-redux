@@ -10,6 +10,7 @@ gem 'kaminari', '~> 1.0.1'
 gem 'airbrake', '~> 6.2.1'
 gem 'cancancan', '~> 2.0'
 gem 'lrucache', '0.1.4'
+gem 'enumerize', '~> 2.1.2'
 
 group :development, :test do
   gem 'jasmine', '2.1.0'

@@ -5,6 +5,7 @@ class ActivityItem < ActiveRecord::Base
     'decision',
     'create',
     'update',
+    'response_new',
   ]
 
   belongs_to :need
@@ -15,6 +16,7 @@ class ActivityItem < ActiveRecord::Base
 
   validate :note_body_is_present, if: -> { item_type == 'note' }
   validate :decision_id_is_present, if: -> { item_type == 'decision' }
+  validate :need_response_id_is_present, if: -> { item_type == 'response_new' }
 
   default_scope -> { order(created_at: :desc) }
 
@@ -30,6 +32,10 @@ class ActivityItem < ActiveRecord::Base
     need.decisions.find(data[:decision_id])
   end
 
+  def need_response
+    need.need_responses.find(data[:need_response_id])
+  end
+
   def changes
     data[:changes]
   end
@@ -42,6 +48,10 @@ private
 
   def decision_id_is_present
     errors.add(:decision_id, 'is missing') unless data[:decision_id].present?
+  end
+
+  def need_response_id_is_present
+    errors.add(:need_response_id, 'is missing') unless data[:need_response_id].present?
   end
 
 end
