@@ -5,7 +5,7 @@ class UserController < ApplicationController
     if user.update_with_password(password_params)
       # Sign the user in again, in case their password has now changed
       #
-      sign_in user, bypass: true
+      bypass_sign_in user
 
       flash.notice = 'Password changed'
       redirect_to root_path

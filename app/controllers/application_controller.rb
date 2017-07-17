@@ -15,10 +15,6 @@ class ApplicationController < ActionController::Base
     redirect_to needs_path, alert: "You do not have permission to perform this action."
   end
 
-  decent_configuration do
-    strategy DecentExposure::StrongParametersStrategy
-  end
-
 private
   def verify_authenticity_token
     raise ActionController::InvalidAuthenticityToken unless verified_request?

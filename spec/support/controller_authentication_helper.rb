@@ -1,5 +1,5 @@
 RSpec.configure do |config|
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.before(:each, type: :controller) do
     @user = create(:admin_user)

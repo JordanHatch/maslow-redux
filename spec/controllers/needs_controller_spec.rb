@@ -7,7 +7,7 @@ RSpec.describe NeedsController, type: :controller do
       tag = create(:tag)
       need = create(:need, tagged_with: tag)
 
-      get :index, tag_id: tag.id
+      get :index, params: { tag_id: tag.id }
       expect(assigns(:needs)).to contain_exactly(need)
     end
   end
@@ -16,30 +16,32 @@ RSpec.describe NeedsController, type: :controller do
     let(:need_attributes) { attributes_for(:need) }
 
     it 'redirects to the need' do
-      post :create, need: need_attributes
+      post :create, params: { need: need_attributes }
 
       expect(controller).to redirect_to(action: :show, id: controller.need.id)
     end
 
     it 'creates a need' do
-      post :create, need: need_attributes
+      post :create, params: { need: need_attributes }
 
       expect(controller.need).to be_persisted
     end
 
     it 'displays the form again given invalid data' do
       expect(controller.need).to receive(:valid?).and_return(false)
-      post :create, need: need_attributes
+      post :create, params: { need: need_attributes }
 
       expect(controller).to render_template(:new)
     end
 
     describe 'when criteria_action is present' do
       it 'adds more criteria without saving the need' do
-        post :create, criteria_action: '1',
-                      need: need_attributes.merge(
-                        met_when: ['the need is met']
-                      )
+        post :create, params: {
+                        criteria_action: '1',
+                        need: need_attributes.merge(
+                          met_when: ['the need is met']
+                        )
+                      }
 
         expect(controller.need.met_when).to eq([
           'the need is met',
@@ -51,14 +53,16 @@ RSpec.describe NeedsController, type: :controller do
       end
 
       it 'removes a particular criteria without saving the need' do
-        post :create, delete_criteria: '1',
-                      need: need_attributes.merge(
-                        met_when: [
-                          'the need is met',
-                          'another criteria is met',
-                          'a third criteria is met',
-                        ]
-                      )
+        post :create, params: {
+                        delete_criteria: '1',
+                        need: need_attributes.merge(
+                          met_when: [
+                            'the need is met',
+                            'another criteria is met',
+                            'a third criteria is met',
+                          ]
+                        )
+                      }
 
         expect(controller.need.met_when).to eq([
           'the need is met',
@@ -78,13 +82,13 @@ RSpec.describe NeedsController, type: :controller do
     }
 
     it 'redirects to the need' do
-      patch :update, id: need, need: updated_attributes
+      patch :update, params: { id: need, need: updated_attributes }
 
       expect(controller).to redirect_to(action: :show, id: need.id)
     end
 
     it 'updates the need' do
-      patch :update, id: need, need: updated_attributes
+      patch :update, params: { id: need, need: updated_attributes }
 
       controller.need.reload
       expect(controller.need.role).to eq('automated testing script')
@@ -92,7 +96,7 @@ RSpec.describe NeedsController, type: :controller do
 
     it 'displays the form again given invalid data' do
       expect(controller.need).to receive(:valid?).and_return(false)
-      patch :update, id: need, need: updated_attributes
+      patch :update, params: { id: need, need: updated_attributes }
 
       expect(controller).to render_template(:edit)
     end
@@ -101,10 +105,12 @@ RSpec.describe NeedsController, type: :controller do
       it 'adds more criteria without saving the need' do
         expect(controller.need).to_not receive(:save_as)
 
-        patch :update, id: need, criteria_action: '1',
-                       need: updated_attributes.merge(
-                         met_when: ['the need is met']
-                       )
+        patch :update, params: {
+                         id: need, criteria_action: '1',
+                         need: updated_attributes.merge(
+                           met_when: ['the need is met']
+                         )
+                       }
 
         expect(controller.need.met_when).to eq([
           'the need is met', '',
@@ -115,14 +121,17 @@ RSpec.describe NeedsController, type: :controller do
       it 'removes a particular criteria without saving the need' do
         expect(controller.need).to_not receive(:save_as)
 
-        patch :update, id: need, delete_criteria: '1',
-                       need: updated_attributes.merge(
-                         met_when: [
-                           'the need is met',
-                           'another criteria is met',
-                           'a third criteria is met',
-                         ],
-                       )
+        patch :update, params: {
+                         id: need,
+                         delete_criteria: '1',
+                         need: updated_attributes.merge(
+                           met_when: [
+                             'the need is met',
+                             'another criteria is met',
+                             'a third criteria is met',
+                           ],
+                         )
+                       }
 
         expect(controller.need.met_when).to eq([
           'the need is met',
@@ -137,7 +146,7 @@ RSpec.describe NeedsController, type: :controller do
     let(:closed_need) { create(:closed_need) }
 
     it 'redirects to the need page if already closed' do
-      get :close_as_duplicate, id: closed_need
+      get :close_as_duplicate, params: { id: closed_need }
 
       expect(controller).to redirect_to(action: :show, id: closed_need.id)
     end
@@ -148,21 +157,21 @@ RSpec.describe NeedsController, type: :controller do
     let(:need) { create(:need) }
 
     it 'updates the "canonical_need_id" field for a need' do
-      patch :closed, id: need, need: { canonical_need_id: existing_need.id }
+      patch :closed, params: { id: need, need: { canonical_need_id: existing_need.id } }
 
       controller.need.reload
       expect(controller.need.canonical_need_id).to eq(existing_need.id)
     end
 
     it 'redirects to the need' do
-      patch :closed, id: need, need: { canonical_need_id: existing_need.id }
+      patch :closed, params: { id: need, need: { canonical_need_id: existing_need.id } }
 
       expect(controller).to redirect_to(action: :show, id: need.id)
     end
 
     it 'displays the form again given invalid data' do
       expect(controller.need).to receive(:valid?).and_return(false)
-      patch :closed, id: need, need: { canonical_need_id: 1234 }
+      patch :closed, params: { id: need, need: { canonical_need_id: 1234 } }
 
       expect(controller).to render_template(:close_as_duplicate)
     end
@@ -172,14 +181,14 @@ RSpec.describe NeedsController, type: :controller do
     let(:closed_need) { create(:closed_need) }
 
     it 'clears the "canonical_need_id" field for a need' do
-      delete :reopen, id: closed_need
+      delete :reopen, params: { id: closed_need }
 
       controller.need.reload
       expect(controller.need.canonical_need_id).to eq(nil)
     end
 
     it 'redirects to the need' do
-      delete :reopen, id: closed_need
+      delete :reopen, params: { id: closed_need }
 
       expect(controller).to redirect_to(action: :show, id: closed_need.id)
     end

@@ -1,9 +1,4 @@
 class DecisionsController < ApplicationController
-  expose(:need)
-  expose(:decisions, ancestor: :need) {
-    need.decisions.recent_first
-  }
-  expose(:decision)
 
   def new
     authorize! :create, Decision
@@ -25,6 +20,16 @@ class DecisionsController < ApplicationController
   end
 
 private
+  def need
+    @need ||= Need.find(params[:need_id])
+  end
+  helper_method :need
+
+  def decision
+    @decision ||= need.decisions.build
+  end
+  helper_method :decision
+
   def decision_params
     params.require(:decision).permit(:decision_type, :outcome, :note)
   end

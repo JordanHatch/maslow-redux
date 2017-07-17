@@ -1,8 +1,8 @@
 class Settings::BaseController < ApplicationController
   layout 'settings/layouts/settings'
-  before_filter :authorize_settings_access
+  before_action :authorize_settings_access
 
-  expose(:tag_types)
+  expose :tag_types, ->{ TagType.all }
 
 private
   def authorize_settings_access

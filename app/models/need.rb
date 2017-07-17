@@ -1,4 +1,6 @@
 class Need < ActiveRecord::Base
+  include ActiveModel::AttributeMethods
+
   has_many :revisions, class_name: "NeedRevision"
 
   has_many :taggings, dependent: :destroy
@@ -121,6 +123,16 @@ private
     end
 
     super(method, *args, &block)
+  end
+
+  def respond_to_missing?(method, include_private = false)
+    if method.to_s.match(/^tag_ids_of_type_(\d+)$/)
+      return true
+    elsif method.to_s.match(/^tag_ids_of_type_(\d+)=$/)
+      return true
+    end
+
+    super
   end
 
   def record_revision(action, user, changes)

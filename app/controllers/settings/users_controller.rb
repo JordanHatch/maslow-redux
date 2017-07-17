@@ -1,6 +1,6 @@
 class Settings::UsersController < Settings::BaseController
-  expose(:users)
-  expose(:user)
+  expose :users, ->{ User.all }
+  expose :user
 
   def index
   end

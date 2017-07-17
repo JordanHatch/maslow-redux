@@ -1,8 +1,4 @@
 class NotesController < ApplicationController
-  expose(:need)
-
-  expose(:notes, model: :activity_item, ancestor: :need)
-  expose(:note, model: :activity_item, ancestor: :notes)
 
   def create
     authorize! :create, :note
@@ -23,4 +19,15 @@ class NotesController < ApplicationController
 
     redirect_to need_path(need)
   end
+
+private
+  def need
+    @need ||= Need.find(params[:need_id])
+  end
+  helper_method :need
+
+  def note
+    @note ||= need.activity_items.build
+  end
+  helper_method :note
 end

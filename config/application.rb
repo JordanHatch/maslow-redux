@@ -66,7 +66,7 @@ module Maslow
     config.assets.version = '1.0'
 
     if ENV['USER'].present? && ENV['PASSWORD'].present?
-      config.middleware.use '::Rack::Auth::Basic' do |u, p|
+      config.middleware.use ::Rack::Auth::Basic do |u, p|
         [u, p] == [ENV['USER'], ENV['PASSWORD']]
       end
     end

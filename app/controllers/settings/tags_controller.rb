@@ -1,11 +1,6 @@
 class Settings::TagsController < Settings::BaseController
   expose(:tag_type)
-  expose(:tags, ancestor: :tag_type)
-
-  # NOTE: We can't use 'tag' here, as it conflicts with the ActiveSupport
-  # helper of the same name and causes all kinds of bad things to happen.
-  #
-  expose(:tag_instance, model: :tag)
+  expose(:tags, from: :tag_type)
 
   def create
     tag_instance.assign_attributes(tag_attributes)
@@ -34,5 +29,14 @@ private
   def tag_attributes
     params.require(:tag).permit(:name)
   end
+
+  def tag_instance
+    if params.key?(:id)
+      @tag ||= tag_type.tags.find(params[:id])
+    else
+      @tag ||= tag_type.tags.build
+    end
+  end
+  helper_method :tag_instance
 
 end
