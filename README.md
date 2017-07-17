@@ -10,7 +10,7 @@ it easier for other teams to set up their own instances.
 
 ## Dependencies
 
-- Ruby (2.1.5)
+- Ruby (2.3.3)
 - A running PostgreSQL instance
 
 ## Getting started
