@@ -2,7 +2,7 @@
 
 body {
   background: #fff;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
 
 header.app-header {
@@ -12,7 +12,7 @@ header.app-header {
   @extend .navbar-static-top;
 
   background: $header-color;
-  border-color: $header-border-color;
+  border-bottom: 2px solid $header-border-color;
   position: relative;
 
   margin-bottom: 10px;
@@ -33,11 +33,15 @@ header.app-header {
     a {
       display: block;
       height: 50px;
-      padding-top: 11px;
+      padding-top: 10px;
 
       .logo, .instance-name, .dropdown-icon {
         display: inline-block;
         vertical-align: top;
+      }
+
+      &:hover {
+        text-decoration: none;
       }
 
       h1.logo {
@@ -50,10 +54,10 @@ header.app-header {
           display: none;
         }
 
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 31px;
         margin: 0 10px 0 0;
-        padding: 3px;
+        padding: 2px 0 0 2px;
         background: #fff;
       }
 
