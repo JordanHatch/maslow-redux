@@ -1,0 +1,87 @@
+$panel-legend-width: 35%;
+
+@mixin need-info-panel {
+  margin: 10px 0;
+  padding: 0;
+
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+
+  h3 {
+    margin: 0;
+    font-weight: bold;
+    width: $panel-legend-width;
+  }
+}
+
+@mixin need-info-panel-single-field {
+  @include need-info-panel;
+
+  padding: 12px;
+  overflow: auto;
+
+  h2, .value {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    float: left;
+    width: $panel-legend-width;
+    margin: 0;
+    padding-right: 10%;
+  }
+
+  .value {
+    width: 100%-$panel-legend-width;
+    float: right;
+    overflow: auto;
+
+    p:last-of-type {
+      margin: 0;
+    }
+  }
+}
+
+@mixin need-info-panel-list {
+  @include need-info-panel-single-field;
+
+  > ul {
+    @extend .value;
+
+    padding-left: 0;
+    margin-bottom: 0;
+
+    li {
+      list-style: none;
+      overflow: auto;
+      position: relative;
+
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+
+      &:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0px;
+      }
+    }
+
+    h3 {
+      width: 100%;
+      font-size: 15px;
+      padding-bottom: 2px;
+    }
+
+    a {
+      color: $inverse-text-color;
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -23,24 +23,13 @@
 @import "base";
 
 // Alternate layouts
-@import "layouts/default";
-@import "layouts/signed_out";
-@import "layouts/skeleton";
+@import "layouts/**/*";
 
 // Elements
-@import 'elements/buttons';
-@import 'elements/alerts';
-@import 'elements/feeds';
+@import 'elements/**/*';
 
 // Views
-@import "header/project-navigation";
-
-@import "needs/need";
-@import "needs/form";
-@import "needs/activity";
-@import "needs/decisions";
-
-@import "settings/base";
-@import "settings/tags";
-
-@import "user/password";
+@import "header/**/*";
+@import "needs/**/*";
+@import "settings/**/*";
+@import "user/**/*";

@@ -1,25 +1,32 @@
 <div class="need-responses">
-  <h3>Things that are responding to this need</h3>
+  <h2>
+    <em><%= need.need_responses.count %></em>
+    <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
+  </h2>
 
-  <% if need.need_responses.any? %>
-  <table class="table">
-    <tbody>
-      <% need.need_responses.each do |need_response| %>
-        <tr>
-          <td style="width: 20%;"><%= need_response.response_type_text %></td>
-          <td>
-            <% if need_response.url.present? %>
-              <%= link_to need_response.name, need_response.url %>
-            <% else %>
-              <%= need_response.name %>
-            <% end %>
-          </td>
-          <td style="width: 20%;"><%= link_to 'Edit', edit_need_response_path(need, need_response) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <% end %>
+  <ul>
+    <% need.need_responses.each do |need_response| %>
+      <li class="need-response-item">
+        <h3>
+          <% if need_response.url.present? %>
+            <%= link_to need_response.name, need_response.url %>
+          <% else %>
+            <%= need_response.name %>
+          <% end %>
+        </h3>
+        <p class="metadata">
+          <%= need_response.response_type_text %>
+        </p>
+        <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
+          <span class="icon" aria-hidden="true"></span>
+          Edit
+        <% end %>
+      </li>
+    <% end %>
 
-  <%= link_to 'Add new response to this need', new_need_response_path(need), class: 'btn btn-default' %>
+    <%= link_to new_need_response_path(need), class: 'action new-action' do %>
+      <span class="icon" aria-hidden="true"></span>
+      Add new response
+    <% end %>
+  </ul>
 </div>

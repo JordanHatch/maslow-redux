@@ -7,7 +7,7 @@ RSpec.describe 'adding responses to needs', type: :feature do
   it 'can add a response to a need' do
     visit need_path(need)
 
-    click_on 'Add new response to this need'
+    click_on 'Add new response'
 
     choose 'Content item'
     fill_in 'Name', with: 'Example web page'
@@ -32,9 +32,9 @@ RSpec.describe 'adding responses to needs', type: :feature do
 
     within '.need-responses' do
       link = page.find_link(existing_response.name)
-      tr = link.find(:xpath, '//ancestor::tr')
+      li = link.find(:xpath, '//ancestor::li[@class="need-response-item"]')
 
-      within tr do
+      within li do
         click_on 'Edit'
       end
     end

@@ -39,7 +39,7 @@ class NeedsController < ApplicationController
     @need = load_need
     if @need.duplicate?
       redirect_to need_url(@need.need_id),
-                  notice: "Closed needs cannot be edited",
+                  alert: "Closed needs cannot be edited",
                   status: 303
       return
     end
@@ -83,7 +83,7 @@ class NeedsController < ApplicationController
 
     if need.closed?
       redirect_to need_url(need),
-                  notice: "This need is already closed",
+                  alert: "This need is already closed",
                   status: 303
       return
     end

@@ -1,10 +1,16 @@
 .main-alert {
-  background: #999;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0px;
+
   font-size: 19px;
   padding: 11px 14px;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000;
   overflow: auto;
+  z-index: 100;
+  position: relative;
 
   .icon {
     @extend .glyphicon;
@@ -22,7 +28,7 @@
     width: 85%;
   }
 
-  &.mini {    
+  &.mini {
     .icon {
       margin-top: 4px;
     }
@@ -33,6 +39,10 @@
   }
 
   &.alert {
+    background: $alert-color;
+    color: #fff;
+    border: none;
+
     .icon {
       @extend .glyphicon-remove;
     }

@@ -2,11 +2,12 @@
    Colours
    ========================================================================== */
 
-$hm-government: #0076c0; /* Light blue */
-
-$primary-color: #1091c8;
+$primary-color: #676C67;
+$primary-shadow-color: #797979;
 
 $header-color: $primary-color;
-$header-border-color: #085e82;
+$header-border-color: $primary-shadow-color;
 
-$inverse-text-color: #86d1f0;
+$inverse-text-color: #FFD991;
+
+$alert-color: #c20d2f;
