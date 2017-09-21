@@ -1,4 +1,5 @@
 class NeedResponsesController < ApplicationController
+  before_action :check_if_need_can_be_edited!
 
   def new
     authorize! :create, NeedResponse
@@ -49,5 +50,12 @@ private
 
   def need_response_params
     params.require(:need_response).permit(:response_type, :name, :url)
+  end
+
+  def check_if_need_can_be_edited!
+    if need.present? && need.closed?
+      flash.alert = 'Closed needs cannot be edited'
+      redirect_to need_path(need)
+    end
   end
 end

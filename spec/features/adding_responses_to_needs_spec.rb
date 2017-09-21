@@ -50,4 +50,38 @@ RSpec.describe 'adding responses to needs', type: :feature do
     end
   end
 
+  it 'cannot add a response to a closed need' do
+    closed_need = create(:closed_need)
+
+    visit need_path(closed_need)
+
+    within '.need-responses' do
+      expect(page).to_not have_link('Add new response')
+    end
+
+    visit new_need_response_path(closed_need)
+
+    expect(page).to have_content('Closed needs cannot be edited')
+  end
+
+  it 'cannot edit a response to a closed need' do
+    closed_need = create(:closed_need)
+    existing_response = create(:need_response, need: closed_need)
+
+    visit need_path(closed_need)
+
+    within '.need-responses' do
+      link = page.find_link(existing_response.name)
+      li = link.find(:xpath, '//ancestor::li[@class="need-response-item"]')
+
+      within li do
+        expect(page).to_not have_link('Edit')
+      end
+    end
+
+    visit edit_need_response_path(closed_need, existing_response)
+
+    expect(page).to have_content('Closed needs cannot be edited')
+  end
+
 end

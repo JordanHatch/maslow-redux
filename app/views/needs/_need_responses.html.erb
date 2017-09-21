@@ -17,16 +17,20 @@
         <p class="metadata">
           <%= need_response.response_type_text %>
         </p>
-        <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
-          <span class="icon" aria-hidden="true"></span>
-          Edit
+        <% unless need.closed? %>
+          <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
+            <span class="icon" aria-hidden="true"></span>
+            Edit
+          <% end %>
         <% end %>
       </li>
     <% end %>
 
-    <%= link_to new_need_response_path(need), class: 'action new-action' do %>
-      <span class="icon" aria-hidden="true"></span>
-      Add new response
+    <% unless need.closed? %>
+      <%= link_to new_need_response_path(need), class: 'action new-action' do %>
+        <span class="icon" aria-hidden="true"></span>
+        Add new response
+      <% end %>
     <% end %>
   </ul>
 </div>
