@@ -21,7 +21,14 @@ FactoryGirl.define do
 
     after(:create) do |need, evaluator|
       if evaluator.tagged_with.present?
-        create(:tagging, need: need, tag: evaluator.tagged_with)
+        # Allow the value of `tagged_with` to be a single tag, or an array
+        # of tags.
+        #
+        tags = [evaluator.tagged_with].flatten
+
+        tags.each do |tag|
+          create(:tagging, need: need, tag: tag)
+        end
       end
     end
 
