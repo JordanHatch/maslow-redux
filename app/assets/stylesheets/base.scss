@@ -1,8 +1,9 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
 
 body {
-  background: #fff;
+  background: #fbfbfb;
   font-family: -apple-system, BlinkMacSystemFont, 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 header.app-header {
@@ -57,7 +58,7 @@ header.app-header {
         width: 32px;
         height: 31px;
         margin: 0 10px 0 0;
-        padding: 2px 0 0 2px;
+        padding: 2px 0 0 1px;
         background: #fff;
       }
 

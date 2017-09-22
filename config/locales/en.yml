@@ -49,3 +49,6 @@ en:
         create: 'Add response'
         update: 'Save'
         cancel: 'Cancel and go back'
+      bookmark:
+        submit: 'Toggle bookmark'
+        update: 'Toggle bookmark'
