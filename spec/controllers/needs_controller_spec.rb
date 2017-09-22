@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe NeedsController, type: :controller do
 
   describe '#index' do
-    it 'filters needs by a tag given a tag_id' do
-      tag = create(:tag)
-      need = create(:need, tagged_with: tag)
+    it 'returns a list of needs' do
+      needs = create_list(:need, 5)
 
-      get :index, params: { tag_id: tag.id }
-      expect(assigns(:needs)).to contain_exactly(need)
+      get :index
+      expect(controller.send(:needs)).to contain_exactly(*needs)
+      expect(controller.send(:needs_with_pagination)).to contain_exactly(*needs)
     end
   end
 

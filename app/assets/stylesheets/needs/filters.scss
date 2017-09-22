@@ -1,0 +1,63 @@
+.need-list {
+  @extend .row;
+  margin-top: 20px;
+
+  .filters {
+    @extend .col-md-3;
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    ul.filter-list {
+      padding-left: 0;
+    }
+    li.filter-type {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+    }
+    select {
+      width: 100%;
+      display: block;
+    }
+
+    button[type=submit] {
+      @extend .btn;
+      @extend .btn-block;
+      @extend .btn-primary;
+
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .button-reset {
+      @extend .btn;
+      @extend .btn-block;
+      @extend .btn-danger;
+    }
+  }
+
+  .results {
+    @extend .col-md-9;
+  }
+
+  .need-count {
+    margin-bottom: 10px;
+    font-size: 22px;
+
+    em {
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 1em;
+      font-style: normal;
+      padding-right: 2px;
+    }
+  }
+
+}

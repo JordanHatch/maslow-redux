@@ -1,8 +1,8 @@
 class NeedsController < ApplicationController
+  include Concerns::Filterable
+
   layout 'skeleton', only: :show
   expose(:need)
-
-  has_scope :with_tag_id, as: :tag_id, type: :default
 
   class Http404 < StandardError
   end
@@ -17,12 +17,10 @@ class NeedsController < ApplicationController
     @bookmarks = current_user.bookmarks
     @current_page = needs_path
 
-    @needs = apply_scopes(Need).page(params[:page])
-
     respond_to do |format|
       format.html
       format.csv do
-        send_data NeedsCsvPresenter.new(needs_url, @needs).to_csv,
+        send_data NeedsCsvPresenter.new(needs_url, needs).to_csv,
                   filename: "#{params["organisation_id"]}.csv",
                   type: "text/csv; charset=utf-8"
       end
@@ -113,6 +111,16 @@ class NeedsController < ApplicationController
   end
 
 private
+
+  def needs
+    @needs ||= filtered_needs.all
+  end
+  helper_method :needs
+
+  def needs_with_pagination
+    @needs_with_pagination ||= needs.page(params[:page])
+  end
+  helper_method :needs_with_pagination
 
   def redirect_url
     params["add_new"] ? new_need_path : need_url(need.need_id)
