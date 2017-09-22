@@ -6,4 +6,8 @@ class Tag < ActiveRecord::Base
   has_many :needs, through: :taggings
 
   scope :of_type, -> (type) { where(tag_type: type) }
+
+  def tag_type_identifier
+    tag_type.identifier
+  end
 end
