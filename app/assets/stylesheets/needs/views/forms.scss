@@ -1,3 +1,22 @@
 section.need-main.need-form {
-  padding: 25px;
+  > h1, > h2, > h3 {
+    @include header-panel;
+  }
+
+  form {
+    padding: 25px;
+  }
+
+  .inputs .radio {
+    label {
+      display: block;
+      background: #eee;
+      padding: 15px;
+      width: 50%;
+    }
+    input[type="radio"] {
+      position: static;
+      margin: 0 10px 0 0;
+    }
+  }
 }
