@@ -1,7 +1,7 @@
 class NeedsController < ApplicationController
   include Concerns::Filterable
 
-  layout 'skeleton', except: :index
+  layout 'skeleton', except: [:index, :new, :create]
 
   class Http404 < StandardError
   end
