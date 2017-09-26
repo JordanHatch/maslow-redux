@@ -18,3 +18,15 @@
     padding: 9px 15px;
   }
 }
+
+@mixin header-panel {
+  margin: 0;
+  padding: 25px;
+
+  background: #fff;
+  border-bottom: 1px solid #f6f6f6;
+
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3em;
+}

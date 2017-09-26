@@ -1,14 +1,7 @@
 section.need-main.need-evidence {
   h1 {
-    margin: 0 0 25px;
-
-    padding: 25px;
-    background: #fff;
-    border-bottom: 1px solid #f6f6f6;
-
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 1.3em;
+    @include header-panel;
+    margin-bottom: 25px;
   }
 
   p {

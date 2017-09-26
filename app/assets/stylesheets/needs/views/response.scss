@@ -1,17 +1,9 @@
 .need-response {
 
   h1 {
-    margin: 0 0 20px;
-    padding: 25px;
+    @include header-panel;
+    margin-bottom: 25px;
 
-    background: #fff;
-    border-bottom: 1px solid #f6f6f6;
-
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 1.3em;
-
-    padding: 25px;
     vertical-align: baseline;
 
     em {
