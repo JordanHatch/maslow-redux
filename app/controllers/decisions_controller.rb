@@ -1,5 +1,7 @@
 class DecisionsController < ApplicationController
+  layout 'skeleton'
 
+  
   def new
     authorize! :create, Decision
 

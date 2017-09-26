@@ -29,7 +29,7 @@ RSpec.describe 'creating needs', type: :feature do
       expect(page).to have_content('So that I can check that this works')
     end
 
-    within '.met-when' do
+    within '.box-met-when' do
       expect(page).to have_content('the assertions are met')
       expect(page).to have_content('the test passes')
       expect(page).to have_content('the build succeeds')
@@ -49,7 +49,7 @@ RSpec.describe 'creating needs', type: :feature do
 
     first(:button, "Save").click
 
-    within '.need-tags' do
+    within '.tags-list' do
       expect(page).to have_selector('li', text: tags[0].name)
       expect(page).to have_selector('li', text: tags[1].name)
       expect(page).to have_selector('li', text: tags[2].name)
@@ -70,7 +70,7 @@ RSpec.describe 'creating needs', type: :feature do
 
     first(:button, "Save").click
 
-    within '.need-tags' do
+    within '.tags-list' do
       expect(page).to have_selector('li', text: tags[0].name)
       expect(page).to_not have_selector('li', text: tags[1].name)
       expect(page).to_not have_selector('li', text: tags[2].name)

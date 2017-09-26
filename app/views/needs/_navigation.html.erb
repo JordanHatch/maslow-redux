@@ -1,0 +1,25 @@
+<nav class="need-nav">
+  <header>
+    <p class="back-link">
+      <%= link_to needs_path do %>
+      <span class="icon" aria-hidden="true"></span> All needs
+      <% end %>
+    </p>
+
+    <h1>
+      <span class="need-id">#<%= need.need_id %></span>
+      <%= format_need_goal(need.goal) %>
+    </h1>
+  </header>
+
+  <ul class="need-navigation">
+    <% need_navigation_items(need).each do |item| %>
+      <%= content_tag :li, ({ class: "selected" } if navigation_selected_item?(item)) do %>
+        <%= link_to item[:url] do %>
+          <span class="glyphicon-<%= item[:icon] %>"></span>
+          <%= item[:name] %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

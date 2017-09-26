@@ -1,5 +1,13 @@
-<h3>New need response</h3>
+<% content_for :page_title, "Edit ##{need.need_id}: #{format_need_goal(need.goal)}" %>
 
-<%= semantic_form_for [need, need_response], url: need_responses_path(need) do |f| %>
-  <%= render partial: 'form', locals: { f: f } %>
-<% end %>
+<article class="need">
+  <%= render partial: 'needs/navigation' %>
+
+  <section class="need-main need-form">
+    <h3>New response to this need</h3>
+
+    <%= semantic_form_for [need, need_response], url: need_responses_path(need) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </section>
+</article>

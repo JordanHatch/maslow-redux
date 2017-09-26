@@ -1,0 +1,171 @@
+.the-need {
+  margin: 0;
+  padding: 25px;
+
+  background: #fff;
+  border-bottom: 1px solid #f6f6f6;
+
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3em;
+
+  em {
+    font-style: normal;
+  }
+}
+
+.need-overview {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 5px;
+
+  .column {
+    flex: 1;
+  }
+}
+
+section.box {
+  @include box;
+}
+
+.box-met-when {
+  ul {
+    padding: 15px 15px 15px 35px;
+    margin-bottom: 5px;
+  }
+  li {
+    font-size: 17px;
+  }
+}
+
+.box-tags {
+  .tags-list {
+    padding: 5px 15px;
+  }
+  .tags-list > li {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+    line-height: 1.3;
+
+    ul, h3 {
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    h3 {
+      display: block;
+      margin: 0 0 7px;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 0px;
+
+      li {
+        display: inline-block;
+        padding: 3px 6px;
+        margin: 0 3px 4px 0;
+
+        background: $primary-color;
+        color: #fff;
+
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.box-responses {
+  h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: normal;
+    padding-top: 5px;
+
+    em {
+      font-weight: bold;
+      font-size: 45px;
+      line-height: 1.3;
+      font-style: normal;
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+  }
+
+  h2, p {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.box-actions {
+  p {
+    padding: 10px 15px 5px;
+  }
+  a {
+    @extend .btn;
+  }
+}
+
+.need-decisions {
+  padding: 5px 25px;
+  background: #fbfbfb;
+  border-bottom: 2px solid #eee;
+  font-size: 12px;
+
+  ul {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  h3 {
+    display: inline-block;
+    margin: 0 5px 0 0;
+
+    font-size: 1em;
+    font-weight: 700;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 30px;
+  }
+
+  a {
+    padding: 2px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 3px;
+
+    text-decoration: none;
+    color: #bbb;
+    font-size: 10px;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    .icon {
+      @extend .glyphicon;
+      @extend .glyphicon-pencil;
+    }
+
+    .label {
+      display: none;
+    }
+  }
+
+  .decision-green, .decision-red {
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    padding: 2px 5px;
+  }
+  .decision-green {
+    background: #27aa20;
+  }
+  .decision-red {
+    background: #c81111;
+  }
+}

@@ -1,132 +1,76 @@
-<% content_for :page_title, "#{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
 
-<article class="need-columns">
-  <section class="need">
-    <nav class="need-actions">
-      <ul class="left">
-        <li class="all-needs">
-          <%= link_to needs_path do %>
-          <span class="icon" aria-hidden="true"></span> All needs
-          <% end %>
-        </li>
-      </ul>
+<article class="need">
+  <%= render partial: 'navigation' %>
 
-      <ul class="right">
-        <li class="edit">
-          <%= link_to edit_need_path(need) do %>
-            <span class="icon" aria-hidden="true"></span> Edit
-          <% end %>
-        </li>
-        <% if current_user.can?(:close, Need) && !need.closed? %>
-          <li class="close-as-duplicate">
-            <%= link_to close_as_duplicate_need_path(need) do %>
-              <span class="icon" aria-hidden="true"></span> Close as duplicate
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </nav>
-
+  <section class="need-main">
     <header class="the-need">
       As a <em><%= need.role %></em><br />
       I need to <em><%= need.goal %></em><br />
       So that <em><%= need.benefit %></em>
     </header>
 
+    <%= render partial: 'need_latest_decisions' %>
+
     <% if need.closed? %>
       <%= render partial: 'need_closed_message' %>
-    <% else %>
-      <%= render partial: 'need_latest_decisions' %>
     <% end %>
 
-    <%= render partial: 'need_responses' %>
+    <div class="need-overview">
+      <div class="column">
+        <section class="box box-met-when">
+          <h1>Met when the user:</h1>
 
-    <ul class="need-tags">
-      <% need.joined_tag_types.each do |tag_type| %>
-        <li>
-          <h3><%= tag_type.name %>:</h3>
           <ul>
-            <% need.tags_of_type(tag_type).each do |tag| %>
-              <li><%= tag.name %></li>
+          <% need.met_when.each do |criterion| %>
+            <li><%= criterion %></li>
+          <% end %>
+          </ul>
+        </section>
+
+        <section class="box box-tags">
+          <h1>Tags</h1>
+
+          <ul class="tags-list">
+            <% need.joined_tag_types.each do |tag_type| %>
+              <li>
+                <h3><%= tag_type.name %>:</h3>
+                <ul>
+                  <% need.tags_of_type(tag_type).each do |tag| %>
+                    <li><%= tag.name %></li>
+                  <% end %>
+                </ul>
+              </li>
             <% end %>
           </ul>
-        </li>
-      <% end %>
-    </ul>
-
-    <% if need.met_when.any? %>
-      <div class="met-when">
-        <h2>Met when the user:</h2>
-
-        <ul>
-        <% need.met_when.each do |criterion| %>
-          <li><%= criterion %></li>
-        <% end %>
-        </ul>
+        </section>
       </div>
-    <% end %>
+      <div class="column">
+        <section class="box box-responses">
+          <h1>Response</h1>
+          <h2>
+            <em><%= need.need_responses.count %></em>
+            <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
+          </h2>
+          <p class="more-link">
+            <%= link_to need_responses_path(need) do %>
+              See all responses to this need &rarr;
+            <% end %>
+          </p>
+        </section>
 
-    <% if need.legislation.present? %>
-      <div class="legislation">
-        <h2>Related legislation:</h2>
-        <div class="value">
-          <%= simple_format html_escape(need.legislation) %>
-        </div>
+        <section class="box box-actions">
+          <h1>Actions</h1>
+          <p>
+            <%= link_to edit_need_path(need), class: 'btn-primary' do %>
+              Edit need
+            <% end %>
+            <%= link_to close_as_duplicate_need_path(need), class: 'btn-danger' do %>
+              <span class="icon" aria-hidden="true"></span> Close as duplicate
+            <% end %>
+          </p>
+        </section>
       </div>
-    <% end %>
-
-    <% if need.other_evidence.present? %>
-      <div class="other-evidence">
-        <h2>Further evidence:</h2>
-        <div class="value">
-          <%= simple_format html_escape(need.other_evidence) %>
-        </div>
-      </div>
-    <% end %>
-
-    <% if show_interactions_column?(need) %>
-      <div class="interactions">
-        <h2>Historical data:</h2>
-
-        <div class="value">
-
-        <% if need.yearly_need_views.present? %>
-          <div class="big-number">
-            <%= format_friendly_integer need.yearly_need_views %>
-            <span class="big-number-detail">Approximate pageviews a year</span>
-          </div>
-        <% end %>
-
-        <% if percentage = calculate_percentage(need.yearly_need_views, need.yearly_site_views) %>
-          <div class="big-number">
-            <%= percentage %>
-            <span class="big-number-detail">of site pageviews</span>
-          </div>
-        <% end %>
-
-        <% if need.yearly_user_contacts.present? %>
-        <div class="big-number">
-          <%= format_friendly_integer need.yearly_user_contacts %>
-          <span class="big-number-detail">Approximate contacts a year</span>
-        </div>
-        <% end %>
-
-        <% if need.yearly_searches.present? %>
-          <div class="big-number">
-            <%= format_friendly_integer need.yearly_searches %>
-            <span class="big-number-detail">Approximate searches a year</span>
-          </div>
-        <% end %>
-
-        </div>
-      </div>
-    <% end %>
-  </section>
-  <section class="activity">
-    <%= render partial: 'activity_items/feed',
-               locals: {
-                 need: need,
-                 activity_items: need.activity_items,
-               } %>
+    </div>
   </section>
 </article>

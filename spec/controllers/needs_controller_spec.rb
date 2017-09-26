@@ -18,17 +18,17 @@ RSpec.describe NeedsController, type: :controller do
     it 'redirects to the need' do
       post :create, params: { need: need_attributes }
 
-      expect(controller).to redirect_to(action: :show, id: controller.need.id)
+      expect(controller).to redirect_to(action: :show, id: controller.send(:need).id)
     end
 
     it 'creates a need' do
       post :create, params: { need: need_attributes }
 
-      expect(controller.need).to be_persisted
+      expect(controller.send(:need)).to be_persisted
     end
 
     it 'displays the form again given invalid data' do
-      expect(controller.need).to receive(:valid?).and_return(false)
+      expect(controller.send(:need)).to receive(:valid?).and_return(false)
       post :create, params: { need: need_attributes }
 
       expect(controller).to render_template(:new)
@@ -43,12 +43,12 @@ RSpec.describe NeedsController, type: :controller do
                         )
                       }
 
-        expect(controller.need.met_when).to eq([
+        expect(controller.send(:need).met_when).to eq([
           'the need is met',
           '',
         ])
 
-        expect(controller.need).to_not be_persisted
+        expect(controller.send(:need)).to_not be_persisted
         expect(controller).to render_template(:new)
       end
 
@@ -64,12 +64,12 @@ RSpec.describe NeedsController, type: :controller do
                         )
                       }
 
-        expect(controller.need.met_when).to eq([
+        expect(controller.send(:need).met_when).to eq([
           'the need is met',
           'a third criteria is met',
         ])
 
-        expect(controller.need).to_not be_persisted
+        expect(controller.send(:need)).to_not be_persisted
         expect(controller).to render_template(:new)
       end
     end
@@ -90,12 +90,12 @@ RSpec.describe NeedsController, type: :controller do
     it 'updates the need' do
       patch :update, params: { id: need, need: updated_attributes }
 
-      controller.need.reload
-      expect(controller.need.role).to eq('automated testing script')
+      controller.send(:need).reload
+      expect(controller.send(:need).role).to eq('automated testing script')
     end
 
     it 'displays the form again given invalid data' do
-      expect(controller.need).to receive(:valid?).and_return(false)
+      expect(controller.send(:need)).to receive(:valid?).and_return(false)
       patch :update, params: { id: need, need: updated_attributes }
 
       expect(controller).to render_template(:edit)
@@ -103,7 +103,7 @@ RSpec.describe NeedsController, type: :controller do
 
     describe 'when criteria_action is present' do
       it 'adds more criteria without saving the need' do
-        expect(controller.need).to_not receive(:save_as)
+        expect(controller.send(:need)).to_not receive(:save_as)
 
         patch :update, params: {
                          id: need, criteria_action: '1',
@@ -112,14 +112,14 @@ RSpec.describe NeedsController, type: :controller do
                          )
                        }
 
-        expect(controller.need.met_when).to eq([
+        expect(controller.send(:need).met_when).to eq([
           'the need is met', '',
         ])
         expect(controller).to render_template(:edit)
       end
 
       it 'removes a particular criteria without saving the need' do
-        expect(controller.need).to_not receive(:save_as)
+        expect(controller.send(:need)).to_not receive(:save_as)
 
         patch :update, params: {
                          id: need,
@@ -133,7 +133,7 @@ RSpec.describe NeedsController, type: :controller do
                          )
                        }
 
-        expect(controller.need.met_when).to eq([
+        expect(controller.send(:need).met_when).to eq([
           'the need is met',
           'a third criteria is met',
         ])
@@ -159,8 +159,8 @@ RSpec.describe NeedsController, type: :controller do
     it 'updates the "canonical_need_id" field for a need' do
       patch :closed, params: { id: need, need: { canonical_need_id: existing_need.id } }
 
-      controller.need.reload
-      expect(controller.need.canonical_need_id).to eq(existing_need.id)
+      controller.send(:need).reload
+      expect(controller.send(:need).canonical_need_id).to eq(existing_need.id)
     end
 
     it 'redirects to the need' do
@@ -170,7 +170,7 @@ RSpec.describe NeedsController, type: :controller do
     end
 
     it 'displays the form again given invalid data' do
-      expect(controller.need).to receive(:valid?).and_return(false)
+      expect(controller.send(:need)).to receive(:valid?).and_return(false)
       patch :closed, params: { id: need, need: { canonical_need_id: 1234 } }
 
       expect(controller).to render_template(:close_as_duplicate)
@@ -183,8 +183,8 @@ RSpec.describe NeedsController, type: :controller do
     it 'clears the "canonical_need_id" field for a need' do
       delete :reopen, params: { id: closed_need }
 
-      controller.need.reload
-      expect(controller.need.canonical_need_id).to eq(nil)
+      controller.send(:need).reload
+      expect(controller.send(:need).canonical_need_id).to eq(nil)
     end
 
     it 'redirects to the need' do

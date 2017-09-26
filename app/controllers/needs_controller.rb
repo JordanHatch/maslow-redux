@@ -1,8 +1,7 @@
 class NeedsController < ApplicationController
   include Concerns::Filterable
 
-  layout 'skeleton', only: :show
-  expose(:need)
+  layout 'skeleton', except: :index
 
   class Http404 < StandardError
   end
@@ -29,7 +28,14 @@ class NeedsController < ApplicationController
 
   def show
     authorize! :read, Need
-    @need = load_need
+  end
+
+  def activity
+    authorize! :read, Need
+  end
+
+  def evidence
+    authorize! :read, Need
   end
 
   def edit
@@ -121,6 +127,15 @@ private
     @needs_with_pagination ||= needs.page(params[:page])
   end
   helper_method :needs_with_pagination
+
+  def need
+    if params.key?(:id)
+      @need ||= Need.find_by_need_id(params[:id])
+    else
+      @need ||= Need.new
+    end
+  end
+  helper_method :need
 
   def redirect_url
     params["add_new"] ? new_need_path : need_url(need.need_id)

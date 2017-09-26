@@ -1,5 +1,10 @@
 class NeedResponsesController < ApplicationController
-  before_action :check_if_need_can_be_edited!
+  before_action :check_if_need_can_be_edited!, except: :index
+
+  layout 'skeleton'
+
+  def index
+  end
 
   def new
     authorize! :create, NeedResponse
@@ -11,7 +16,7 @@ class NeedResponsesController < ApplicationController
     need_response.assign_attributes(need_response_params)
 
     if need_response.save_as(current_user)
-      redirect_to need_path(need)
+      redirect_to need_responses_path(need)
     else
       render action: :new
     end
@@ -27,7 +32,7 @@ class NeedResponsesController < ApplicationController
     need_response.assign_attributes(need_response_params)
 
     if need_response.save_as(current_user)
-      redirect_to need_path(need)
+      redirect_to need_responses_path(need)
     else
       render action: :edit
     end
@@ -35,6 +40,7 @@ class NeedResponsesController < ApplicationController
 
 private
   def need
+    authorize! :read, Need
     @need ||= Need.find(params[:need_id])
   end
   helper_method :need
@@ -55,7 +61,7 @@ private
   def check_if_need_can_be_edited!
     if need.present? && need.closed?
       flash.alert = 'Closed needs cannot be edited'
-      redirect_to need_path(need)
+      redirect_to need_responses_path(need)
     end
   end
 end

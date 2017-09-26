@@ -4,31 +4,37 @@
 en:
   decisions:
     types:
-      scope: Is the need in scope?
-      completion: Is this need complete?
-      met: Is the need being met?
+      scope:
+        long: "Is the need in scope?"
+        short: "In scope?"
+      completion:
+        long: "Is this need complete?"
+        short: "Complete?"
+      met:
+        long: "Is the need being met?"
+        short: "Met?"
     outcomes:
       scope:
         in_scope:
           long: This need is in scope
-          short: In scope
+          short: "Yes"
         out_of_scope:
           long: This need is out of scope
-          short: Out of scope
+          short: "No"
       completion:
         complete:
           long: This need has all the necessary information
-          short: Complete
+          short: "Complete"
         incomplete:
           long: This need is missing information
-          short: Incomplete
+          short: "Incomplete"
       met:
         met:
           long: This need is being sufficiently met by a service
-          short: Met
+          short: "Yes"
         not_met:
           long: This need is not currently being met
-          short: Not met
+          short: "No"
   time:
     formats:
       short_date: "%-e %B %Y"

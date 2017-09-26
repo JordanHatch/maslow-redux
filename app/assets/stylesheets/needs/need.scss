@@ -1,30 +1,25 @@
 .need-columns {
-  .need, .activity {
-    position: absolute;
-    width: 50%;
-    top: 0;
-    bottom: 0;
-    padding: 20px;
-    height: 100%;
-    overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .activity, .need {
+    padding: 15px;
   }
-  .need {
-    left: 0;
+  .need-navigation {
     background: $primary-color;
     color: #fff;
     font-size: 15px;
+    width: 300px;
+    border-right: 5px solid lighten($primary-color, 80%);
   }
   .activity {
-    right: 0;
+    flex: 1;
   }
 
   h3 {
     font-size: 19px;
   }
-}
-
-.legislation, .other-evidence {
-  @include need-info-panel-single-field;
 }
 
 .need-actions {
@@ -79,142 +74,13 @@
   }
 }
 
-.the-need {
-  margin: 20px 5% 30px 0;
-  font-size: 30px;
-  line-height: 1.31579;
-
-  em {
-    font-style: normal;
-  }
-}
-
-.need-tags {
-  @include need-info-panel;
-
-  > li {
-    list-style: none;
-    margin: 0 0 4px;
-    padding: 12px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-
-    &:last-of-type {
-      border-bottom: none;
-    }
-
-    ul, h3 {
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1.3;
-      font-size: 15px;
-    }
-
-    h3 {
-      width: $panel-legend-width;
-      margin: 0;
-      font-weight: bold;
-    }
-
-    ul {
-      padding-left: 0px;
-
-      li {
-        display: inline-block;
-        padding: 3px 6px;
-
-        background: rgba(255, 255, 255, 0.15);
-        color: #fff;
-
-        font-weight: bold;
-        margin-right: 3px;
-      }
-    }
-  }
-}
-
-.met-when {
-  @include need-info-panel;
-  @include need-info-panel-list;
-}
-
-.need-decisions {
-  @include need-info-panel;
-}
-
-.need-status {
-  margin: 15px 0 0;
-  padding: 0;
-
-  li {
-    font-size: 15px;
-    list-style: none;
-    display: block;
-    padding: 6px 12px;
-    margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    overflow: auto;
-
-    &:last-of-type {
-      border-bottom: none;
-    }
-
-    h3, span, a {
-      display: inline-block;
-      font-size: 15px;
-    }
-
-    h3 {
-      width: $panel-legend-width;
-      font-weight: bold;
-      margin: 7px 0 0;
-    }
-    span {
-      width: 20%;
-    }
-    .no-decision {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    a {
-      color: $inverse-text-color;
-      padding: 5px 10px;
-      border-radius: 4px;
-      display: block;
-      text-decoration: none;
-      font-size: 13px;
-      float: right;
-
-      &:hover {
-        background: $header-border-color;
-        color: #fff;
-      }
-
-      .icon {
-        @extend .glyphicon;
-        @extend .glyphicon-pencil;
-        padding-right: 4px;
-        font-size: 11px;
-        width: auto;
-      }
-    }
-
-    &.decision_red {
-      background: #dc1414;
-    }
-    &.decision_green {
-      background: #23be04;
-    }
-  }
-}
-
 .closed-need {
   margin: 20px 0;
 
   .message {
     padding: 14px;
     background: $alert-color;
-    color: #fff;
+    color: $inverse-text-color;
 
     h2 {
       margin: 0 0 7px;
@@ -249,32 +115,4 @@
       float: right;
     }
   }
-}
-
-.interactions {
-  @include need-info-panel-single-field;
-}
-
-.big-number {
-  font-size: 45px;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  margin-bottom: 20px;
-  width: 50%;
-  padding-right: 10%;
-  float: left;
-
-  &:nth-of-type(2n+1) {
-    clear: left;
-  }
-}
-
-.big-number-detail {
-  font-size: 15px;
-  line-height: 1.3;
-  padding-top: 5px;
-  font-weight: normal;
-  display: block;
-  color: #fff;
 }

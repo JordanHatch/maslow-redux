@@ -1,0 +1,82 @@
+.need-nav {
+  background: $primary-color;
+  border-right: 5px solid #e6e6e6;
+
+  color: #fff;
+  font-size: 15px;
+
+  header {
+    padding: 10px 15px 15px;
+    background: darken($primary-color, 10%);
+    border-bottom: 2px solid darken($primary-color, 2%);
+    margin-bottom: 7px;
+  }
+
+  .back-link {
+    a {
+      color: rgba(255,255,255,0.5);
+      display: inline-block;
+      text-decoration: none;
+      font-size: 11px;
+
+      &:hover {
+        color: #fff;
+      }
+
+      span {
+        @extend .glyphicon;
+        @extend .glyphicon-menu-left;
+
+        padding-right: 1px;
+        font-size: 9px;
+      }
+    }
+  }
+
+  h1 {
+    .need-id {
+      display: block;
+      font-size: 12px;
+      color: $inverse-text-color;
+    }
+
+    font-size: 18px;
+    margin: 10px 0 0;
+    line-height: 1.2em;
+  }
+
+  ul.need-navigation {
+    padding: 10px 0;
+
+    li {
+      list-style: none;
+
+      a {
+        display: block;
+        padding: 10px 15px 10px 15px;
+
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+          background: darken($primary-color, 5%);
+        }
+
+        span {
+          @extend .glyphicon;
+          padding-right: 10px;
+          font-size: 14px;
+        }
+      }
+
+      &.selected a {
+        background: darken($primary-color, 10%);
+        color: #fff;
+      }
+    }
+
+  }
+
+}

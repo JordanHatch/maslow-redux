@@ -1,29 +1,32 @@
-<%= render partial: "needs/breadcrumb", locals: { need: need, action: 'Decisions' } %>
-<%= render partial: "needs/need_header" %>
+<% content_for :page_title, "Edit ##{need.need_id}: #{format_need_goal(need.goal)}" %>
 
-<article class="create-need-decision">
-  <header>
+<article class="need">
+  <%= render partial: 'needs/navigation' %>
+
+  <section class="need-main need-form">
     <h1>Make a decision about this need</h1>
-  </header>
 
-  <%= semantic_form_for [need, decision] do |f| %>
-    <%= f.inputs do %>
-      <%= f.input :decision_type, as: :hidden %>
+    <div class="create-need-decision">
+      <%= semantic_form_for [need, decision] do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :decision_type, as: :hidden %>
 
-      <%= f.input :outcome, as: :radio,
-                            collection: decision_outcome_options(f.object.decision_type),
-                            label: decision_type_label(f.object.decision_type) %>
+          <%= f.input :outcome, as: :radio,
+                                collection: decision_outcome_options(f.object.decision_type),
+                                label: decision_type_label(f.object.decision_type) %>
 
-      <%= f.input :note, input_html: { rows: 5 } %>
+          <%= f.input :note, input_html: { rows: 5 } %>
 
-      <%= f.actions do %>
-        <%= f.action :submit, as: :button,
-                              label: 'Make decision',
-                              button_html: {
-                                class: 'btn btn-primary'
-                              } %>
+          <%= f.actions do %>
+            <%= f.action :submit, as: :button,
+                                  label: 'Make decision',
+                                  button_html: {
+                                    class: 'btn btn-primary'
+                                  } %>
+          <% end %>
+
+        <% end %>
       <% end %>
-
-    <% end %>
-  <% end %>
+    </div>
+  </section>
 </article>

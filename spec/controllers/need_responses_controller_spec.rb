@@ -10,7 +10,7 @@ RSpec.describe NeedResponsesController, type: :controller do
 
       get :new, params: { need_id: closed_need }
 
-      expect(controller).to redirect_to(need_path(closed_need.id))
+      expect(controller).to redirect_to(need_responses_path(closed_need.id))
       expect(controller.flash.alert).to be_present
     end
   end

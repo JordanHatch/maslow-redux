@@ -1,0 +1,74 @@
+.need-response {
+
+  h1 {
+    margin: 0 0 20px;
+    padding: 25px;
+
+    background: #fff;
+    border-bottom: 1px solid #f6f6f6;
+
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3em;
+
+    padding: 25px;
+    vertical-align: baseline;
+
+    em {
+      font-weight: bold;
+      font-size: 55px;
+      line-height: 1.3;
+      font-style: normal;
+      display: inline-block;
+      vertical-align: baseline;
+      padding-right: 3px;
+    }
+  }
+
+  .response-list {
+    padding: 25px;
+
+    h1 {
+      margin: 0;
+    }
+
+    li {
+      @include box;
+      list-style: none;
+
+      h1 {
+        margin-bottom: 7px;
+      }
+    }
+
+    p {
+      padding: 3px 15px;
+    }
+  }
+
+  p {
+    padding-left: 25px;
+  }
+
+  a.action {
+    font-size: 13px;
+    padding: 0;
+
+    span {
+      @extend .glyphicon;
+      padding-right: 3px;
+    }
+
+    &.edit-action {
+      span {
+        @extend .glyphicon-pencil;
+      }
+    }
+
+    &.new-action {
+      span {
+        @extend .glyphicon-plus;
+      }
+    }
+  }
+}

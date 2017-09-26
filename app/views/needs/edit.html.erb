@@ -1,8 +1,11 @@
-<% content_for :page_title, "Edit" %>
+<% content_for :page_title, "Edit ##{need.need_id}: #{format_need_goal(need.goal)}" %>
 
-<article id="single-need">
-  <%= render partial: "needs/breadcrumb", locals: { need: need, action: "Edit" } %>
-  <h3>Edit need</h3>
+<article class="need">
+  <%= render partial: 'navigation' %>
 
-  <%= render partial: "form" %>
+  <section class="need-main need-form">
+    <h3>Edit need</h3>
+
+    <%= render partial: "form" %>
+  </section>
 </article>

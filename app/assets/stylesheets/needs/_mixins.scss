@@ -6,7 +6,7 @@ $panel-legend-width: 35%;
 
   display: block;
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #000;
 
   h3 {
     margin: 0;
@@ -18,7 +18,10 @@ $panel-legend-width: 35%;
 @mixin need-info-panel-single-field {
   @include need-info-panel;
 
-  padding: 12px;
+  padding: 13px 25px;
+  margin: 13px 0;
+
+  border-bottom: 1px solid #eee;
   overflow: auto;
 
   h2, .value {
@@ -76,7 +79,7 @@ $panel-legend-width: 35%;
     }
 
     a {
-      color: $inverse-text-color;
+      color: $text-color;
 
       &:hover {
         color: #fff;

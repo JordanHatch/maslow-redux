@@ -1,0 +1,46 @@
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+
+<article class="need">
+  <%= render partial: 'needs/navigation' %>
+
+  <section class="need-main need-response">
+    <h1>
+      <em><%= need.need_responses.count %></em>
+      <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
+    </h1>
+
+    <% unless need.closed? %>
+    <p>
+      <%= link_to new_need_response_path(need), class: 'btn btn-primary' do %>
+        <span class="icon" aria-hidden="true"></span>
+        Add new response
+      <% end %>
+    </p>
+    <% end %>
+
+    <ul class="response-list">
+      <% need.need_responses.each do |need_response| %>
+        <li class="need-response-item box">
+          <h1>
+            <%= need_response.response_type_text %>
+          </h1>
+          <p class="response-name">
+            <%= need_response.name %>
+            <% if need_response.url.present? %>
+              &mdash; <%= link_to need_response.url, need_response.url %>
+            <% end %>
+          </p>
+          <% unless need.closed? %>
+            <p>
+              <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
+                <span class="icon" aria-hidden="true"></span>
+                Edit
+              <% end %>
+            </p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+  </section>
+</article>

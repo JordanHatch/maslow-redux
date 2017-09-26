@@ -5,7 +5,7 @@
         <h3><%= label %></h3>
 
         <% if (decision = need.latest_decision(value)) %>
-          <span class="decision_<%= decision.colour %>">
+          <span class="decision-<%= decision.colour %>">
             <%= decision_outcome_label decision.decision_type, decision.outcome, 'short' %>
           </span>
         <% else %>
@@ -17,7 +17,7 @@
         <% if current_user.can?(:create, Decision) %>
           <%= link_to new_need_decision_path(need, decision_type: value) do %>
             <span class="icon" aria-hidden="true"></span>
-            Update
+            <span class="label">Update</span>
           <% end %>
         <% end %>
       </li>

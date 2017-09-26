@@ -1,0 +1,23 @@
+body.skeleton main {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+article.need {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .need-nav, .need-main {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  .need-nav {
+    width: 300px;
+  }
+  .need-main {
+    flex: 1;
+    padding: 0;
+  }
+}

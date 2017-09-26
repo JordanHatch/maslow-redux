@@ -23,12 +23,15 @@ Maslow::Application.routes.draw do
   resources :needs, except: [:destroy] do
     resources :decisions, only: [:new, :create]
     resources :notes, only: :create
-    resources :responses, controller: 'need_responses', except: [:index, :show]
+    resources :responses, controller: 'need_responses', except: :show
 
     member do
       patch :closed
       delete :closed, to: 'needs#reopen', as: :reopen
       get :close_as_duplicate, path: 'close-as-duplicate'
+
+      get :activity
+      get :evidence
     end
   end
 

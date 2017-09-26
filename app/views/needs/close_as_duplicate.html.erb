@@ -1,14 +1,11 @@
-<% content_for :page_title, "Close as a duplicate" %>
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
 
 <article class="need">
-  <nav class="add-top-margin">
-    <%= render partial: "needs/breadcrumb", locals: { need: need, action: "Close as a duplicate" } %>
-  </nav>
+  <%= render partial: 'navigation' %>
 
-  <%= render :partial => "need_header" %>
-  <h3>Close as a duplicate</h3>
+  <section class="need-main need-form">
+    <h3>Close as a duplicate</h3>
 
-  <%= render partial: "duplicate_of_need" %>
-
-  <%= render partial: "workflow_buttons", locals: { need: need } %>
+    <%= render partial: "duplicate_of_need" %>
+  </section>
 </article>
