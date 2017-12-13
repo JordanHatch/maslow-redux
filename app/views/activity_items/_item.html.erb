@@ -3,6 +3,9 @@
     <span class="date"><%= l item.created_at, format: :short_date %></span>
     <span class="time"><%= l item.created_at, format: :short_time %></span>
     <span class="author"><%= item.user.name %></span>
+    <% if item.user.bot? %>
+      <span class="bot-label">Bot</span>
+    <% end %>
   </p>
 
   <div class="feed-content">

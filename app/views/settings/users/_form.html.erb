@@ -5,7 +5,7 @@
     <%= f.input :email %>
     <%= f.input :roles, as: :select,
                         multiple: true,
-                        collection: User::ROLES,
+                        collection: available_roles,
                         input_html: {
                           'data-module' => 'chosen',
                         } %>

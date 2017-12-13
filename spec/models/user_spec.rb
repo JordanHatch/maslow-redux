@@ -100,6 +100,20 @@ RSpec.describe User, :type => :model do
     end
   end
 
+  describe '#bot?' do
+    it 'returns true when the user has the bot role' do
+      user = User.new(valid_attributes.merge(roles: ['bot']))
+
+      expect(user).to be_bot
+    end
+
+    it 'returns false when the user does not have the bot role' do
+      user = User.new(valid_attributes.merge(roles: ['commenter']))
+
+      expect(user).to_not be_bot
+    end
+  end
+
   describe '#commenter?' do
     it 'returns true when the user has the commenter role' do
       user = User.new(valid_attributes.merge(roles: ['commenter']))
@@ -132,6 +146,32 @@ RSpec.describe User, :type => :model do
       user.toggle_bookmark(need.id)
 
       expect(user.bookmarks).to contain_exactly(*other_need_ids)
+    end
+  end
+
+  describe '#active_for_authentication?' do
+    it 'returns false for bot users' do
+      user = User.new(valid_attributes.merge(roles: ['bot', 'admin']))
+
+      expect(user).to_not be_active_for_authentication
+    end
+
+    it 'returns true for other users' do
+      user = User.new(valid_attributes.merge(roles: ['commenter', 'admin']))
+
+      expect(user).to be_active_for_authentication
+    end
+  end
+
+  describe '#send_reset_password_instructions' do
+    # NOTE: regular behaviour of this method is tested as part of the
+    # Devise gem.
+    #
+
+    it 'returns false for bot users' do
+      user = User.new(valid_attributes.merge(roles: ['bot', 'admin']))
+
+      expect(user.send_reset_password_instructions).to eq(false)
     end
   end
 

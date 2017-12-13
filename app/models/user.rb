@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   ROLES = [
     "admin",
     "commenter",
+    "bot",
   ]
 
   devise :database_authenticatable,
@@ -15,6 +16,8 @@ class User < ActiveRecord::Base
   validate :roles_exist_in_list
 
   before_validation :remove_blank_roles
+
+  scope :excluding_bots, -> { where.not(":role = ANY(roles)", role: 'bot') }
 
   def ability
     @ability ||= Ability.new(self)
@@ -28,6 +31,10 @@ class User < ActiveRecord::Base
     roles.include?('admin')
   end
 
+  def bot?
+    roles.include?('bot')
+  end
+
   def toggle_bookmark(need_id)
     return if need_id <= 0
 
@@ -39,6 +46,16 @@ class User < ActiveRecord::Base
     else
       bookmarks << need_id_as_string
     end
+  end
+
+  def active_for_authentication?
+    return false if bot?
+    super
+  end
+
+  def send_reset_password_instructions
+    return false if bot?
+    super
   end
 
 private

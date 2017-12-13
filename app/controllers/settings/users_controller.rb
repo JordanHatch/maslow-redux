@@ -1,7 +1,4 @@
 class Settings::UsersController < Settings::BaseController
-  expose :users, ->{ User.all }
-  expose :user
-
   def index
   end
 
@@ -26,6 +23,20 @@ class Settings::UsersController < Settings::BaseController
   end
 
 private
+
+  helper_method :users, :user
+
+  def users
+    @users ||= User.excluding_bots
+  end
+
+  def user
+    if params.key?(:id)
+      @user ||= users.find(params[:id])
+    else
+      @user ||= users.build
+    end
+  end
 
   def creation_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, roles: [])

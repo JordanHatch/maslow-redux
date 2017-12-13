@@ -9,7 +9,11 @@ FactoryGirl.define do
     trait :admin do
       roles ['admin']
     end
+    trait :bot do
+      roles ['bot']
+    end
 
     factory :admin_user, traits: [:admin]
+    factory :bot_user, traits: [:bot]
   end
 end

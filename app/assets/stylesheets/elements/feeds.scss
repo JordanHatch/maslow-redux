@@ -24,6 +24,21 @@ ul.feed {
       .time {
         font-weight: normal;
       }
+
+      .bot-label {
+        display: inline-block;
+
+        padding: 2px 4px;
+        vertical-align: text-top;
+        margin-left: 5px;
+
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        background: #eee;
+        border-radius: 1px;
+      }
     }
 
     .feed-content {
