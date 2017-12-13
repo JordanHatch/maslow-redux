@@ -3,6 +3,7 @@ class NeedResponse < ApplicationRecord
 
   enumerize :response_type, in: [:content, :service, :other]
 
+  validates :need, :response_type, :name, presence: true
   belongs_to :need
 
   def save_as(user)
