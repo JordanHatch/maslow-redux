@@ -1,7 +1,7 @@
 ruby '2.3.3'
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0.6'
 gem 'puma'
 
 gem 'pg'
@@ -19,6 +19,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'timecop'
+  gem 'webmock'
   gem 'rails-controller-testing'
 end
 
@@ -41,6 +42,7 @@ gem 'formtastic', '3.1.4'
 gem 'formtastic-bootstrap'
 gem 'decent_exposure', '~> 3.0.2'
 gem 'has_scope'
+gem 'rest-client'
 
 gem 'devise'
 
