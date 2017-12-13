@@ -1,80 +1,9 @@
 .settings {
-  @extend .row;
-
-  > h1 {
-    @extend .col-md-12;
-    margin: 20px 0 40px;
-  }
-
-  nav {
-    @extend .col-md-3;
-
-    border-right: 1px solid #ddd;
-    padding-right: 0;
-
-    min-height: 20em;
-
-    h2 {
-      margin: 0;
-      font-weight: normal;
-      font-size: 21px;
-      padding: 5px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    ul {
-      padding: 0;
-      margin: 0;
-
-      li {
-        list-style: none;
-        padding: 4px 0;
-
-        ul li {
-          padding: 3px 5px;
-          list-style: disc inside;
-
-          &.add {
-            list-style: none;
-            background: #eee;
-            margin: 7px 0;
-            padding: 8px;
-
-            a, .icon {
-              display: inline-block;
-              vertical-align: middle;
-            }
-
-            .icon {
-              @extend .glyphicon;
-              @extend .glyphicon-plus;
-
-              font-size: 10px;
-              padding-right: 4px;
-            }
-            a {
-              margin-top: 1px;
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  .settings-area {
-    @extend .col-md-9;
-    padding: 0 20px;
-
-    h1 {
-      font-size: 25px;
-      margin: 0 0 15px;
-    }
-  }
+  padding: 20px;
 
   header {
-    margin: 0 0 20px;
+    @include header-panel-with-negative-margin;
+
     overflow: auto;
 
     h1 { float: left; }

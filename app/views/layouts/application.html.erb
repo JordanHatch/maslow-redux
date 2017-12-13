@@ -9,43 +9,39 @@
   <title><%= content_for?(:page_title) ? yield(:page_title) + " | " : "" %><%= app_title %></title>
 </head>
 <body class="default">
-  <header class="app-header">
-    <div>
-      <div class="app-title">
-        <%= link_to root_path do %>
-          <h1 class="logo">M<span>aslow</span></h1>
-          <span class="instance-name"><%= site_name %></span>
-          <span class="dropdown-icon" aria-hidden="true"></span>
+  <%= render partial: 'shared/flash' %>
+  <section class="app-container">
+    <aside class="navigation">
+      <% if content_for(:header) %>
+        <%= yield(:header) %>
+      <% else %>
+        <header>
+          <h1>
+            <span class="subtitle">Maslow</span>
+            <%= site_name %>
+          </h1>
+        </header>
+      <% end %>
+
+      <div class="nav-content">
+        <% if content_for(:navigation) %>
+          <%= yield(:navigation) %>
+        <% else %>
+          <%= render partial: 'layouts/default_navigation' %>
         <% end %>
       </div>
 
-      <nav role="navigation">
+      <div class="signed-in-user">
+        <strong><%= current_user.name %></strong>
         <ul>
-          <li <% if current_page?(needs_path) %> class="active" <% end %>>
-            <%= link_to "All needs", needs_path %>
-          </li>
-          <li <% if current_page?(bookmarks_path) %> class="active" <% end %>>
-            <%= link_to "Bookmarked needs", bookmarks_path %>
-          </li>
+          <li><%= link_to 'change password', edit_password_user_path %></li>
+          <li><%= link_to 'sign out', destroy_user_session_path %></li>
         </ul>
-      </nav>
-
-      <div class="primary-actions">
-        <% if current_user.can?(:create, Need) %>
-          <%= link_to 'Add user need', new_need_path %>
-        <% end %>
       </div>
+    </aside>
 
-      <%= render partial: 'layouts/project_navigation' %>
-    </div>
-  </header>
-
-  <main>
-    <%= yield(:breadcrumbs) if content_for?(:breadcrumbs) %>
-
-    <%= render partial: 'shared/flash' %>
-
-    <%= content_for?(:content) ? yield(:content) : yield %>
-  </main>
+    <main>
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
 </body>
 </html>

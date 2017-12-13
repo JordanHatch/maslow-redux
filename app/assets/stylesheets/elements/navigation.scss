@@ -1,9 +1,15 @@
-.need-nav {
+/* Navigation layout rules can be found in `layouts/default.scss`.
+*/
+
+aside.navigation {
   background: $primary-color;
   border-right: 5px solid #e6e6e6;
 
   color: #fff;
   font-size: 15px;
+
+  display: flex;
+  flex-flow: column;
 
   header {
     padding: 10px 15px 15px;
@@ -34,7 +40,7 @@
   }
 
   h1 {
-    .need-id {
+    .subtitle {
       display: block;
       font-size: 12px;
       color: $inverse-text-color;
@@ -45,7 +51,16 @@
     line-height: 1.2em;
   }
 
-  ul.need-navigation {
+  h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 0 15px;
+    margin: 20px 0 5px;
+  }
+
+  ul.navigation-list {
     padding: 10px 0;
 
     li {
@@ -76,7 +91,48 @@
         color: #fff;
       }
     }
-
   }
 
+  .nav-content {
+    flex: 1;
+  }
+
+  .signed-in-user {
+    align-self: flex-end;
+
+    background: darken($primary-color, 10%);
+    padding: 15px;
+    width: 100%;
+
+    strong {
+      font-size: 16px;
+    }
+
+    ul {
+      padding-left: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+      display: inline;
+      font-size: 12px;
+
+      &::after {
+        content: " - ";
+        padding: 0 2px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      &:last-of-type::after {
+        content: '';
+      }
+    }
+
+    a, a:hover, a:active, a:visited {
+      color: $inverse-text-color;
+    }
+    a:hover, a:active {
+      text-decoration: underline;
+    }
+  }
 }

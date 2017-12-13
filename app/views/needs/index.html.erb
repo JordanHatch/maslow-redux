@@ -1,13 +1,11 @@
 <% content_for :page_title, "All needs" %>
 
-<section class="need-list">
-  <section class="filters">
+<section class="need-list filter-container">
+  <aside class="filters">
     <%= render partial: "collection_filters" %>
-  </section>
+  </aside>
   <section class="results">
     <%= render partial: "collection", locals: { collection: needs_with_pagination } %>
     <%= paginate_needs needs_with_pagination %>
   </section>
 </section>
-
-<%= render partial: "workflow_buttons" %>

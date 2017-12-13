@@ -1,13 +1,16 @@
 <% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
 
 <article class="need">
-  <%= render partial: 'needs/navigation' %>
-
   <section class="need-main need-response">
-    <h1>
-      <em><%= need.need_responses.count %></em>
-      <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
-    </h1>
+    <header>
+      <h1>
+        <em><%= need.need_responses.count %></em>
+        <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
+      </h1>
+    </header>
 
     <% unless need.closed? %>
     <p>

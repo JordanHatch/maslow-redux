@@ -1,11 +1,12 @@
 <% content_for :page_title, "Edit ##{need.need_id}: #{format_need_goal(need.goal)}" %>
-
-<article class="need">
+<% content_for :navigation do %>
   <%= render partial: 'navigation' %>
+<% end %>
 
-  <section class="need-main need-form">
-    <h3>Edit need</h3>
+<section class="need-main need-form">
+  <header>
+    <h1>Edit need</h1>
+  </header>
 
-    <%= render partial: "form" %>
-  </section>
-</article>
+  <%= render partial: "form" %>
+</section>

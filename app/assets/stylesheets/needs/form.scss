@@ -1,3 +1,11 @@
+.new-need {
+  padding: 25px;
+
+  header {
+    @include header-panel-with-negative-margin;
+  }
+}
+
 /* ==========================================================================
    Chosen multi-select overrides to conform with Bootstrap 3
    ========================================================================== */

@@ -1,4 +1,4 @@
-<nav class="need-nav">
+<% content_for(:header) do %>
   <header>
     <p class="back-link">
       <%= link_to needs_path do %>
@@ -7,19 +7,21 @@
     </p>
 
     <h1>
-      <span class="need-id">#<%= need.need_id %></span>
+      <span class="subtitle">#<%= need.need_id %></span>
       <%= format_need_goal(need.goal) %>
     </h1>
   </header>
+<% end %>
 
-  <ul class="need-navigation">
-    <% need_navigation_items(need).each do |item| %>
-      <%= content_tag :li, ({ class: "selected" } if navigation_selected_item?(item)) do %>
-        <%= link_to item[:url] do %>
-          <span class="glyphicon-<%= item[:icon] %>"></span>
-          <%= item[:name] %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </ul>
-</nav>
+<ul class="navigation-list">
+  <%= nav_link_to 'Overview', need_path(need), icon: 'tent' %>
+  <%= nav_link_to 'Activity', activity_need_path(need), icon: 'inbox' %>
+  <%= nav_link_to 'Justification and evidence', evidence_need_path(need), icon: 'th-list' %>
+  <%= nav_link_to 'Responses', need_responses_path(need), icon: 'globe', match_prefix: true %>
+</ul>
+
+<% if current_user.can?(:update, Need) %>
+<ul class="navigation-list">
+  <%= nav_link_to 'Edit need', edit_need_path(need), icon: 'pencil' %>
+</ul>
+<% end %>

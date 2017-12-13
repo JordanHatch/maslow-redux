@@ -1,34 +1,37 @@
+<% content_for :header do %>
+  <header>
+    <p class="back-link">
+      <%= link_to needs_path do %>
+      <span class="icon" aria-hidden="true"></span> Back to Maslow
+      <% end %>
+    </p>
+
+    <h1>
+      <span class="subtitle"><%= site_name %></span>
+      Project settings
+    </h1>
+  </header>
+<% end %>
+
+<% content_for :navigation do %>
+  <h3>Project</h3>
+  <ul class="navigation-list">
+    <%= nav_link_to 'Team members', settings_users_path, icon: 'user', match_prefix: true %>
+  </ul>
+
+  <h3>Tags</h3>
+  <ul class="navigation-list">
+    <% tag_types.each do |tag_type| %>
+      <%= nav_link_to tag_type.name, settings_tag_type_path(tag_type), icon: 'tags', match_prefix: true %>
+    <% end %>
+    <%= nav_link_to 'Add new tag type', new_settings_tag_type_path, icon: 'plus' %>
+  </ul>
+<% end %>
+
 <% content_for :content do %>
-  <div class="settings">
-    <h1>Project settings</h1>
-
-    <nav class="col-md-3">
-      <ul>
-        <li>
-          <h2>Project</h2>
-          <ul>
-            <li><%= link_to 'Team members', settings_users_path %></li>
-          </ul>
-        </li>
-        <li>
-          <h2>Tags</h2>
-          <ul>
-            <% tag_types.each do |tag_type| %>
-              <li><%= link_to tag_type.name, settings_tag_type_path(tag_type) %></li>
-            <% end %>
-            <li class="add">
-              <span class="icon" aria-hidden="true"></span>
-              <%= link_to 'add new tag type', new_settings_tag_type_path %>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <section class="settings-area col-md-9">
-      <%= yield %>
-    </div>
-  </div>
-
+<section class="settings">
+  <%= yield %>
+</section>
 <% end %>
 
 <%= render template: 'layouts/application' %>

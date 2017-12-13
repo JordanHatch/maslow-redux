@@ -1,5 +1,47 @@
-body.default {
+@mixin app-column {
+  height: 100vh;
+  overflow-y: scroll;
+  margin-bottom: 0;
+}
+@mixin app-column-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.app-container {
+  @include app-column-container;
+
+  .navigation {
+    @include app-column;
+    width: 300px;
+  }
+
   main {
-    @extend .container;
+    @include app-column;
+    flex: 1;
+    padding: 0;
+  }
+}
+
+.filter-container {
+  @include app-column-container;
+
+  .filters {
+    @include app-column;
+    width: 300px;
+
+    padding: 20px;
+    background: #f2f5f6;
+
+    border-right: 1px solid #eee;
+  }
+  .results {
+    @include app-column;
+
+    flex: 1;
+    padding: 20px;
   }
 }

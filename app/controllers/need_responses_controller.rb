@@ -1,8 +1,6 @@
 class NeedResponsesController < ApplicationController
   before_action :check_if_need_can_be_edited!, except: :index
 
-  layout 'skeleton'
-
   def index
   end
 

@@ -1,0 +1,14 @@
+<ul class="navigation-list">
+  <%= nav_link_to 'All needs', needs_path, icon: 'th-list' %>
+  <%= nav_link_to 'Bookmarked needs', bookmarks_path, icon: 'star' %>
+
+  <% if current_user.can?(:create, Need) %>
+    <%= nav_link_to 'Add user need', new_need_path, icon: 'plus' %>
+  <% end %>
+</ul>
+
+<% if current_user.can?(:manage, :settings) %>
+  <ul class="navigation-list">
+    <%= nav_link_to 'Project settings', settings_root_path, icon: 'cog' %>
+  </ul>
+<% end %>

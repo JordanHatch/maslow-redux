@@ -26,7 +26,28 @@
   background: #fff;
   border-bottom: 1px solid #f6f6f6;
 
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.3em;
+  h1 {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3em;
+
+    margin: 0;
+    padding: 0;
+  }
+}
+@mixin header-panel-with-negative-margin {
+  @include header-panel;
+  margin: -25px -25px 25px;
+}
+
+@mixin page-section {
+  padding: 25px;
+
+  header {
+    @include header-panel-with-negative-margin;
+  }
+}
+
+.page-section {
+  @include page-section;
 }

@@ -1,8 +1,9 @@
 <% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'navigation' %>
+<% end %>
 
 <article class="need">
-  <%= render partial: 'navigation' %>
-
   <section class="need-main need-activity">
     <%= render partial: 'activity_items/feed',
                locals: {

@@ -1,10 +1,5 @@
 .need-list {
-  @extend .row;
-  margin-top: 20px;
-
   .filters {
-    @extend .col-md-3;
-
     h2 {
       margin-top: 0;
       margin-bottom: 20px;
@@ -44,10 +39,6 @@
     }
   }
 
-  .results {
-    @extend .col-md-9;
-  }
-
   .need-count {
     margin-bottom: 10px;
     font-size: 22px;
@@ -62,9 +53,10 @@
   }
 }
 
-.need-list {
-  padding: 0;
+ul.need-list {
+  padding-left: 0;
 }
+
 .need-row {
   border: 1px solid #eee;
   display: block;

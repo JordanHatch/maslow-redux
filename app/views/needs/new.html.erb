@@ -1,11 +1,9 @@
 <% content_for :page_title, "Add a new need" %>
 
-<nav class="add-top-margin">
-  <%= render partial: "needs/breadcrumb", locals: { action: "Add a new need" } %>
-</nav>
+<section class="new-need">
+  <header>
+    <h1>Add a new need</h1>
+  </header>
 
-<header class="block-border add-bottom-margin">
-  <h1>Add a new need</h1>
-</header>
-
-<%= render partial: "form" %>
+  <%= render partial: "form" %>
+</section>

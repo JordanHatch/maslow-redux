@@ -1,3 +1,9 @@
 <% content_for :page_title, "Bookmarks" %>
-<h1 class="page-title">Bookmarks</h1>
-<%= render partial: "needs/collection", locals: { collection: @needs } %>
+
+<section class="need-list page-section">
+  <header>
+    <h1>Your bookmarked needs</h1>
+  </header>
+
+  <%= render partial: "needs/collection", locals: { collection: @needs } %>
+</section>
