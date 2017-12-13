@@ -49,6 +49,14 @@ en:
     attributes:
       need_response:
         url: 'URL'
+    errors:
+      models:
+        decision:
+          attributes:
+            outcome:
+              is_unknown: is not a valid outcome
+            decision_type:
+              is_unknown: is not a valid decision type
   formtastic:
     actions:
       need_response:
