@@ -12,7 +12,7 @@ FactoryGirl.define do
     trait :note do
       item_type 'note'
       data {
-        { text: 'This is a note' }
+        { body: 'This is a note' }
       }
     end
 

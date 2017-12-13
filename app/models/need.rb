@@ -7,9 +7,9 @@ class Need < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :tag_types, through: :tags
 
-  has_many :decisions
-  has_many :activity_items
-  has_many :need_responses
+  has_many :decisions, dependent: :destroy
+  has_many :activity_items, dependent: :destroy
+  has_many :need_responses, dependent: :destroy
 
   belongs_to :canonical_need, class_name: 'Need'
 

@@ -36,7 +36,7 @@ class ActivityItem < ActiveRecord::Base
     need.need_responses.find(data[:need_response_id])
   end
 
-  def changes
+  def need_changes
     data[:changes]
   end
 

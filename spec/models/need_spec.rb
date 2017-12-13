@@ -191,4 +191,22 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#destroy' do
+    it 'destroys dependent objects' do
+      need = create(:need)
+
+      create_list(:tagging, 5, need: need)
+      create_list(:need_response, 5, need: need)
+      create_list(:scope_decision, 5, need: need)
+      create_list(:note_activity_item, 5, need: need)
+
+      expect {
+        need.destroy
+      }.to change(Tagging, :count).to(0)
+       .and change(NeedResponse, :count).to(0)
+       .and change(Decision, :count).to(0)
+       .and change(ActivityItem, :count).to(0)
+    end
+  end
+
 end

@@ -1,9 +1,9 @@
 <p class="change-summary">
-  Updated <%= format_changed_fields_list(item.changes.keys) %>
+  Updated <%= format_changed_fields_list(item.need_changes.keys) %>
 </p>
 
 <ul class="change-detail">
-  <% item.changes.each do |field,(previous,current)| %>
+  <% item.need_changes.each do |field,(previous,current)| %>
     <li>
       <h3><%= format_field_name(field) %></h3>
       <span class="previous-value"><%= format_field_value(previous) %></span>
