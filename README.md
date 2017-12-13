@@ -44,6 +44,27 @@ In addition to the user authentication, you can protect the app with HTTP Basic
 Authentication by setting the `USER` and `PASSWORD` configurations appropriately
 in your environment.
 
+## Tasks
+
+### Importing needs from a CSV
+
+You can import needs from a CSV with the correct headings. (See the example CSV
+  in `spec/fixtures/files/need_import.csv` for a structure.)
+
+To run the import task, run:
+
+```
+bin/rake import:needs[<url to csv>]
+```
+
+You can optionally increase the number of 'met when' criteria and need responses
+to import by providing extra parameters. By default, up to 5 'met when' criteria
+and 3 need responses are imported.
+
+```
+bin/rake import:needs[<url to csv>,<max responses>,<max met when criteria>]
+```
+
 ## Major changes
 
 - Data is now stored in a local PostgreSQL database, instead of making API
