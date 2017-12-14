@@ -3,10 +3,19 @@
 
 aside.navigation {
   background: $primary-color;
-  border-right: 5px solid #e6e6e6;
+  border: 0px solid #e6e6e6;
+  border-right-width: 5px;
+
+  @include respond-to(mobile) {
+    border-right-width: 0px;
+    border-bottom-width: 5px;
+  }
+  @include respond-to(tablet) {
+    font-size: 13px;
+  }
 
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
 
   display: flex;
   flex-flow: column;
@@ -23,7 +32,7 @@ aside.navigation {
       color: rgba(255,255,255,0.5);
       display: inline-block;
       text-decoration: none;
-      font-size: 11px;
+      font-size: 0.785em;
 
       &:hover {
         color: #fff;
@@ -42,17 +51,17 @@ aside.navigation {
   h1 {
     .subtitle {
       display: block;
-      font-size: 12px;
+      font-size: 0.65em;
       color: $inverse-text-color;
     }
 
-    font-size: 18px;
+    font-size: 1.285em;
     margin: 10px 0 0;
     line-height: 1.2em;
   }
 
   h3 {
-    font-size: 13px;
+    font-size: 0.928em;
     text-transform: uppercase;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.75);
@@ -71,7 +80,6 @@ aside.navigation {
         padding: 10px 15px 10px 15px;
 
         color: rgba(255, 255, 255, 0.5);
-        font-size: 14px;
         font-weight: 500;
         text-decoration: none;
 
@@ -82,7 +90,7 @@ aside.navigation {
         span {
           @extend .glyphicon;
           padding-right: 10px;
-          font-size: 14px;
+          font-size: 1em;
         }
       }
 
@@ -105,7 +113,7 @@ aside.navigation {
     width: 100%;
 
     strong {
-      font-size: 16px;
+      font-size: 1.14em;
     }
 
     ul {
@@ -116,7 +124,7 @@ aside.navigation {
     li {
       list-style: none;
       display: inline;
-      font-size: 12px;
+      font-size: 0.857em;
 
       &::after {
         content: " - ";

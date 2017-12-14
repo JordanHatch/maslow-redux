@@ -2,6 +2,20 @@
   height: 100vh;
   overflow-y: scroll;
   margin-bottom: 0;
+
+  @include respond-to(mobile) {
+    height: auto;
+    overflow: auto;
+  }
+}
+@mixin app-column-fixed {
+  @include app-column;
+  width: 20vw;
+  min-width: 230px;
+
+  @include respond-to(mobile) {
+    width: auto;
+  }
 }
 @mixin app-column-container {
   display: flex;
@@ -9,14 +23,17 @@
   width: 100%;
   padding: 0;
   margin: 0;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+  }
 }
 
 .app-container {
   @include app-column-container;
 
   .navigation {
-    @include app-column;
-    width: 300px;
+    @include app-column-fixed;
   }
 
   main {
@@ -30,13 +47,17 @@
   @include app-column-container;
 
   .filters {
-    @include app-column;
-    width: 300px;
-
+    @include app-column-fixed;
     padding: 20px;
     background: #f2f5f6;
 
-    border-right: 1px solid #eee;
+    border: 0px solid #e4eaec;
+    border-right-width: 5px;
+
+    @include respond-to(mobile) {
+      border-right-width: 0px;
+      border-bottom-width: 5px;
+    }
   }
   .results {
     @include app-column;
