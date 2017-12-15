@@ -13,6 +13,8 @@ gem 'lrucache', '0.1.4'
 gem 'enumerize', '~> 2.1.2'
 
 group :development, :test do
+  gem 'dotenv-rails'
+
   gem 'jasmine', '2.1.0'
   gem 'capybara', '~> 2.10.0'
   gem 'database_cleaner', require: false
@@ -43,6 +45,11 @@ gem 'formtastic-bootstrap'
 gem 'decent_exposure', '~> 3.0.2'
 gem 'has_scope'
 gem 'rest-client'
+
+gem 'oauth2'
+gem 'legato'
+gem 'chartkick'
+gem 'chart-js-rails'
 
 gem 'devise'
 
