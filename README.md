@@ -38,6 +38,13 @@ it easier for other teams to set up their own instances.
 - `SMTP_PASSWORD`: the password used to connect to the SMTP server
 - `SMTP_DOMAIN`: the HELO domain used when sending emails (optional)
 
+### Analytics
+
+- `GOOGLE_OAUTH_CLIENT_ID`: the client ID for your Google API Application
+- `GOOGLE_OAUTH_SECRET_KEY`: the secret key for your Google API Application
+- `GOOGLE_ANALYTICS_VIEW_ID`: the ID of the Google Analytics view you wish to retrieve data from
+- `GOOGLE_OAUTH_REFRESH_TOKEN`: the access token for a user with access to the Google Analytics view. Run `bin/rake oauth:authorize` to obtain one.
+
 ### Basic authentication
 
 In addition to the user authentication, you can protect the app with HTTP Basic
