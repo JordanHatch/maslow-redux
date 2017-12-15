@@ -17,7 +17,7 @@ class NotesController < ApplicationController
       flash.alert = "Note must not be blank"
     end
 
-    redirect_to need_path(need)
+    redirect_to activity_need_path(need)
   end
 
 private
