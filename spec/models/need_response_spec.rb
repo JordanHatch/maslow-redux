@@ -72,4 +72,16 @@ RSpec.describe NeedResponse, type: :model do
     end
   end
 
+  describe '#destroy' do
+    it 'destroys associated performance data points' do
+      response = create(:need_response)
+
+      create_list(:need_performance_point, 5, need_response: response)
+
+      expect {
+        response.destroy
+      }.to change(NeedPerformancePoint, :count).to(0)
+    end
+  end
+
 end

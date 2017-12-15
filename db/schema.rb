@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717215143) do
+ActiveRecord::Schema.define(version: 20171215103326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20170717215143) do
     t.string   "outcome",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "need_performance_points", force: :cascade do |t|
+    t.integer  "need_response_id", null: false
+    t.date     "date",             null: false
+    t.string   "metric_type",      null: false
+    t.decimal  "value"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["need_response_id"], name: "index_need_performance_points_on_need_response_id", using: :btree
   end
 
   create_table "need_responses", force: :cascade do |t|

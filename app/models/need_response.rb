@@ -4,7 +4,9 @@ class NeedResponse < ApplicationRecord
   enumerize :response_type, in: [:content, :service, :other]
 
   validates :need, :response_type, :name, presence: true
+
   belongs_to :need
+  has_many :performance_points, class_name: 'NeedPerformancePoint', dependent: :destroy
 
   def save_as(user)
     if new_record?
