@@ -13,4 +13,23 @@ namespace :import do
     ).run!
   end
 
+  namespace :analytics do
+    desc "Imports analytics data on responses for the specified need"
+    task :single_need, [:need_id] => :environment do |t, args|
+      need_id = args[:need_id]
+
+      AnalyticsImporter.new(
+        need_id: need_id,
+        logger: Logger.new(STDOUT),
+      ).run!
+    end
+
+    desc "Imports analytics data on responses for all needs"
+    task :all => :environment do |t, args|
+      AnalyticsImporter.new(
+        logger: Logger.new(STDOUT),
+      ).run!
+    end
+  end
+
 end

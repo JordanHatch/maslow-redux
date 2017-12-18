@@ -8,6 +8,8 @@ class NeedResponse < ApplicationRecord
   belongs_to :need
   has_many :performance_points, class_name: 'NeedPerformancePoint', dependent: :destroy
 
+  scope :with_url, -> { where('url IS NOT NULL') }
+
   def save_as(user)
     if new_record?
       save && create_activity_item(user)
