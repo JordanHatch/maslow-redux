@@ -57,6 +57,16 @@ en:
               is_unknown: is not a valid outcome
             decision_type:
               is_unknown: is not a valid decision type
+  performance:
+    graphs:
+      time_periods:
+        week: 'Last 7 days'
+        month: 'Last month'
+        quarter: 'Last quarter'
+      time_groups:
+        day: 'Group by day'
+        week: 'Group by week'
+        month: 'Group by month'
   formtastic:
     actions:
       need_response:
