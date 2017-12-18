@@ -35,6 +35,9 @@ en:
         not_met:
           long: This need is not currently being met
           short: "No"
+  flash_messages:
+    need_responses:
+      destroy: 'The response has been deleted.'
   time:
     formats:
       short_date: "%-e %B %Y"

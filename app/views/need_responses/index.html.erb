@@ -12,9 +12,9 @@
       </h1>
     </header>
 
-    <% unless need.closed? %>
+    <% if !need.closed? && current_user.can?(:create, NeedResponse) %>
     <p>
-      <%= link_to new_need_response_path(need), class: 'btn btn-primary' do %>
+      <%= link_to new_need_response_path(need), class: 'action new-action' do %>
         <span class="icon" aria-hidden="true"></span>
         Add new response
       <% end %>
@@ -34,12 +34,22 @@
             <% end %>
           </p>
           <% unless need.closed? %>
-            <p>
-              <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
-                <span class="icon" aria-hidden="true"></span>
-                Edit
+            <ul class="actions">
+              <% if current_user.can?(:update, NeedResponse) %>
+                <li>
+                  <%= link_to edit_need_response_path(need, need_response), class: 'action edit-action' do %>
+                    <span class="icon" aria-hidden="true"></span> Edit
+                  <% end %>
+                </li>
               <% end %>
-            </p>
+              <% if current_user.can?(:destroy, NeedResponse) %>
+                <li>
+                  <%= link_to need_response_path(need, need_response), method: 'delete', data: { confirm: 'Are you sure? This cannot be undone.' }, class: 'action delete-action' do %>
+                    <span class="icon" aria-hidden="true"></span> Delete
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
           <% end %>
         </li>
       <% end %>

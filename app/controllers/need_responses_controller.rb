@@ -36,6 +36,15 @@ class NeedResponsesController < ApplicationController
     end
   end
 
+  def destroy
+    authorize! :destroy, NeedResponse
+
+    need_response.destroy
+
+    flash.notice = I18n.t('flash_messages.need_responses.destroy')
+    redirect_to need_responses_path(need)
+  end
+
 private
   def need
     authorize! :read, Need

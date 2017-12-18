@@ -2,7 +2,7 @@
 
   header {
     @include header-panel;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 
     vertical-align: baseline;
 
@@ -18,7 +18,7 @@
   }
 
   .response-list {
-    padding: 25px;
+    padding: 20px 25px;
 
     h1 {
       margin: 0;
@@ -27,6 +27,7 @@
     li {
       @include box;
       list-style: none;
+      margin: 0 0 8px;
 
       h1 {
         margin-bottom: 7px;
@@ -35,31 +36,56 @@
 
     p {
       padding: 3px 15px;
+      margin-bottom: 5px;
     }
   }
 
-  p {
+  > p {
     padding-left: 25px;
+    margin-bottom: 0;
+  }
+
+  ul.actions {
+    padding-left: 15px;
+
+    li {
+      display: inline-block;
+    }
   }
 
   a.action {
-    font-size: 13px;
-    padding: 0;
+    @extend .btn;
 
     span {
       @extend .glyphicon;
       padding-right: 3px;
     }
 
+    &.edit-action, &.delete-action {
+      @extend .btn-xs;
+    }
+
     &.edit-action {
+      @extend .btn-primary;
+
       span {
         @extend .glyphicon-pencil;
       }
     }
 
     &.new-action {
+      @extend .btn-primary;
+
       span {
         @extend .glyphicon-plus;
+      }
+    }
+
+    &.delete-action {
+      @extend .btn-danger;
+
+      span {
+        @extend .glyphicon-remove;
       }
     }
   }
