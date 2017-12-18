@@ -15,6 +15,8 @@
 //= require chosen-jquery
 //= require autosize
 //= require bootstrap
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 
 $(function(){

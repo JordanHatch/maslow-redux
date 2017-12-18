@@ -1,0 +1,17 @@
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
+
+<article class="need">
+  <section class="page-section need-performance">
+    <header>
+      <h1>Performance</h1>
+    </header>
+
+    <% if presenter.has_data_to_display? %>
+      <%= render partial: 'performance', locals: { presenter: presenter } %>
+    <% else %>
+      <%= render partial: 'no_performance_message', locals: { need: need, presenter: presenter } %>
+    <% end %>
+  </section>
+</article>

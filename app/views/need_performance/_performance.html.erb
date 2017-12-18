@@ -1,0 +1,20 @@
+<h3 class="graph-title">Total pageviews for content responding to this need</h3>
+
+<%= form_tag need_performance_path(need), method: :get, class: 'graph-settings' do %>
+  <ul>
+    <li>
+      <%= select_tag :period,
+                     options_for_select(presenter.available_time_periods, presenter.current_time_period) %>
+    </li>
+    <li>
+      <%= select_tag :group,
+                     options_for_select(presenter.available_time_groups, presenter.current_time_group) %>
+    </li>
+  </ul>
+  <%= button_tag 'Update graph', type: :submit, name: nil %>
+<% end %>
+
+<div class="graph">
+  <%= column_chart presenter.stacked_performance,
+                   stacked: true  %>
+</div>

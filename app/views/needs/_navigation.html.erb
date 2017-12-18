@@ -18,6 +18,7 @@
   <%= nav_link_to 'Activity', activity_need_path(need), icon: 'inbox' %>
   <%= nav_link_to 'Justification and evidence', evidence_need_path(need), icon: 'th-list' %>
   <%= nav_link_to 'Responses', need_responses_path(need), icon: 'globe', match_prefix: true %>
+  <%= nav_link_to 'Performance', need_performance_path(need), icon: 'stats' %>
 </ul>
 
 <% if current_user.can?(:update, Need) %>

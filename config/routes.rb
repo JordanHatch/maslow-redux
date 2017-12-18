@@ -24,6 +24,7 @@ Maslow::Application.routes.draw do
     resources :decisions, only: [:new, :create]
     resources :notes, only: :create
     resources :responses, controller: 'need_responses', except: :show
+    resource :performance, controller: 'need_performance', only: :show
 
     member do
       patch :closed
