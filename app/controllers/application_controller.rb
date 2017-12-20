@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
+  acts_as_token_authentication_handler_for User, fallback: :exception, if: lambda { |controller| controller.request.format.json? }
+
   before_action :authenticate_user!
   check_authorization unless: :devise_controller?
 

@@ -16,6 +16,9 @@ class NeedsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json {
+        render json: { status: :ok, needs: needs }, status: :ok
+      }
       format.csv do
         send_data NeedsCsvPresenter.new(needs_url, needs).to_csv,
                   filename: "#{params["organisation_id"]}.csv",

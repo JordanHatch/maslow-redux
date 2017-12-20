@@ -149,17 +149,17 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '#active_for_authentication?' do
+  describe '#valid_password?' do
     it 'returns false for bot users' do
       user = User.new(valid_attributes.merge(roles: ['bot', 'admin']))
 
-      expect(user).to_not be_active_for_authentication
+      expect(user).to_not be_valid_password('not a secret')
     end
 
     it 'returns true for other users' do
       user = User.new(valid_attributes.merge(roles: ['commenter', 'admin']))
 
-      expect(user).to be_active_for_authentication
+      expect(user).to be_valid_password('not a secret')
     end
   end
 

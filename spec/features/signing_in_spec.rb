@@ -36,7 +36,7 @@ RSpec.describe 'signing in', type: :feature do
 
       click_on 'Sign in'
 
-      expect(page).to have_content('Your account is not activated yet')
+      expect(page).to have_content('Invalid')
     end
   end
 

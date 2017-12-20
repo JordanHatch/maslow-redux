@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+  acts_as_token_authenticatable
 
   delegate :can?, :cannot?, :to => :ability
 
@@ -35,6 +36,18 @@ class User < ActiveRecord::Base
     roles.include?('bot')
   end
 
+  def valid_password?(password)
+    # Bot users are only be permitted to åuthenticate via token authentication,
+    # so stubbing this method here means that they will never be permitted to
+    # sign in through the standard Devise web form.
+    #
+    bot? ? false : super
+  end
+
+  def password_required?
+    bot? ? false : super
+  end
+
   def toggle_bookmark(need_id)
     return if need_id <= 0
 
@@ -46,11 +59,6 @@ class User < ActiveRecord::Base
     else
       bookmarks << need_id_as_string
     end
-  end
-
-  def active_for_authentication?
-    return false if bot?
-    super
   end
 
   def send_reset_password_instructions
