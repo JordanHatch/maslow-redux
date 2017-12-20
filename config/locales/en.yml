@@ -65,6 +65,10 @@ en:
         update: 'The proposition statement has been updated.'
         destroy: 'The proposition statement has been deleted.'
   formtastic:
+    hints:
+      proposition_statement:
+        name: "eg. 'Official information'"
+        description: "eg. 'It's official information provided by the department'"
     actions:
       need_response:
         create: 'Add response'
