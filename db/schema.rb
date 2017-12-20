@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220104215) do
+ActiveRecord::Schema.define(version: 20171220185438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,20 @@ ActiveRecord::Schema.define(version: 20171220104215) do
     t.integer "yearly_site_views"
     t.integer "yearly_need_views"
     t.integer "yearly_searches"
+  end
+
+  create_table "needs_proposition_statements", id: false, force: :cascade do |t|
+    t.integer "need_id",                  null: false
+    t.integer "proposition_statement_id", null: false
+    t.index ["need_id", "proposition_statement_id"], name: "index_need_statements", using: :btree
+    t.index ["proposition_statement_id", "need_id"], name: "index_statement_needs", using: :btree
+  end
+
+  create_table "proposition_statements", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tag_types", force: :cascade do |t|

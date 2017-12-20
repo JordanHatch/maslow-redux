@@ -10,6 +10,7 @@ class Need < ActiveRecord::Base
   has_many :decisions, dependent: :destroy
   has_many :activity_items, dependent: :destroy
   has_many :need_responses, dependent: :destroy
+  has_and_belongs_to_many :proposition_statements
 
   belongs_to :canonical_need, class_name: 'Need'
 
