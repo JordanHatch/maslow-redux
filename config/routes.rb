@@ -48,6 +48,7 @@ Maslow::Application.routes.draw do
       resources :tags
     end
     resources :users
+    resources :bot_users, path: 'api-clients'
 
     root to: 'root#index'
   end

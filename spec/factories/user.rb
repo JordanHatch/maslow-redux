@@ -11,6 +11,9 @@ FactoryGirl.define do
     end
     trait :bot do
       roles ['bot']
+
+      password nil
+      password_confirmation nil
     end
 
     factory :admin_user, traits: [:admin]

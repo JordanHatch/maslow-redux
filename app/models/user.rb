@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   before_validation :remove_blank_roles
 
   scope :excluding_bots, -> { where.not(":role = ANY(roles)", role: 'bot') }
+  scope :only_bots, -> { where(":role = ANY(roles)", role: 'bot') }
 
   def ability
     @ability ||= Ability.new(self)

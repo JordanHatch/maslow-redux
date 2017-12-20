@@ -1,0 +1,22 @@
+<section class="users">
+  <header>
+    <h1>API clients</h1>
+
+    <div class="actions">
+      <%= link_to 'Add new API client', new_settings_bot_user_path, class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <table class="editable-resource-list">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'user', collection: users %>
+    </tbody>
+  </table>
+</section>

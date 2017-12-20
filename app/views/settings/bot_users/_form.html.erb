@@ -1,0 +1,16 @@
+<%= semantic_form_for user, url: (user.new_record? ? settings_bot_users_path : settings_bot_user_path(user)) do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+  <% end %>
+
+  <% unless f.object.new_record? %>
+    API key: <%= f.object.authentication_token %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, label: 'Save', button_html: { class: 'btn btn-primary' } %>
+  <% end %>
+
+<% end %>
