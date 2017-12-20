@@ -87,20 +87,17 @@ RSpec.describe ActivityItem, :type => :model do
   end
 
   describe '#data' do
-    it 'returns a hash which supports indifferent access' do
+    it 'returns an OpenStruct' do
       activity_item = ActivityItem.new(valid_attributes)
 
-      expect(activity_item.data).to have_key('body')
-      expect(activity_item.data).to have_key(:body)
-
-      expect(activity_item.data['body']).to eq('This is a note')
-      expect(activity_item.data[:body]).to eq('This is a note')
+      expect(activity_item.data).to respond_to(:body)
+      expect(activity_item.data.body).to eq('This is a note')
     end
 
-    it 'returns an empty hash when empty' do
+    it 'returns an empty object when empty' do
       activity_item = ActivityItem.new
 
-      expect(activity_item.data).to eq({})
+      expect(activity_item.data).to eq(OpenStruct.new)
     end
   end
 

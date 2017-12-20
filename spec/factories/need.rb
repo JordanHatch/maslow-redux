@@ -9,7 +9,7 @@ FactoryGirl.define do
       'the second criteria is met',
     ]
 
-    ignore do
+    transient do
       tagged_with false
     end
 

@@ -27,8 +27,10 @@ RSpec.describe Decision, :type => :model do
 
     expect(activity_item).to be_present
 
-    expect(activity_item.decision).to eq(decision)
-    expect(activity_item.body).to eq(decision.note)
+    expect(activity_item.data.id).to eq(decision.id)
+    expect(activity_item.data.decision_type).to eq(decision.decision_type)
+    expect(activity_item.data.outcome).to eq(decision.outcome)
+    expect(activity_item.data.body).to eq(decision.note)
   end
 
   it 'is invalid without a user' do

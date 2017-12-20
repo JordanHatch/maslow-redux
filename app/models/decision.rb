@@ -56,7 +56,9 @@ private
       item_type: 'decision',
       user: user,
       data: {
-        decision_id: self.id,
+        id: self.id,
+        decision_type: decision_type,
+        outcome: outcome,
         body: note,
       },
     )

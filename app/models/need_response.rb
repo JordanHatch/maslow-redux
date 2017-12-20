@@ -24,7 +24,10 @@ private
       item_type: 'response_new',
       user: user,
       data: {
-        need_response_id: self.id
+        id: id,
+        name: name,
+        response_type_text: response_type_text,
+        url: url,
       },
     )
   end

@@ -21,37 +21,37 @@ class ActivityItem < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
 
   def data
-    (attributes['data'] || {}).with_indifferent_access
+    OpenStruct.new(attributes['data'] || {})
   end
 
   def body
-    data[:body]
+    data.body
   end
 
   def decision
-    need.decisions.find(data[:decision_id])
+    need.decisions.find(data.decision_id)
   end
 
   def need_response
-    need.need_responses.find(data[:need_response_id])
+    need.need_responses.find(data.need_response_id)
   end
 
   def need_changes
-    data[:changes]
+    data.changes
   end
 
 private
 
   def note_body_is_present
-    errors.add(:body, 'is missing') unless data[:body].present?
+    errors.add(:body, 'is missing') unless data.body.present?
   end
 
   def decision_id_is_present
-    errors.add(:decision_id, 'is missing') unless data[:decision_id].present?
+    errors.add(:decision_id, 'is missing') unless data.id.present?
   end
 
   def need_response_id_is_present
-    errors.add(:need_response_id, 'is missing') unless data[:need_response_id].present?
+    errors.add(:need_response_id, 'is missing') unless data.id.present?
   end
 
 end

@@ -68,7 +68,7 @@ RSpec.describe NeedResponse, type: :model do
 
       expect(activity_item.item_type).to eq('response_new')
       expect(activity_item.user).to eq(user)
-      expect(activity_item.data[:need_response_id]).to eq(response.id)
+      expect(activity_item.data.id).to eq(response.id)
     end
   end
 
