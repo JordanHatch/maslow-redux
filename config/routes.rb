@@ -23,7 +23,7 @@ Maslow::Application.routes.draw do
   resources :needs, except: [:destroy] do
     resources :decisions, only: [:new, :create]
     resources :notes, only: :create
-    resources :responses, controller: 'need_responses', except: :show
+    resources :responses, controller: 'need_responses'
     resource :performance, controller: 'need_performance', only: :show
 
     member do

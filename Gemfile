@@ -53,6 +53,7 @@ gem 'chart-js-rails'
 
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'jbuilder'
 
 gem 'foreman'
 gem 'rails_12factor', group: :production
