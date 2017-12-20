@@ -2,57 +2,6 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  decisions:
-    types:
-      scope:
-        long: "Is the need in scope?"
-        short: "In scope?"
-      completion:
-        long: "Is this need complete?"
-        short: "Complete?"
-      met:
-        long: "Is the need being met?"
-        short: "Met?"
-    outcomes:
-      scope:
-        in_scope:
-          long: This need is in scope
-          short: "Yes"
-        out_of_scope:
-          long: This need is out of scope
-          short: "No"
-      completion:
-        complete:
-          long: This need has all the necessary information
-          short: "Complete"
-        incomplete:
-          long: This need is missing information
-          short: "Incomplete"
-      met:
-        met:
-          long: This need is being sufficiently met by a service
-          short: "Yes"
-        not_met:
-          long: This need is not currently being met
-          short: "No"
-  flash_messages:
-    need_responses:
-      destroy: 'The response has been deleted.'
-    settings:
-      proposition_statements:
-        create: 'The proposition statement has been created.'
-        update: 'The proposition statement has been updated.'
-        destroy: 'The proposition statement has been deleted.'
-  time:
-    formats:
-      short_date: "%-e %B %Y"
-      short_time: "%-I:%M%P"
-  enumerize:
-    need_response:
-      response_type:
-        content: 'Content item'
-        service: 'Service'
-        other: 'Other'
   activerecord:
     attributes:
       need_response:
@@ -68,6 +17,62 @@ en:
               is_unknown: is not a valid outcome
             decision_type:
               is_unknown: is not a valid decision type
+  decisions:
+    outcomes:
+      completion:
+        complete:
+          long: This need has all the necessary information
+          short: "Complete"
+        incomplete:
+          long: This need is missing information
+          short: "Incomplete"
+      met:
+        met:
+          long: This need is being sufficiently met by a service
+          short: "Yes"
+        not_met:
+          long: This need is not currently being met
+          short: "No"
+      scope:
+        in_scope:
+          long: This need is in scope
+          short: "Yes"
+        out_of_scope:
+          long: This need is out of scope
+          short: "No"
+    types:
+      scope:
+        long: "Is the need in scope?"
+        short: "In scope?"
+      completion:
+        long: "Is this need complete?"
+        short: "Complete?"
+      met:
+        long: "Is the need being met?"
+        short: "Met?"
+  enumerize:
+    need_response:
+      response_type:
+        content: 'Content item'
+        service: 'Service'
+        other: 'Other'
+  flash_messages:
+    need_responses:
+      destroy: 'The response has been deleted.'
+    settings:
+      proposition_statements:
+        create: 'The proposition statement has been created.'
+        update: 'The proposition statement has been updated.'
+        destroy: 'The proposition statement has been deleted.'
+  formtastic:
+    actions:
+      need_response:
+        create: 'Add response'
+        update: 'Save'
+        cancel: 'Cancel and go back'
+      bookmark:
+        submit: 'Toggle bookmark'
+        update: 'Toggle bookmark'
   performance:
     graphs:
       time_periods:
@@ -78,12 +83,7 @@ en:
         day: 'Group by day'
         week: 'Group by week'
         month: 'Group by month'
-  formtastic:
-    actions:
-      need_response:
-        create: 'Add response'
-        update: 'Save'
-        cancel: 'Cancel and go back'
-      bookmark:
-        submit: 'Toggle bookmark'
-        update: 'Toggle bookmark'
+  time:
+    formats:
+      short_date: "%-e %B %Y"
+      short_time: "%-I:%M%P"
