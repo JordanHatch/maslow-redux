@@ -25,6 +25,7 @@ class NeedPerformancePoint < ApplicationRecord
 
   scope :for_responses, ->(responses){ where(need_response_id: responses) }
   scope :for_metric, ->(metric){ where(metric_type: metric) }
+  scope :for_date, ->(date){ where(date: date) }
 
   default_scope -> { order('date ASC') }
 

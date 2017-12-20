@@ -26,6 +26,13 @@ Maslow::Application.routes.draw do
     resources :responses, controller: 'need_responses'
     resource :performance, controller: 'need_performance', only: :show
 
+    resources :responses, controller: 'need_responses' do
+      member do
+        get '/performance/:metric_type/:date', to: 'need_performance_points#show', as: :performance_point
+        put '/performance/:metric_type/:date', to: 'need_performance_points#update'
+      end
+    end
+
     member do
       patch :closed
       delete :closed, to: 'needs#reopen', as: :reopen
