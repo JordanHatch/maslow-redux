@@ -16,8 +16,9 @@
 <% content_for :navigation do %>
   <h3>Project</h3>
   <ul class="navigation-list">
-    <%= nav_link_to 'Team members', settings_users_path, icon: 'user', match_prefix: true %>
     <%= nav_link_to 'API clients', settings_bot_users_path, icon: 'console', match_prefix: true %>
+    <%= nav_link_to 'Proposition statements', settings_proposition_statements_path, icon: 'list', match_prefix: true %>
+    <%= nav_link_to 'Team members', settings_users_path, icon: 'user', match_prefix: true %>
   </ul>
 
   <h3>Tags</h3>

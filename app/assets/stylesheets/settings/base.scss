@@ -38,4 +38,25 @@
     }
   }
 
+  .delete-resource {
+    margin-top: 60px;
+    background: #fff;
+    border: 1px solid #f6f6f6;
+    border-left: 6px solid $alert-color;
+    overflow: auto;
+    padding: 10px 15px;
+
+    .warning {
+      float: left;
+    }
+    h2, p {
+      margin: 5px 0;
+    }
+
+    .button_to {
+      float: right;
+      padding: 10px 15px;
+    }
+  }
+
 }

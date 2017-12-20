@@ -56,6 +56,7 @@ Maslow::Application.routes.draw do
     end
     resources :users
     resources :bot_users, path: 'api-clients'
+    resources :proposition_statements, path: 'proposition-statements'
 
     root to: 'root#index'
   end

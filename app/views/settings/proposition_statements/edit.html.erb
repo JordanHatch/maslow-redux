@@ -1,0 +1,18 @@
+<header>
+  <h1>Edit proposition statement</h1>
+</header>
+
+<%= render partial: 'form' %>
+
+<section class="delete-resource">
+  <div class="warning">
+    <h2>Delete this proposition statement</h2>
+    <p><strong>Warning!</strong> Deleting this statement will remove it from all needs. This action cannot be undone.</p>
+  </div>
+
+  <%= button_to 'Delete this proposition statement',
+                settings_proposition_statement_path(proposition_statement),
+                class: 'btn btn-danger',
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+</section>

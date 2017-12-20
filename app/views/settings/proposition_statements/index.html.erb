@@ -1,0 +1,24 @@
+<section class="proposition-statements">
+  <header>
+    <h1>Proposition statements</h1>
+
+    <div class="actions">
+      <%= link_to 'Add new proposition statement', new_settings_proposition_statement_path, class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <p>Proposition statements are the criteria which needs can be assessed against to decide whether they are in or out of scope of your product.</p>
+
+  <table class="editable-resource-list">
+    <thead>
+      <tr>
+        <th scope="col">Label</th>
+        <th scope="col">Short description</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'statement', collection: proposition_statements %>
+    </tbody>
+  </table>
+</section>

@@ -38,6 +38,11 @@ en:
   flash_messages:
     need_responses:
       destroy: 'The response has been deleted.'
+    settings:
+      proposition_statements:
+        create: 'The proposition statement has been created.'
+        update: 'The proposition statement has been updated.'
+        destroy: 'The proposition statement has been deleted.'
   time:
     formats:
       short_date: "%-e %B %Y"
@@ -52,6 +57,9 @@ en:
     attributes:
       need_response:
         url: 'URL'
+      proposition_statement:
+        description: 'Short description'
+        name: 'Label'
     errors:
       models:
         decision:
