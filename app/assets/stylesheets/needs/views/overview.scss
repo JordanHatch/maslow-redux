@@ -18,9 +18,14 @@
 
 section.box {
   @include box;
+
+  .empty {
+    padding: 15px;
+    margin: 0;
+  }
 }
 
-.box-met-when {
+.box-met-when, .box-proposition {
   ul {
     padding: 15px 25px 5px 35px;
     margin-bottom: 0;
@@ -30,6 +35,10 @@ section.box {
     line-height: 1.23em;
     margin-bottom: 11px;
   }
+}
+.box-proposition h2 {
+  margin: 0 0 3px;
+  font-size: 17px;
 }
 
 .box-tags {

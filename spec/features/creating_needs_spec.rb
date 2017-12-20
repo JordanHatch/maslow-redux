@@ -7,6 +7,8 @@ RSpec.describe 'creating needs', type: :feature do
   let!(:tag_type) { create(:tag_type) }
   let!(:tags) { create_list(:tag, 5, tag_type: tag_type) }
 
+  let!(:proposition_statements) { create_list(:proposition_statement, 3) }
+
   it 'can create a need' do
     visit '/needs'
     click_on 'Add user need'
@@ -14,6 +16,11 @@ RSpec.describe 'creating needs', type: :feature do
     fill_in 'As a',      with: 'Capybara'
     fill_in 'I need to', with: 'create a user need'
     fill_in 'So that',   with: 'I can check that this works'
+
+    within '.need-proposition-selection' do
+      check proposition_statements.first.name
+      check proposition_statements.last.name
+    end
 
     fill_in 'criteria-0', with: 'the assertions are met'
     click_on 'Enter another criteria'
@@ -33,6 +40,11 @@ RSpec.describe 'creating needs', type: :feature do
       expect(page).to have_content('the assertions are met')
       expect(page).to have_content('the test passes')
       expect(page).to have_content('the build succeeds')
+    end
+
+    within '.box-proposition' do
+      expect(page).to have_content(proposition_statements.first.name)
+      expect(page).to have_content(proposition_statements.last.name)
     end
   end
 

@@ -181,7 +181,7 @@ private
   def need_params
     params.require(:need).permit(:role, :goal, :benefit, :yearly_user_contacts,
       :yearly_site_views, :yearly_need_views, :yearly_searches, :other_evidence,
-      :legislation, { met_when: [] }
+      :legislation, { met_when: [], proposition_statement_ids: [] }
     ).tap do |whitelisted|
       permit_fields_for_tags!(whitelisted)
     end
