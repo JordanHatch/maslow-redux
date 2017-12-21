@@ -30,6 +30,7 @@ class Need < ActiveRecord::Base
       id: need_ids
     )
   }
+  scope :excluding_closed_needs, ->{ where(canonical_need_id: nil) }
 
   validates :role, :goal, :benefit, presence: true
 

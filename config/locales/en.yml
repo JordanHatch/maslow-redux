@@ -56,6 +56,9 @@ en:
         content: 'Content item'
         service: 'Service'
         other: 'Other'
+  filters:
+    show_closed:
+      label: Show closed needs?
   flash_messages:
     need_responses:
       destroy: 'The response has been deleted.'

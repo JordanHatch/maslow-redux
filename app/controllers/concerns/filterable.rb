@@ -14,7 +14,8 @@ module Concerns
     end
 
     def available_filters
-      available_tag_filters
+      available_tag_filters +
+        available_metadata_filters
     end
 
   private
@@ -26,8 +27,20 @@ module Concerns
         Filter.new(tag_type.identifier, tag_type.name, :select, tags)
       }
     end
+
+    def available_metadata_filters
+      [
+        Filter.new(:show_closed, I18n.t('filters.show_closed.label'), :checkbox)
+      ]
+    end
+
     def filtered_needs
       scope = base_scope
+
+      if params[:show_closed] == '1'
+        scope = scope.unscope(:where)
+      end
+
       if tag_filters.any?
         scope = scope.with_tag_id(tag_filters.map(&:id))
       end
@@ -52,7 +65,7 @@ module Concerns
     end
 
     def base_scope
-      Need
+      Need.excluding_closed_needs
     end
   end
 end

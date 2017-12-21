@@ -1,6 +1,11 @@
 <li class="need-row">
   <%= link_to need_path(need) do %>
-    <h2 class="need-id">#<%= need.need_id %></h2>
+    <h2 class="need-id">
+      #<%= need.need_id %>
+      <% if need.closed? %>
+        <span class="closed-label">Closed</span>
+      <% end %>
+    </h2>
     <h3><span>I need to</span> <%= format_need_goal(need.goal) %></h3>
 
     <%= semantic_form_for :bookmark, url: toggle_bookmarks_path,
