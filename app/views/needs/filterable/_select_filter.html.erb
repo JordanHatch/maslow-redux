@@ -1,0 +1,7 @@
+<%= label_tag filter.key, filter.label %>
+<%= select_tag filter.key,
+               options_from_collection_for_select(filter.values, :key, :label, params[filter.key]),
+               include_blank: true,
+               data: {
+                 module: 'chosen',
+               }  %>

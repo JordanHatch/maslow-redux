@@ -67,13 +67,18 @@ RSpec.describe Concerns::Filterable, :type => :controller do
   end
 
   describe '#available_filters' do
-    it 'returns a list of tags grouped by type' do
-      tag_type = create(:tag_type)
-      tags = create_list(:tag, 5, tag_type: tag_type)
+    it 'returns filters for tag types' do
+      tag_type = create(:tag_type, identifier: 'test', name: 'Test')
+      tags = create_list(:tag, 2, tag_type: tag_type)
 
       get :index
 
-      expect(controller.available_filters).to eq({ tag_type => tags })
+      expected_filter = Concerns::Filterable::Filter.new('test', 'Test', :select,[
+        Concerns::Filterable::Value.new(tags.first.id, tags.first.name),
+        Concerns::Filterable::Value.new(tags.last.id, tags.last.name),
+      ])
+
+      expect(controller.available_filters).to include(expected_filter)
     end
   end
 

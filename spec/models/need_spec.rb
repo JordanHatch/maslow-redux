@@ -178,16 +178,24 @@ RSpec.describe Need, type: :model do
   end
 
   describe '.with_tag_id' do
-    let(:tag) { create(:tag) }
+    let!(:tag) { create(:tag) }
+    let!(:tags) { create_list(:tag, 5) }
+    let!(:other_needs) { create_list(:need, 5) }
 
     it 'returns needs tagged with the given tag ID' do
-      other_needs = create_list(:need, 5)
-
       expected_need = create(:need)
       tagging = create(:tagging, tag: tag, need: expected_need)
 
       results = Need.with_tag_id(tag.id)
       expect(results).to contain_exactly(*expected_need)
+    end
+
+    it 'returns tags which contain all IDs given' do
+      expected_need = create(:need, tagged_with: tags)
+      another_need = create(:need, tagged_with: tags.first)
+
+      results = Need.with_tag_id(tags.map(&:id))
+      expect(results).to contain_exactly(expected_need)
     end
   end
 

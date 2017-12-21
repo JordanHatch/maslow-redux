@@ -2,15 +2,9 @@
 
 <%= form_tag needs_path, method: :get do %>
   <ul class="filter-list">
-  <% available_filters.each do |tag_type, tags| %>
-    <li class="filter-type">
-      <%= label_tag tag_type.name %>
-      <%= select_tag tag_type.identifier,
-                     options_from_collection_for_select(tags, :id, :name, params[tag_type.identifier]),
-                     include_blank: true,
-                     data: {
-                       module: 'chosen',
-                     }  %>
+  <% available_filters.each do |filter| %>
+    <li class="filter-type filter-type-<%= filter.type %>">
+      <%= render partial: "needs/filterable/#{filter.type}_filter", locals: { filter: filter } %>
     </li>
   <% end %>
   </ul>

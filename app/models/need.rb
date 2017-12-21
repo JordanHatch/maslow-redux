@@ -18,7 +18,17 @@ class Need < ActiveRecord::Base
 
   default_scope ->{ order('id desc') }
   scope :with_tag_id, -> (tag_id) {
-    joins(:taggings).where("taggings.tag_id" => tag_id)
+    tag_ids = [tag_id].flatten
+
+    intersection = tag_ids.map {|_|
+      'SELECT DISTINCT(need_id) FROM taggings WHERE tag_id = ?'
+    }.join(' INTERSECT ')
+
+    need_ids = Tagging.find_by_sql([intersection] + tag_ids).map(&:need_id)
+
+    where(
+      id: need_ids
+    )
   }
 
   validates :role, :goal, :benefit, presence: true

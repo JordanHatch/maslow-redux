@@ -2,30 +2,36 @@ module Concerns
   module Filterable
     extend ActiveSupport::Concern
 
+    class Filter < Struct.new(:key, :label, :type, :values); end
+    class Value < Struct.new(:key, :label); end
+
     included do
       helper_method :active_filters, :available_filters
     end
-    
+
     def active_filters
       tag_filters.group_by(&:tag_type_identifier)
     end
 
     def available_filters
-      tuples = filterable_tag_types.map {|tag_type|
-        [tag_type, tag_type.tags]
-      }
-      Hash[tuples]
+      available_tag_filters
     end
 
   private
+    def available_tag_filters
+      filterable_tag_types.map {|tag_type|
+        tags = tag_type.tags.map {|tag|
+          Value.new(tag.id, tag.name)
+        }
+        Filter.new(tag_type.identifier, tag_type.name, :select, tags)
+      }
+    end
     def filtered_needs
-      # Iterate over each tag we wish to filter by, narrowing the scope for
-      # each tag.
-      #
       scope = base_scope
-      tag_filters.each do |tag|
-        scope = base_scope.with_tag_id(tag)
+      if tag_filters.any?
+        scope = scope.with_tag_id(tag_filters.map(&:id))
       end
+
       scope
     end
 
