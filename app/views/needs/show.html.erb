@@ -89,22 +89,24 @@
           </p>
         </section>
 
-        <section class="box box-actions">
-          <h1>Actions</h1>
-          <p>
-            <% if current_user.can?(:update, Need) %>
-              <%= link_to edit_need_path(need), class: 'btn-primary' do %>
-                Edit need
+        <% unless need.closed? %>
+          <section class="box box-actions">
+            <h1>Actions</h1>
+            <p>
+              <% if current_user.can?(:update, Need) %>
+                <%= link_to edit_need_path(need), class: 'btn-primary' do %>
+                  Edit need
+                <% end %>
               <% end %>
-            <% end %>
 
-            <% if current_user.can?(:close, Need) %>
-              <%= link_to close_as_duplicate_need_path(need), class: 'btn-danger' do %>
-                <span class="icon" aria-hidden="true"></span> Close as duplicate
+              <% if current_user.can?(:close, Need) %>
+                <%= link_to close_as_duplicate_need_path(need), class: 'btn-danger' do %>
+                  <span class="icon" aria-hidden="true"></span> Close as duplicate
+                <% end %>
               <% end %>
-            <% end %>
-          </p>
-        </section>
+            </p>
+          </section>
+        <% end %>
       </div>
     </div>
   </section>

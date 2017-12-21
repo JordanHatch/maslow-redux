@@ -5,14 +5,15 @@
       It is a duplicate of
       <%= link_to "#{need.canonical_need_id}: #{canonical_need_goal(need)}", need_path(need.canonical_need) %>.
     </p>
+
+    <% if current_user.can?(:reopen, Need) %>
+      <p>If this need is no longer a duplicate, you can re-open it.</p>
+    <% end %>
   </div>
 
   <% if current_user.can?(:reopen, Need) %>
-    <div class="reopen-action">
-      <p>If this need is no longer a duplicate, you can re-open it.</p>
-      <%= button_to "Reopen this need",
-                    reopen_need_path(need),
-                    method: "delete" %>
-    </div>
+    <%= button_to "Reopen this need",
+                  reopen_need_path(need),
+                  method: "delete" %>
   <% end %>
 </div>

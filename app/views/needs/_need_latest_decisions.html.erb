@@ -14,7 +14,7 @@
           </span>
         <% end %>
 
-        <% if current_user.can?(:create, Decision) %>
+        <% if current_user.can?(:create, Decision) && !need.closed? %>
           <%= link_to new_need_decision_path(need, decision_type: value) do %>
             <span class="icon" aria-hidden="true"></span>
             <span class="label">Update</span>

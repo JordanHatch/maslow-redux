@@ -3,7 +3,7 @@
     <h2 class="need-id">
       #<%= need.need_id %>
       <% if need.closed? %>
-        <span class="closed-label">Closed</span>
+        <span class="need-closed-label">Closed</span>
       <% end %>
     </h2>
     <h3><span>I need to</span> <%= format_need_goal(need.goal) %></h3>

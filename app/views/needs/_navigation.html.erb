@@ -9,6 +9,10 @@
     <h1>
       <span class="subtitle">#<%= need.need_id %></span>
       <%= format_need_goal(need.goal) %>
+
+      <% if need.closed? %>
+        <span class="need-closed-label">Closed</span>
+      <% end %>
     </h1>
   </header>
 <% end %>
@@ -21,7 +25,7 @@
   <%= nav_link_to 'Performance', need_performance_path(need), icon: 'stats' %>
 </ul>
 
-<% if current_user.can?(:update, Need) %>
+<% if current_user.can?(:update, Need) && !need.closed? %>
 <ul class="navigation-list">
   <%= nav_link_to 'Edit need', edit_need_path(need), icon: 'pencil' %>
 </ul>

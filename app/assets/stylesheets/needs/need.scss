@@ -75,12 +75,16 @@
 }
 
 .closed-need {
-  margin: 20px 0;
+  margin: 20px 13px 0px;
+  border: 1px solid #eee;
+  border-left: 7px solid $alert-color;
+  overflow: auto;
 
   .message {
     padding: 14px;
-    background: $alert-color;
-    color: $inverse-text-color;
+    background: #fff;
+    color: #000;
+    float: left;
 
     h2 {
       margin: 0 0 7px;
@@ -92,27 +96,29 @@
     }
 
     a {
-      color: #fff;
       text-decoration: underline;
     }
   }
 
-  .reopen-action {
-    background: $header-border-color;
-    padding: 8px 8px 8px 14px;
-    overflow: auto;
-
-    p {
-      font-size: 17px;
-      padding: 6px 0 0;
-      margin: 0;
-      float: left;
-    }
+  .button_to {
+    float: right;
+    padding: 15px;
 
     input[type='submit'] {
       @extend .btn;
-      @extend .btn-default;
-      float: right;
+      @extend .btn-primary;
     }
   }
+}
+
+.need-closed-label {
+  display: inline-block;
+  padding: 0px 5px;
+  margin-left: 7px;
+  vertical-align: text-bottom;
+
+  background: rgba(0,0,0,0.2);
+  font-size: 0.65em;
+  text-transform: uppercase;
+  color: #fff;
 }
