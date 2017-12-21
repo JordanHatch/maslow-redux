@@ -6,6 +6,8 @@ class ActivityItem < ActiveRecord::Base
     'create',
     'update',
     'response_new',
+    'close',
+    'reopen',
   ]
 
   belongs_to :need

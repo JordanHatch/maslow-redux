@@ -64,9 +64,16 @@ class Need < ActiveRecord::Base
     save && record_revision(action, user, changed_attributes)
   end
 
+  def close_as(author, need_id)
+    self.canonical_need_id = need_id
+
+    save && record_revision('close', author, changed_attributes)
+  end
+
   def reopen_as(author)
     self.canonical_need = nil
-    save_as(author)
+
+    save && record_revision('reopen', author, changed_attributes)
   end
 
   def per_page

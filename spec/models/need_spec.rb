@@ -127,6 +127,54 @@ RSpec.describe Need, type: :model do
     end
   end
 
+  describe '#close_as' do
+    let(:canonical_need) { create(:need) }
+    let(:need) { create(:need) }
+    let(:user) { create(:user) }
+
+    it 'saves the need with the canonical need ID' do
+      need.close_as(user, canonical_need.id)
+      need.reload
+
+      expect(need.canonical_need).to eq(canonical_need)
+    end
+
+    it 'creates an activity item for the closure' do
+      expect{ need.close_as(user, canonical_need.id) }.to change{ need.activity_items.count }.by(1)
+
+      activity_item = need.activity_items.first
+
+      expect(activity_item.user).to eq(user)
+      expect(activity_item.item_type).to eq('close')
+
+      expect(activity_item.data[:snapshot]).to eq(need.attributes)
+    end
+  end
+
+  describe '#reopen_as' do
+    let(:canonical_need) { create(:need) }
+    let(:need) { create(:need, canonical_need: canonical_need) }
+    let(:user) { create(:user) }
+
+    it 'saves the need and removes the canonical need ID' do
+      need.reopen_as(user)
+      need.reload
+
+      expect(need.canonical_need).to eq(nil)
+    end
+
+    it 'creates an activity item for the reopening' do
+      expect{ need.reopen_as(user) }.to change{ need.activity_items.count }.by(1)
+
+      activity_item = need.activity_items.first
+
+      expect(activity_item.user).to eq(user)
+      expect(activity_item.item_type).to eq('reopen')
+
+      expect(activity_item.data[:snapshot]).to eq(need.attributes)
+    end
+  end
+
   describe '#joined_tag_types' do
     it 'returns only one instance of each tag type' do
       tag_types = create_list(:tag_type, 2)

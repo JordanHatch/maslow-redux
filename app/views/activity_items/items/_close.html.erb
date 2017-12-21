@@ -1,0 +1,7 @@
+<h2>This need was closed as a duplicate</h2>
+
+<% if canonical_need = Need.where(id: item.data.snapshot['canonical_need_id']).first %>
+  <p class="note">
+    This need was marked as a duplicate of <%= link_to "#{canonical_need.id}: #{canonical_need.goal}", need_path(canonical_need) %>
+  </p>
+<% end %>

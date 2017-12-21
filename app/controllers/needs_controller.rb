@@ -95,9 +95,7 @@ class NeedsController < ApplicationController
   def closed
     authorize! :close, Need
 
-    need.canonical_need_id = params[:need][:canonical_need_id].to_i
-
-    if need.save_as(current_user)
+    if need.close_as(current_user, params[:need][:canonical_need_id].to_i)
       redirect_to need_url(need.need_id)
     else
       render :close_as_duplicate, :status => 422
