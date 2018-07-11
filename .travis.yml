@@ -5,7 +5,7 @@ services: postgres
 before_script:
   - rm config/database.yml
   - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database maslow_test;' -U postgres
+  - sudo -u postgres psql -c 'create database maslow_test;'
   - bundle exec rake db:migrate
 addons:
   postgresql: "10"
