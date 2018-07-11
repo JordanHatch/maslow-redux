@@ -8,4 +8,11 @@ before_script:
   - psql -c 'create database maslow_test;' -U postgres
   - bundle exec rake db:migrate
 addons:
-  postgresql: "9.3"
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5433
