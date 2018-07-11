@@ -57,6 +57,7 @@ Maslow::Application.routes.draw do
     resources :users
     resources :bot_users, path: 'api-clients'
     resources :proposition_statements, path: 'proposition-statements'
+    resources :evidence_types, path: 'evidence-types', except: :destroy
 
     root to: 'root#index'
   end

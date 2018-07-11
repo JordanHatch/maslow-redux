@@ -1,0 +1,25 @@
+<section class="evidence-types">
+  <header>
+    <h1>Evidence types</h1>
+
+    <div class="actions">
+      <%= link_to 'Add new evidence type', new_settings_evidence_type_path, class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <p>Here you can define the types of information used to evidence a user need, eg. legislation or transaction volumes.</p>
+
+  <table class="editable-resource-list">
+    <thead>
+      <tr>
+        <th scope="col">Evidence type</th>
+        <th scope="col">Kind</th>
+        <th scope="col">Short description</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'evidence_type', collection: evidence_types %>
+    </tbody>
+  </table>
+</section>

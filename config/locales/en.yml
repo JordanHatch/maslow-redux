@@ -67,6 +67,9 @@ en:
         create: 'The proposition statement has been created.'
         update: 'The proposition statement has been updated.'
         destroy: 'The proposition statement has been deleted.'
+      evidence_types:
+        create: 'The evidence type has been created.'
+        update: 'The evidence type has been updated.'
   formtastic:
     hints:
       proposition_statement:

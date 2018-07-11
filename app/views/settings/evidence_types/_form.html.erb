@@ -1,0 +1,13 @@
+<%= semantic_form_for [:settings, evidence_type] do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :kind, collection: EvidenceType.kind.options %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-primary' } %>
+  <% end %>
+
+<% end %>
