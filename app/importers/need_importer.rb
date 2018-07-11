@@ -35,7 +35,7 @@ private
 
   def csv_body
     logger.info "GET #{csv_url}"
-    @csv_body ||= RestClient.get(csv_url)
+    @csv_body ||= RestClient.get(csv_url).body
   end
 
   def csv_options
