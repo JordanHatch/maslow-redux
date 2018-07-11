@@ -100,10 +100,10 @@ GEM
       activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -315,7 +315,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   enumerize (~> 2.1.2)
-  factory_girl_rails
+  factory_bot_rails
   foreman
   formtastic (= 3.1.4)
   formtastic-bootstrap
@@ -346,4 +346,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.6
+   1.16.2

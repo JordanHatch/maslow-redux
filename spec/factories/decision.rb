@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :decision do
     need
     note 'Background to the decision'

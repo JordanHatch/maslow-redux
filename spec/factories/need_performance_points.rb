@@ -1,6 +1,4 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :need_performance_point do
     sequence(:date) {|n| n.days.ago }
     metric_type :pageviews
