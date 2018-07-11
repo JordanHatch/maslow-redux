@@ -17,7 +17,7 @@ RSpec.describe NeedPerformanceQuery, type: :model do
                                                    time_group: :day)
 
         expect(query.results.keys).to contain_exactly(response)
-        expect(query.results[response]).to contain_exactly(*performance_points)
+        expect(query.results[response].map(&:id)).to contain_exactly(*performance_points.map(&:id))
       end
     end
 
