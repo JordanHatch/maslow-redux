@@ -7,12 +7,12 @@
 
   <% if PropositionStatement.any? %>
     <%= f.inputs "Which criteria of the proposition does this need meet?" do %>
-      <%= f.input :proposition_statement_ids, collection: PropositionStatement.all,
-                                              as: :check_boxes,
+      <%= f.input :proposition_statement_ids, as: :check_boxes,
                                               label: false,
-                                              member_label: ->(statement){
-                                                content_tag(:h3, statement.name) +
-                                                  content_tag(:p, statement.description)
+                                              collection: PropositionStatement.all.map {|statement|
+                                                [(content_tag(:h3, statement.name) +
+                                                    content_tag(:p, statement.description)),
+                                                  statement.id]
                                               },
                                               wrapper_html: {
                                                 class: 'need-proposition-selection',
