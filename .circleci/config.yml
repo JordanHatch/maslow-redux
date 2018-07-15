@@ -26,10 +26,10 @@ jobs:
           command: bundle -v
 
       # Restore bundle cache
-      # - restore_cache:
-      #     keys:
-      #       - maslow-bundle-{{ checksum "Gemfile.lock" }}
-      #       - maslow-bundle-
+      - restore_cache:
+          keys:
+            - maslow-bundle-{{ checksum "Gemfile.lock" }}
+            - maslow-bundle-
 
       - run:
           name: Bundle Install
