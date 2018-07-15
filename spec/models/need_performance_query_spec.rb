@@ -20,11 +20,6 @@ RSpec.describe NeedPerformanceQuery, type: :model do
                                                    time_period: :week,
                                                    time_group: :day)
 
-        p performance_points.map(&:date)
-        p query.results[response]
-
-        p NeedPerformancePoint.for_metric(:pageviews).for_responses(response).this_week
-
         expect(query.results.keys).to contain_exactly(response)
         expect(query.results[response].map(&:id)).to contain_exactly(*performance_points.map(&:id))
       end
