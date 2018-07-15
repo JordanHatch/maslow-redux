@@ -23,7 +23,6 @@ gem 'lrucache', '0.1.4'
 gem 'oauth2'
 gem 'pg'
 gem 'puma', '~> 3.11.4'
-gem 'rails_12factor', group: :production
 gem 'rails', '~> 5.2.0'
 gem 'rest-client'
 gem 'simple_token_authentication', '~> 1.0'
