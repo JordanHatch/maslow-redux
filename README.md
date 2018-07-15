@@ -1,4 +1,6 @@
-# Standalone Maslow [![Build Status](https://travis-ci.org/JordanHatch/maslow-standalone.png?branch=master)](https://travis-ci.org/JordanHatch/maslow-standalone)
+# Standalone Maslow
+
+[![Build Status](https://circleci.com/gh/JordanHatch/maslow-standalone.svg?style=svg)](https://circleci.com/gh/JordanHatch/maslow-standalone) [![Maintainability](https://api.codeclimate.com/v1/badges/1530a08cc31450b7d034/maintainability)](https://codeclimate.com/github/JordanHatch/maslow-standalone/maintainability)
 
 This is a fork of [Maslow](https://github.com/alphagov/maslow), an app built by
 the Government Digital Service to track the user needs behind GOV.UK.
@@ -10,7 +12,7 @@ it easier for other teams to set up their own instances.
 
 ## Dependencies
 
-- Ruby (2.3.3)
+- Ruby (2.5.1)
 - A running PostgreSQL instance
 
 ## Getting started
