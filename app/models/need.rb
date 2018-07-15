@@ -7,8 +7,9 @@ class Need < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :tag_types, through: :tags
 
-  has_many :decisions, dependent: :destroy
   has_many :activity_items, dependent: :destroy
+  has_many :decisions, dependent: :destroy
+  has_many :evidence_items, dependent: :destroy
   has_many :need_responses, dependent: :destroy
   has_and_belongs_to_many :proposition_statements
 
