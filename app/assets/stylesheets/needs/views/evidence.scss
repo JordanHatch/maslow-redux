@@ -4,19 +4,39 @@ section.need-main.need-evidence {
     margin-bottom: 25px;
   }
 
-  p {
+  p, form {
     padding-left: 25px;
     padding-right: 25px;
     margin-bottom: 15px;
   }
 }
 
-.legislation, .other-evidence {
-  @include need-info-panel-single-field;
-}
+.evidence {
+  overflow: auto;
+  padding: 25px;
 
-.interactions {
-  @include need-info-panel-single-field;
+  h3, .value {
+    border-top: 1px solid #bbb;
+    padding-top: 19px;
+    padding-bottom: 10px;
+  }
+
+  h3 {
+    float: left;
+    clear: both;
+    width: 33%;
+    font-size: 19px;
+    margin: 0;
+  }
+  .value {
+    float: left;
+    width: 66%;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
 }
 
 .big-number {
@@ -25,14 +45,6 @@ section.need-main.need-evidence {
   line-height: 1;
   color: $primary-color;
   margin-bottom: 20px;
-  width: 50%;
-  padding-right: 10%;
-  padding-left: 25px;
-  float: left;
-
-  &:nth-of-type(2n+1) {
-    clear: left;
-  }
 }
 
 .big-number-detail {
