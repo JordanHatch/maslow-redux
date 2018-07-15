@@ -11,6 +11,7 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: maslow
           RAILS_ENV: test
+          TZ: London
       - image: postgres:10
         environment:
           POSTGRES_USER: maslow

@@ -10,9 +10,9 @@ class NeedPerformancePoint < ApplicationRecord
 
   scope :pageviews, ->{ where(metric_type: :pageviews) }
 
-  scope :this_week, ->{ where('date >= ? AND date <= ?', 1.week.ago, Date.today) }
-  scope :this_month, ->{ where('date >= ? AND date <= ?', 1.month.ago, Date.today) }
-  scope :this_quarter, ->{ where('date >= ? AND date <= ?', 3.months.ago, Date.today) }
+  scope :this_week, ->{ where('date >= ? AND date <= ?', 1.week.ago.utc, DateTime.now.utc) }
+  scope :this_month, ->{ where('date >= ? AND date <= ?', 1.month.ago.utc, DateTime.now.utc) }
+  scope :this_quarter, ->{ where('date >= ? AND date <= ?', 3.months.ago.utc, DateTime.now.utc) }
 
   scope :by_week, -> {
     select("DATE_TRUNC('week', date) as date, SUM(value) as value, need_response_id, metric_type")
