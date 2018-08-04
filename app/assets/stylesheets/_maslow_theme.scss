@@ -2,13 +2,19 @@
    Colours
    ========================================================================== */
 
-$primary-color: #676C67;
+$primary-color: #454a4d;
 $primary-shadow-color: #797979;
 
 $header-color: $primary-color;
 $header-border-color: $primary-shadow-color;
 
+$green: #00823B;
+$red: #B10E1E;
+
 $inverse-text-color: #FFD991;
 $text-color: #000;
 
 $alert-color: #c81d1d;
+
+$button-primary-color: $green;
+$button-danger-color: $red;

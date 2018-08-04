@@ -115,7 +115,7 @@ section.box {
   padding: 5px 25px;
   background: #fbfbfb;
   border-bottom: 2px solid #eee;
-  font-size: 12px;
+  font-size: 14px;
 
   ul {
     padding: 0;
@@ -166,9 +166,9 @@ section.box {
     padding: 2px 5px;
   }
   .decision-green {
-    background: #27aa20;
+    background: $green;
   }
   .decision-red {
-    background: #c81111;
+    background: $red;
   }
 }
