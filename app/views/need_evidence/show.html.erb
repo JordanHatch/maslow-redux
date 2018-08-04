@@ -1,0 +1,47 @@
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
+
+<article class="need">
+  <section class="need-main need-evidence">
+    <header>
+      <h1>Justification and evidence for this need</h1>
+    </header>
+
+    <% if current_user.can?(:update, Need) %>
+      <p><%= link_to 'Add or edit evidence', edit_need_evidence_path(need), class: 'btn btn-primary' %></p>
+    <% end %>
+
+    <div class="evidence qualitative">
+      <% EvidenceType.qualitative.each do |type| %>
+        <h3><%= type.name %></h3>
+        <div class="value">
+          <% if (value = need.evidence_items.of_type(type).value) && value.present? %>
+            <%= simpler_format(value) %>
+          <% else %>
+            <em>Not provided</em>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="evidence quantitative">
+      <ul>
+        <% EvidenceType.quantitative.each do |type| %>
+          <li>
+            <div class="big-number">
+              <% if (value = need.evidence_items.of_type(type).value) && value.present? %>
+                <%= value %>
+              <% else %>
+                &mdash;
+              <% end %>
+
+              <span class="big-number-detail"><%= type.name %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+</article>

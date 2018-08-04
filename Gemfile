@@ -24,6 +24,7 @@ gem 'oauth2'
 gem 'pg'
 gem 'puma', '~> 3.11.4'
 gem 'rails', '~> 5.2.0'
+gem 'rectify'
 gem 'rest-client'
 gem 'simple_token_authentication', '~> 1.0'
 

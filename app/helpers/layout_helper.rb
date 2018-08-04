@@ -20,4 +20,8 @@ module LayoutHelper
     pattern = /^#{Regexp.escape(url)}/
     current_page?(url) || request.fullpath =~ pattern
   end
+
+  def simpler_format(string)
+    simple_format h(string)
+  end
 end

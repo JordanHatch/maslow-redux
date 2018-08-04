@@ -3,3 +3,16 @@
 </header>
 
 <%= render partial: 'form' %>
+
+<section class="delete-resource">
+  <div class="warning">
+    <h2>Delete this evidence type</h2>
+    <p><strong>Warning!</strong> Deleting this evidence type will remove it from all needs. This action cannot be undone.</p>
+  </div>
+
+  <%= button_to 'Delete this evidence type',
+                settings_evidence_type_path(evidence_type),
+                class: 'btn btn-danger',
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+</section>

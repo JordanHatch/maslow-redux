@@ -1,0 +1,26 @@
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
+
+<article class="need">
+  <section class="need-main need-evidence">
+    <header>
+      <h1>Edit the evidence for this need</h1>
+    </header>
+
+    <%= semantic_form_for @form, url: need_evidence_path(need) do |f| %>
+
+      <%= f.fields_for :evidence_items, f.object.evidence_items do |ef| %>
+        <%= ef.input :evidence_type_id, as: :hidden %>
+        <%= ef.input :value, as: (ef.object.quantitative? ? :string : :text),
+                             label: ef.object.evidence_type.name,
+                             hint: ef.object.evidence_type.description,
+                             input_html: { rows: 5 } %>
+      <% end %>
+
+      <%= f.action :submit, button_html: { class: 'btn btn-primary', value: 'Save evidence' } %>
+
+    <% end %>
+  </section>
+</article>
