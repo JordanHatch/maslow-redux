@@ -8,6 +8,11 @@ class Settings::EvidenceTypesController < Settings::BaseController
     create_or_update(:update, :edit)
   end
 
+  def destroy
+    evidence_type.destroy
+    redirect_to settings_evidence_types_path
+  end
+
 private
   helper_method :evidence_types, :evidence_type
 

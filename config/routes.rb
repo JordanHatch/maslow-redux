@@ -23,7 +23,7 @@ Maslow::Application.routes.draw do
   resources :needs, except: [:destroy] do
     resources :decisions, only: [:new, :create]
     resources :notes, only: :create
-    
+
     resource :performance, controller: 'need_performance', only: :show
     resource :evidence, controller: 'need_evidence', only: [:show, :edit, :update]
 
@@ -56,7 +56,7 @@ Maslow::Application.routes.draw do
     resources :users
     resources :bot_users, path: 'api-clients'
     resources :proposition_statements, path: 'proposition-statements'
-    resources :evidence_types, path: 'evidence-types', except: :destroy
+    resources :evidence_types, path: 'evidence-types'
 
     root to: 'root#index'
   end
