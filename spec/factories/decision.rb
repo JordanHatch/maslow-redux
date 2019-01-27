@@ -1,22 +1,22 @@
 FactoryBot.define do
   factory :decision do
     need
-    note 'Background to the decision'
+    note { 'Background to the decision' }
     user { create(:user) }
 
     trait :scope do
-      decision_type 'scope'
-      outcome 'in_scope'
+      decision_type { 'scope' }
+      outcome { 'in_scope' }
     end
 
     trait :completion do
-      decision_type 'completion'
-      outcome 'complete'
+      decision_type { 'completion' }
+      outcome { 'complete' }
     end
 
     trait :met do
-      decision_type 'met'
-      outcome 'met'
+      decision_type { 'met' }
+      outcome { 'met' }
     end
 
     factory :scope_decision, traits: [:scope]

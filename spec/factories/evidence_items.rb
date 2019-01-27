@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :evidence_item do
     evidence_type
     need
-    value "A thing"
+    value { "A thing" }
 
     trait :quantitative do
       association :evidence_type, factory: :quantitative_evidence_type

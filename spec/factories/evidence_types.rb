@@ -1,15 +1,15 @@
 FactoryBot.define do
   factory :evidence_type do
-    name "Legislation"
-    description "What legislation underpins this need?"
-    kind :qualitative
+    name { "Legislation" }
+    description { "What legislation underpins this need?" }
+    kind { :qualitative }
 
     trait :quantitative do
-      kind :quantitative
+      kind { :quantitative }
     end
 
     trait :qualitative do
-      kind :qualitative
+      kind { :qualitative }
     end
 
     factory :quantitative_evidence_type, traits: [:quantitative]

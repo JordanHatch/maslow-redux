@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :tag_type do
-    name 'Organisations'
+    name { 'Organisations' }
   end
 
 end
