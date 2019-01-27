@@ -1,8 +1,8 @@
-ruby '2.5.1'
+ruby '2.5.3'
 source 'https://rubygems.org'
 
 gem 'airbrake', '~> 6.2.1'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.4.0'
 gem 'cancancan', '~> 2.0'
 gem 'chart-js-rails'
 gem 'chartkick'
@@ -23,9 +23,10 @@ gem 'lrucache', '0.1.4'
 gem 'oauth2'
 gem 'pg'
 gem 'puma', '~> 3.11.4'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.2'
 gem 'rectify'
 gem 'rest-client'
+gem 'sassc-rails', '>= 2.0.0'
 gem 'simple_token_authentication', '~> 1.0'
 
 group :development, :test do
