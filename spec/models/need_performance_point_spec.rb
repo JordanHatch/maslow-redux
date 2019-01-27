@@ -81,7 +81,7 @@ RSpec.describe NeedPerformancePoint, type: :model do
 
   describe '.this_week' do
     it 'returns data points only for the previous week' do
-      this_week = (1.week.ago.to_date..Date.today).map {|date| create(:need_performance_point, date: date) }
+      this_week = (1.week.ago.to_date..DateTime.now.utc.to_date).map {|date| create(:need_performance_point, date: date) }
       others = (3.weeks.ago.to_date..2.weeks.ago).map {|date| create(:need_performance_point, date: date) }
       points = NeedPerformancePoint.this_week
 
@@ -91,7 +91,7 @@ RSpec.describe NeedPerformancePoint, type: :model do
 
   describe '.this_month' do
     it 'returns data points only for the previous month' do
-      this_month = (1.month.ago.to_date..Date.today).map {|date| create(:need_performance_point, date: date) }
+      this_month = (1.month.ago.to_date..DateTime.now.utc.to_date).map {|date| create(:need_performance_point, date: date) }
       others = (8.weeks.ago.to_date..7.weeks.ago).map {|date| create(:need_performance_point, date: date) }
 
       points = NeedPerformancePoint.this_month
