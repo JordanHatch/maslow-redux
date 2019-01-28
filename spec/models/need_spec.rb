@@ -189,17 +189,6 @@ RSpec.describe Need, type: :model do
     end
   end
 
-  describe '#latest_decision' do
-    let(:need) { create(:need) }
-
-    it 'returns the most recent decision for a given type' do
-      create_list(:scope_decision, 2, need: need)
-      latest_decision = create(:scope_decision, need: need)
-
-      expect(need.latest_decision(:scope)).to eq(latest_decision)
-    end
-  end
-
   describe '#canonical_need' do
     let(:canonical_need) { create(:need) }
     let(:valid_attributes) { attributes_for(:need) }
@@ -253,14 +242,12 @@ RSpec.describe Need, type: :model do
 
       create_list(:tagging, 5, need: need)
       create_list(:need_response, 5, need: need)
-      create_list(:scope_decision, 5, need: need)
       create_list(:note_activity_item, 5, need: need)
 
       expect {
         need.destroy
       }.to change(Tagging, :count).to(0)
        .and change(NeedResponse, :count).to(0)
-       .and change(Decision, :count).to(0)
        .and change(ActivityItem, :count).to(0)
     end
   end
