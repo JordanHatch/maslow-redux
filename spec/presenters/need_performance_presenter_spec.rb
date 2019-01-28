@@ -6,7 +6,7 @@ RSpec.describe NeedPerformancePresenter, type: :presenter do
   let!(:response) { create(:need_response, need: need) }
   let!(:performance_points) {
     [
-      create(:need_performance_point, need_response: response, date: Date.today, value: 10),
+      create(:need_performance_point, need_response: response, date: DateTime.now.utc.to_date, value: 10),
       create(:need_performance_point, need_response: response, date: 1.day.ago, value: 20),
       create(:need_performance_point, need_response: response, date: 2.days.ago, value: 30),
     ]
@@ -31,7 +31,7 @@ RSpec.describe NeedPerformancePresenter, type: :presenter do
             data: [
               [ time_format(2.days.ago), 30 ],
               [ time_format(1.day.ago), 20 ],
-              [ time_format(Date.today), 10 ],
+              [ time_format(DateTime.now.utc.to_date), 10 ],
             ]
           }
       ]
