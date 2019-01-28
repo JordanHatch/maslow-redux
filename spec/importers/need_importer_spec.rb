@@ -53,15 +53,7 @@ RSpec.describe NeedImporter do
       ])
     end
 
-    it 'imports decisions made about the need' do
-      expect(need.decisions.count).to eq(3)
-
-      expect(need.latest_decision(:scope).outcome).to eq('in_scope')
-      expect(need.latest_decision(:completion).outcome).to eq('incomplete')
-      expect(need.latest_decision(:met).outcome).to eq('met')
-    end
-
-    it 'imports responses to the need' do
+   it 'imports responses to the need' do
       expect(need.need_responses.count).to eq(3)
 
       expect(need.need_responses.map(&:response_type)).to eq([:content, :service, :other])
