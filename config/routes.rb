@@ -21,7 +21,6 @@ Maslow::Application.routes.draw do
   end
 
   resources :needs, except: [:destroy] do
-    resources :decisions, only: [:new, :create]
     resources :notes, only: :create
 
     resource :performance, controller: 'need_performance', only: :show
