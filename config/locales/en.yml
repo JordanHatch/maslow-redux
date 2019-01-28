@@ -47,6 +47,8 @@ en:
         response_type: What kind of thing is it?
         name: What is its name?
         url: What's the URL?
+      tag_type:
+        show_index_page: Create pages for tags of this type?
   performance:
     graphs:
       time_periods:

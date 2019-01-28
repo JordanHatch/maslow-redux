@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_021757) do
+ActiveRecord::Schema.define(version: 2019_01_28_080224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_01_28_021757) do
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "show_index_page", default: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
