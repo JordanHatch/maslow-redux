@@ -7,6 +7,14 @@
   <% end %>
 </ul>
 
+<% if tag_types_with_index_pages.any? %>
+<ul class="navigation-list">
+  <% tag_types_with_index_pages.each do |tag_type| %>
+    <%= nav_link_to tag_type.name, tag_type_path(tag_type.identifier), icon: 'tags', match_prefix: true %>
+  <% end %>
+</ul>
+<% end %>
+
 <% if current_user.can?(:manage, :settings) %>
   <ul class="navigation-list">
     <%= nav_link_to 'Project settings', settings_root_path, icon: 'cog' %>
