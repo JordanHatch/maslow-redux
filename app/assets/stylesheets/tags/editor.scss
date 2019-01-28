@@ -1,0 +1,65 @@
+@import 'tag';
+
+.tag-page-editor {
+
+  .sortable-columns {
+    padding: 1rem;
+
+    .clear {
+      clear: both;
+    }
+
+    .other-needs, .selected-needs {
+      padding-bottom: 5rem;
+      min-height: 75vh;
+      float: left;
+    }
+
+    &.dragging {
+      .other-needs, .selected-needs {
+        background: #ededed;
+      }
+    }
+
+    .selected-needs {
+      margin-left: 0%;
+      width: 63%;
+      padding-right: 1rem;
+      padding-left: 2rem;
+      border-left: 4px solid #ccc;
+    }
+
+    .other-needs {
+      width: 33%;
+      margin-right: 2%;
+      padding-left: 0;
+
+      > h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+
+      li {
+        h2 {
+          font-size: 12px;
+        }
+        h3 {
+          font-size: 16px;
+          padding: 9px 15px 10px;
+        }
+      }
+    }
+  }
+
+  .selected-needs {
+    padding-left: 0;
+
+    li {
+      @include tag-list-need-row;
+    }
+  }
+
+  .form-actions {
+    clear: both;
+  }
+}

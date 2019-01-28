@@ -1,3 +1,30 @@
+@mixin tag-list-need-row {
+  display: block;
+  min-width: 25rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+
+  &::after {
+    content: '↓';
+    padding-top: .45rem;
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaa;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+
+    &::after {
+      content: '';
+    }
+  }
+}
+
 section.tag {
   @extend .settings;
 
@@ -15,30 +42,7 @@ section.tag {
     }
 
     .need-row {
-      display: block;
-      min-width: 25rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-
-      &::after {
-        content: '↓';
-        padding-top: .45rem;
-        display: block;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        font-size: 2rem;
-        font-weight: bold;
-        color: #aaa;
-      }
-
-      &:last-of-type {
-        margin-bottom: 0;
-
-        &::after {
-          content: '';
-        }
-      }
+      @include tag-list-need-row;
     }
 
     border-bottom: 1px solid #eee;

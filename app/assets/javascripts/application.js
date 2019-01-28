@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/widgets/draggable
+//= require jquery-ui/widgets/sortable
 //= require chosen-jquery
 //= require autosize
 //= require bootstrap
