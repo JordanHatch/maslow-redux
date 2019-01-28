@@ -56,7 +56,6 @@ private
     if need.save_as(user)
       logger.info "\tCREATED".colorize(:green)
 
-      create_decisions_for_need(need, row)
       create_responses_for_need(need, row)
       create_taggings_for_need(need, row)
     else
@@ -83,26 +82,6 @@ private
     (1..max_met_when_criteria).map {|n|
       row["Met when #{n}"]
     }.compact
-  end
-
-  def create_decisions_for_need(need, row)
-    decisions = {
-      scope: row['In scope?'],
-      completion: row['Complete?'],
-      met: row['Met?'],
-    }
-
-    decisions.each do |type, outcome|
-      decision = need.decisions.build(decision_type: type, outcome: outcome, user: user)
-
-      logger.info "\tDECISION: #{type} => #{outcome}"
-
-      if decision.save
-        logger.info "\t\tCREATED".colorize(:green)
-      else
-        logger.warn "\t\tFAILED: ".colorize(:red) + decision.errors.full_messages.join("; ")
-      end
-    end
   end
 
   def create_responses_for_need(need, row)

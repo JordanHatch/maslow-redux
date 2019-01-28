@@ -9,47 +9,6 @@ en:
       proposition_statement:
         description: 'Short description'
         name: 'Label'
-    errors:
-      models:
-        decision:
-          attributes:
-            outcome:
-              is_unknown: is not a valid outcome
-            decision_type:
-              is_unknown: is not a valid decision type
-  decisions:
-    outcomes:
-      completion:
-        complete:
-          long: This need has all the necessary information
-          short: "Complete"
-        incomplete:
-          long: This need is missing information
-          short: "Incomplete"
-      met:
-        met:
-          long: This need is being sufficiently met by a service
-          short: "Yes"
-        not_met:
-          long: This need is not currently being met
-          short: "No"
-      scope:
-        in_scope:
-          long: This need is in scope
-          short: "Yes"
-        out_of_scope:
-          long: This need is out of scope
-          short: "No"
-    types:
-      scope:
-        long: "Is the need in scope?"
-        short: "In scope?"
-      completion:
-        long: "Is this need complete?"
-        short: "Complete?"
-      met:
-        long: "Is the need being met?"
-        short: "Met?"
   enumerize:
     need_response:
       response_type:
