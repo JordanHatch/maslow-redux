@@ -13,8 +13,6 @@
       </h1>
     </header>
 
-    <%= render partial: 'need_latest_decisions' %>
-
     <% if need.closed? %>
       <%= render partial: 'need_closed_message' %>
     <% end %>
