@@ -77,12 +77,17 @@ en:
         description: "eg. 'It's official information provided by the department'"
     actions:
       need_response:
-        create: 'Add response'
+        create: 'Save'
         update: 'Save'
         cancel: 'Cancel and go back'
       bookmark:
         submit: 'Toggle bookmark'
         update: 'Toggle bookmark'
+    labels:
+      need_response:
+        response_type: What kind of thing is it?
+        name: What is its name?
+        url: What's the URL?
   performance:
     graphs:
       time_periods:

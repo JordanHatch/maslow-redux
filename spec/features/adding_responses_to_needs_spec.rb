@@ -4,16 +4,20 @@ RSpec.describe 'adding responses to needs', type: :feature do
 
   let(:need) { create(:need) }
 
+  def form_label(key)
+    I18n.t("formtastic.labels.need_response.#{key}")
+  end
+
   it 'can add a response to a need' do
     visit need_responses_path(need)
 
-    click_on 'Add new response'
+    click_on 'Add a new thing'
 
     choose 'Content item'
-    fill_in 'Name', with: 'Example web page'
-    fill_in 'URL', with: 'http://example.org'
+    fill_in 'name', with: 'Example web page'
+    fill_in I18n.t('formtastic.labels.need_response.url'), with: 'http://example.org'
 
-    click_on 'Add response'
+    click_on 'Save'
 
     within '.response-list' do
       expect(page).to have_link('http://example.org')
@@ -40,8 +44,8 @@ RSpec.describe 'adding responses to needs', type: :feature do
     end
 
     choose 'Service'
-    fill_in 'Name', with: 'Updated name'
-    fill_in 'URL', with: 'http://example.org/page2'
+    fill_in form_label('name'), with: 'Updated name'
+    fill_in form_label('url'), with: 'http://example.org/page2'
 
     click_on 'Save'
 
@@ -55,7 +59,7 @@ RSpec.describe 'adding responses to needs', type: :feature do
 
     visit need_responses_path(closed_need)
 
-    expect(page).to_not have_link('Add new response')
+    expect(page).to_not have_link('Add a new thing')
 
     visit new_need_response_path(closed_need)
 
