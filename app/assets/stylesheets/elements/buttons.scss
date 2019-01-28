@@ -1,6 +1,8 @@
 @mixin button {
   background: #ebebeb;
+  border: none;
   border-bottom: .25em solid rgba(0,0,0,0.3);
+  border-radius: 0px;
   color: #000;
   cursor: pointer;
   display: inline-block;
@@ -9,11 +11,11 @@
   padding: .5em 1em;
   vertical-align: top;
 
-  &, &:hover, &:active {
+  &, &:link, &:hover, &:active, &:focus {
     text-decoration: none;
   }
 
-  &:hover, &:active {
+  &:hover, &:active, &:focus {
     background-color: darken(#ebebeb, 5%);
   }
 }
@@ -22,11 +24,11 @@
   @include button;
   background-color: $button-primary-color;
 
-  &, &:hover, &:active {
-    color: #fff;
+  &, &:hover, &:active, &:focus {
+    color: $white;
   }
 
-  &:hover, &:active {
+  &:hover, &:active, &:focus {
     background-color: darken($button-primary-color, 5%);
   }
 }
@@ -35,81 +37,87 @@
   @include button;
   background-color: $button-danger-color;
 
-  &, &:hover, &:active {
-    color: #fff;
+  &, &:hover, &:active, &:focus {
+    color: $white;
   }
 
-  &:hover, &:active {
+  &:hover, &:active, &:focus {
     background-color: darken($button-danger-color, 5%);
   }
 }
 
-.button {
+@mixin button-small {
+  font-size: .93em;
+  padding: .2em .8em;
+}
+
+.button, .btn {
   &, &a, &a:link, &a:visited {
     @include button;
   }
 }
-.button-primary {
+.button-primary, .btn.btn-primary {
   &, &a, &a:link, &a:visited {
     @include button-primary;
   }
 }
-.button-danger {
+.button-danger, .btn.btn-danger {
   &, &a, &a:link, &a:visited {
     @include button-danger;
   }
 }
 
+//
+//
+// .btn {
+//   &, &a {
+//     &, &:hover, &:active {
+//       border: 0;
+//       border-bottom: .25em solid rgba(0,0,0,0.3);
+//       border-radius: 0px;
+//       font-size: 1.1em;
+//       color: #000;
+//       font-weight: 500;
+//       background: #ebebeb;
+//     }
+//
+//     &:hover, &:active {
+//       background: darken(#ebebeb, 5%);
+//     }
+//
+//     &.btn-primary, &.btn-danger {
+//       color: #fff;
+//     }
+//   }
+// }
 
-.btn {
-  &, &a {
-    &, &:hover, &:active {
-      border: 0;
-      border-bottom: .25em solid rgba(0,0,0,0.3);
-      border-radius: 0px;
-      font-size: 1.1em;
-      color: #000;
-      font-weight: 500;
-      background: #ebebeb;
-    }
-
-    &:hover, &:active {
-      background: darken(#ebebeb, 5%);
-    }
-
-    &.btn-primary, &.btn-danger {
-      color: #fff;
-    }
-  }
-}
-
-.btn.btn-primary {
-  &, &a {
-    background-color: $button-primary-color;
-
-    &, &:hover, &:active {
-      border-bottom: .25em solid rgba(0,0,0,0.3);
-    }
-
-    &:hover, &:active {
-      background-color: darken($button-primary-color, 5%);
-    }
-  }
-}
-.btn.btn-danger {
-  &, &a {
-    background-color: $button-danger-color;
-
-    &, &:hover, &:active {
-      border-bottom: .25em solid rgba(0,0,0,0.3);
-    }
-
-    &:hover, &:active {
-      background-color: darken($button-danger-color, 5%);
-    }
-  }
-}
-
-.button-group {
-  float: right;
-}
+// .btn.btn-primary {
+//   &, &a {
+//     background-color: $button-primary-color;
+//
+//     &, &:hover, &:active {
+//       border-bottom: .25em solid rgba(0,0,0,0.3);
+//     }
+//
+//     &:hover, &:active {
+//       background-color: darken($button-primary-color, 5%);
+//     }
+//   }
+// }
+// .btn.btn-danger {
+//   &, &a {
+//     background-color: $button-danger-color;
+//
+//     &, &:hover, &:active {
+//       border-bottom: .25em solid rgba(0,0,0,0.3);
+//     }
+//
+//     &:hover, &:active {
+//       background-color: darken($button-danger-color, 5%);
+//     }
+//   }
+// }
+//
+// .button-group {
+//   float: right;
+// }

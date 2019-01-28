@@ -8,13 +8,24 @@ $primary-shadow-color: #797979;
 $header-color: $primary-color;
 $header-border-color: $primary-shadow-color;
 
-$green: #00823B;
+/* GOV.UK colours */
+
+$green: #006435;
 $red: #B10E1E;
+$black: #000000;
+$grey-1: #6f777b;
+$grey-2: #bfc1c3;
+$grey-3: #dee0e2;
+$grey-4: #f8f8f8;
+$white: #ffffff;
+
 
 $inverse-text-color: #FFD991;
-$text-color: #000;
+$text-color: $black;
 
 $alert-color: #c81d1d;
 
 $button-primary-color: $green;
 $button-danger-color: $red;
+
+$focus-color: #FFBF47;

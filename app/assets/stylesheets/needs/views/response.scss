@@ -54,19 +54,15 @@
   }
 
   a.action {
-    @extend .btn;
+    @include button;
 
     span {
       @extend .glyphicon;
       padding-right: 3px;
     }
 
-    &.edit-action, &.delete-action {
-      @extend .btn-xs;
-    }
-
     &.edit-action {
-      @extend .btn-primary;
+      @include button-primary;
 
       span {
         @extend .glyphicon-pencil;
@@ -74,7 +70,7 @@
     }
 
     &.new-action {
-      @extend .btn-primary;
+      @include button-primary;
 
       span {
         @extend .glyphicon-plus;
@@ -82,7 +78,7 @@
     }
 
     &.delete-action {
-      @extend .btn-danger;
+      @include button-danger;
 
       span {
         @extend .glyphicon-remove;

@@ -27,12 +27,12 @@
       }
 
       a {
-        @extend .btn;
-        @extend .btn-default;
-        @extend .btn-xs;
+        @include button;
+        @include button-small;
 
         &[data-method='delete'] {
-          @extend .btn-danger;
+          @include button-danger;
+          @include button-small;
         }
       }
     }

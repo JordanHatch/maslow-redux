@@ -31,18 +31,16 @@
     }
 
     button[type=submit] {
-      @extend .btn;
+      @include button-primary;
       @extend .btn-block;
-      @extend .btn-primary;
 
       margin-top: 20px;
       margin-bottom: 10px;
     }
 
     .button-reset {
-      @extend .btn;
+      @include button-danger;
       @extend .btn-block;
-      @extend .btn-danger;
     }
   }
 

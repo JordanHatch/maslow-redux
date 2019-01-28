@@ -105,8 +105,7 @@
     padding: 15px;
 
     input[type='submit'] {
-      @extend .btn;
-      @extend .btn-primary;
+      @include button-primary;
     }
   }
 }

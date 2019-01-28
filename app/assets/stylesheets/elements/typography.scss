@@ -1,0 +1,16 @@
+a {
+  color: $primary-color;
+  text-decoration: underline;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+
+  &:focus {
+    background-color: $focus-color;
+    outline: 3px solid $focus-color;
+  }
+  &:link:focus {
+    color: $black;
+  }
+}

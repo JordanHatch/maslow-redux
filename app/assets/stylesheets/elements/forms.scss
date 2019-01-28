@@ -1,0 +1,25 @@
+@mixin focus-style {
+  outline: 3px solid $focus-color;
+  outline-offset: 0;
+}
+
+@mixin reset-bootstrap-input-styles {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  -moz-transition: none;
+  border-radius: 0px;
+
+  &:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #000;
+    @include focus-style;
+  }
+}
+
+.stringish input, .text textarea {
+  @include reset-bootstrap-input-styles;
+}

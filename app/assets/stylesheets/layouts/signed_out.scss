@@ -1,15 +1,17 @@
+@import 'elements/buttons';
+
 body.signed-out {
   background: $primary-color;
   color: #fff;
 
-  .center-column {
+  @mixin center-column {
     width: 320px;
     margin-left: auto;
     margin-right: auto;
   }
 
   header {
-    @extend .center-column;
+    @include center-column;
     margin-top: 90px;
     margin-bottom: 20px;
     text-align: center;
@@ -29,7 +31,7 @@ body.signed-out {
   }
 
   .page-area {
-    @extend .center-column;
+    @include center-column;
 
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -52,15 +54,14 @@ body.signed-out {
         margin-top: 5px;
         font-size: 16px;
 
-        @extend .btn;
-        @extend .btn-primary;
+        @include button-primary;
         @extend .btn-block;
       }
     }
   }
 
   .signed-out-actions {
-    @extend .center-column;
+    @include center-column;
 
     text-align: center;
     font-size: 13px;
@@ -70,7 +71,7 @@ body.signed-out {
   }
 
   .main-alert {
-    @extend .center-column;
+    @include center-column;
     @extend .mini;
 
     margin: 0 auto 10px;
