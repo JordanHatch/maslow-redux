@@ -16,7 +16,6 @@ class Ability
     end
 
     if user.admin?
-      can :create, Decision
       can [ :create, :update, :destroy ], NeedResponse
       can [ :create, :update, :close, :reopen ], Need
       can :manage, :settings
