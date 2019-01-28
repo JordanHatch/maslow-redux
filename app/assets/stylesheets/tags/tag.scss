@@ -1,0 +1,48 @@
+section.tag {
+  @extend .settings;
+
+  .priority-needs-list, .other-needs-list {
+    padding-left: 0;
+  }
+
+  .priority-needs-list {
+    padding-left: 25%;
+    padding-right: 25%;
+
+    @include respond-to(tablet) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .need-row {
+      display: block;
+      min-width: 25rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+
+      &::after {
+        content: '↓';
+        padding-top: .45rem;
+        display: block;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #aaa;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+
+        &::after {
+          content: '';
+        }
+      }
+    }
+
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+}

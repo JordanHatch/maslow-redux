@@ -7,7 +7,7 @@ class Ability
     can :index, ActivityItem
     can :read, NeedPerformancePoint
     can :read, TagType
-    can :read, Tag
+    can [:read, :update], Tag
 
     if user.commenter? || user.admin?
       can :create, :note

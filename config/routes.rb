@@ -47,8 +47,8 @@ Maslow::Application.routes.draw do
     end
   end
 
-  get '/tags/:tag_type_id/:id', to: 'tags#show', as: :tag
-  resources :tag_types, path: 'tags', only: :show
+  resources :tag_types, path: 'types', only: :show
+  resources :tags, only: [:show, :edit, :update]
 
   namespace :settings do
     resources :tag_types, path: 'tag-types' do

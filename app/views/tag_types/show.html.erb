@@ -1,7 +1,11 @@
-<h1><%= tag_type.name %></h1>
+<section class="tag">
+  <header>
+    <h1><%= tag_type.name %></h1>
+  </header>
 
-<ul>
-  <% tag_type.tags.each do |tag| %>
-  <li><%= link_to tag.name, tag_path(tag_type.identifier, tag) %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% tag_type.tags.each do |tag| %>
+      <li><%= link_to tag.name, tag_path(tag) %></li>
+    <% end %>
+  </ul>
+</section>

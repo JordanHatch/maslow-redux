@@ -1,0 +1,25 @@
+<section class="tag">
+  <header>
+    <h1><%= tag_type.name %>: <%= tag_instance.name %></h1>
+
+    <div class="actions">
+      <%= link_to 'View page', tag_path(tag_instance), class: 'btn btn-default' %>
+    </div>
+  </header>
+
+  <%= semantic_form_for tag_instance do |f| %>
+
+    <% f.object.priority_need_ids.each do |id| %>
+      <%= select_tag 'tag[priority_need_ids][]', options_from_collection_for_select(tag_instance.needs, :id, :goal, id), include_blank: true, class: 'form-control' %>
+    <% end %>
+
+    <% 3.times do %>
+      <%= select_tag 'tag[priority_need_ids][]', options_from_collection_for_select(tag_instance.needs, :id, :goal, nil), include_blank: true, class: 'form-control' %>
+    <% end %>
+
+    <%= f.actions do %>
+      <%= f.action :submit, as: :button, button_html: { class: 'btn btn-primary' } %>
+    <% end %>
+
+  <% end %>
+</section>
