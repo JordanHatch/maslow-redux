@@ -43,7 +43,11 @@
                   <h3><%= tag_type.name %>:</h3>
                   <ul>
                     <% need.tags_of_type(tag_type).each do |tag| %>
-                      <li><%= tag.name %></li>
+                      <% if tag_type.show_index_page? %>
+                        <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
+                      <% else %>
+                        <li><%= tag.name %></li>
+                      <% end %>
                     <% end %>
                   </ul>
                 </li>
