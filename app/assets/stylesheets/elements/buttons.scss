@@ -1,3 +1,66 @@
+@mixin button {
+  background: #ebebeb;
+  border-bottom: .25em solid rgba(0,0,0,0.3);
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: .5em 1em;
+  vertical-align: top;
+
+  &, &:hover, &:active {
+    text-decoration: none;
+  }
+
+  &:hover, &:active {
+    background-color: darken(#ebebeb, 5%);
+  }
+}
+
+@mixin button-primary {
+  @include button;
+  background-color: $button-primary-color;
+
+  &, &:hover, &:active {
+    color: #fff;
+  }
+
+  &:hover, &:active {
+    background-color: darken($button-primary-color, 5%);
+  }
+}
+
+@mixin button-danger {
+  @include button;
+  background-color: $button-danger-color;
+
+  &, &:hover, &:active {
+    color: #fff;
+  }
+
+  &:hover, &:active {
+    background-color: darken($button-danger-color, 5%);
+  }
+}
+
+.button {
+  &, &a, &a:link, &a:visited {
+    @include button;
+  }
+}
+.button-primary {
+  &, &a, &a:link, &a:visited {
+    @include button-primary;
+  }
+}
+.button-danger {
+  &, &a, &a:link, &a:visited {
+    @include button-danger;
+  }
+}
+
+
 .btn {
   &, &a {
     &, &:hover, &:active {

@@ -94,13 +94,13 @@
             <h1>Actions</h1>
             <p>
               <% if current_user.can?(:update, Need) %>
-                <%= link_to edit_need_path(need), class: 'btn-primary' do %>
+                <%= link_to edit_need_path(need), class: 'button-primary' do %>
                   Edit need
                 <% end %>
               <% end %>
 
               <% if current_user.can?(:close, Need) %>
-                <%= link_to close_as_duplicate_need_path(need), class: 'btn-danger' do %>
+                <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
                   <span class="icon" aria-hidden="true"></span> Close as duplicate
                 <% end %>
               <% end %>

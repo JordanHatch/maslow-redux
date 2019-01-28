@@ -106,9 +106,6 @@ section.box {
   p {
     padding: 10px 15px 5px;
   }
-  a {
-    @extend .btn;
-  }
 }
 
 .need-decisions {
