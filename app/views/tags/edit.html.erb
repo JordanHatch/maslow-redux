@@ -1,0 +1,36 @@
+<section class="tag">
+  <%= semantic_form_for tag_instance, html: { class: 'tag-page-editor', data: { module: 'tag-page-editor' }} do |f| %>
+    <header>
+      <h1><%= tag_type.name %>: <%= tag_instance.name %></h1>
+
+      <div class="actions">
+        <%= f.action :submit, as: :button, button_html: { class: 'btn btn-primary' }, label: 'Save page' %>
+        <%= f.action :cancel, as: :link, link_html: { class: 'btn btn-default' }, label: 'Cancel changes' %>
+      </div>
+    </header>
+
+    <input type="hidden" name="tag[priority_need_ids][]">
+
+    <div data-page-editor-role="column-set">
+      <ul style="display: none" data-page-editor-role="all-needs">
+        <%= render partial: "needs/need_row", collection: needs, as: :need %>
+      </ul>
+
+      <ul style="display: none" class="other-needs" data-page-editor-role="other-list">
+        <h3>Available to add</h3>
+      </ul>
+
+      <ul class="selected-needs" data-page-editor-role="selected-list">
+        <% f.object.priority_need_ids.each do |id| %>
+          <%= render partial: 'need_select', locals: { tag_instance: tag_instance, id: id } %>
+        <% end %>
+
+        <% 3.times do %>
+          <%= render partial: 'need_select', locals: { tag_instance: tag_instance, empty: true } %>
+        <% end %>
+      </ul>
+
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</section>

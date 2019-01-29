@@ -1,0 +1,12 @@
+<%= content_tag :li, class: ('empty' if local_assigns[:empty]), data: { need_id: local_assigns[:id] } do %>
+  <%= select_tag 'tag[priority_need_ids][]',
+         options_from_collection_for_select(
+           tag_instance.needs,
+           :id,
+           :goal,
+           local_assigns[:id],
+         ),
+         include_blank: true,
+         class: "form-control"
+  %>
+<% end %>

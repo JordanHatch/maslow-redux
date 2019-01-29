@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/widgets/draggable
+//= require jquery-ui/widgets/sortable
+//= require jquery.ui.touch-punch.min.js
 //= require chosen-jquery
 //= require autosize
 //= require bootstrap

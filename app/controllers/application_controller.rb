@@ -25,4 +25,9 @@ private
   def ssl_enabled?
     ENV['FORCE_SSL'].present?
   end
+
+  def tag_types_with_index_pages
+    @tag_types_with_index_pages ||= TagType.index_pages
+  end
+  helper_method :tag_types_with_index_pages
 end

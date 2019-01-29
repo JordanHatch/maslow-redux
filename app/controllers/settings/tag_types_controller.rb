@@ -21,7 +21,7 @@ class Settings::TagTypesController < Settings::BaseController
 
 private
   def tag_type_attributes
-    params.require(:tag_type).permit(:name)
+    params.require(:tag_type).permit(:name, :show_index_page)
   end
 
 end

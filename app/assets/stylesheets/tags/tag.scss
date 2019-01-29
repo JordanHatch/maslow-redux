@@ -1,0 +1,82 @@
+@mixin tag-list-need-row {
+  display: block;
+  min-width: 25rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+
+  &::after {
+    content: '↓';
+    padding-top: .45rem;
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaa;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+
+    &::after {
+      content: '';
+    }
+  }
+}
+
+@mixin tag-list-need-row-small {
+  h2 {
+    font-size: 11px;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 14px;
+    padding: 7px 10px 8px;
+  }
+}
+
+section.tag {
+  @extend .settings;
+
+  .priority-needs-list, .other-needs-list {
+    padding-left: 0;
+  }
+
+  .priority-needs-list {
+    padding-left: 25%;
+    padding-right: 25%;
+
+    @include respond-to(tablet) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .need-row {
+      @include tag-list-need-row;
+    }
+
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .other-needs-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    > h2 {
+      width: 100%;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .need-row {
+      flex: 1;
+      min-width: 30rem;
+      margin-right: 5px;
+
+      @include tag-list-need-row-small;
+    }
+  }
+}

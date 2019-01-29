@@ -6,6 +6,8 @@ class TagType < ActiveRecord::Base
 
   has_many :tags
 
+  scope :index_pages, -> { where(show_index_page: true) }
+
 private
   def set_identifier
     self.identifier ||= name.parameterize

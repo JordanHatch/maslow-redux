@@ -1,0 +1,22 @@
+<section class="tag">
+  <header>
+    <h1><%= tag_type.name %>: <%= tag_instance.name %></h1>
+
+    <div class="actions">
+      <%= link_to 'Edit this page', edit_tag_path(tag_instance), class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <% if priority_needs.any? %>
+    <ul class="priority-needs-list">
+      <%= render partial: "needs/need_row", collection: priority_needs, as: :need %>
+    </ul>
+  <% end %>
+
+  <% if other_needs.any? %>
+    <ul class="other-needs-list">
+      <h2>Other needs</h2>
+      <%= render partial: "needs/need_row", collection: other_needs, as: :need %>
+    </ul>
+  <% end %>
+</section>

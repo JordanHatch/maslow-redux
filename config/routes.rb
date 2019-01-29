@@ -13,7 +13,6 @@ Maslow::Application.routes.draw do
     get 'sign-out', to: 'sessions#destroy', as: :destroy_user_session
   end
 
-
   resources :bookmarks, only: [:index] do
     collection do
       post :toggle
@@ -47,6 +46,9 @@ Maslow::Application.routes.draw do
       put :password, to: 'user#update_password', as: :password
     end
   end
+
+  resources :tag_types, path: 'types', only: :show
+  resources :tags, only: [:show, :edit, :update]
 
   namespace :settings do
     resources :tag_types, path: 'tag-types' do
