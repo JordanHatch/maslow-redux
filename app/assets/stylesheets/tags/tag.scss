@@ -25,6 +25,17 @@
   }
 }
 
+@mixin tag-list-need-row-small {
+  h2 {
+    font-size: 11px;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 14px;
+    padding: 7px 10px 8px;
+  }
+}
+
 section.tag {
   @extend .settings;
 
@@ -48,5 +59,24 @@ section.tag {
     border-bottom: 1px solid #eee;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
+  }
+
+  .other-needs-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    > h2 {
+      width: 100%;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .need-row {
+      flex: 1;
+      min-width: 30rem;
+      margin-right: 5px;
+
+      @include tag-list-need-row-small;
+    }
   }
 }

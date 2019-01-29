@@ -7,11 +7,16 @@
     </div>
   </header>
 
-  <ul class="priority-needs-list">
-    <%= render partial: "needs/need_row", collection: priority_needs, as: :need %>
-  </ul>
+  <% if priority_needs.any? %>
+    <ul class="priority-needs-list">
+      <%= render partial: "needs/need_row", collection: priority_needs, as: :need %>
+    </ul>
+  <% end %>
 
-  <ul class="other-needs-list">
-    <%= render partial: "needs/need_row", collection: other_needs, as: :need %>
-  </ul>
+  <% if other_needs.any? %>
+    <ul class="other-needs-list">
+      <h2>Other needs</h2>
+      <%= render partial: "needs/need_row", collection: other_needs, as: :need %>
+    </ul>
+  <% end %>
 </section>
