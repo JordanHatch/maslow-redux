@@ -19,4 +19,11 @@ section.need-main.need-form {
       margin: 0 10px 0 0;
     }
   }
+
+  .tags {
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
+  }
+
 }
