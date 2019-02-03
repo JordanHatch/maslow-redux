@@ -63,19 +63,21 @@ ul.need-list {
 }
 
 .need-row {
-  border: 1px solid #eee;
   display: block;
   list-style: none;
   margin-bottom: 5px;
-  border-radius: 4px;
 
   a {
+    border-radius: 4px;
+    border: 1px solid #eee;
     display: block;
     color: #000;
     background: #fff;
     overflow: auto;
+    height: 100%;
+    flex: 1;
 
-    &:hover {
+    &, &:visited, &:hover {
       text-decoration: none;
     }
   }
@@ -97,11 +99,50 @@ ul.need-list {
       font-size: 0.75em;
     }
   }
+
+  .need-row-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  &.draggable {
+    &, a {
+      cursor: move;
+    }
+
+    .drag-handles {
+      min-width: 2rem;
+      max-width: 2rem;
+      max-height: 100%;
+
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .inner::before {
+        content: '•• •• •• •• ••';
+        display: block;
+        padding: .5rem;
+        flex: 1;
+        color: #e8e8e8;
+        line-height: .65rem;
+        font-size: 1rem;
+      }
+    }
+
+    h3 {
+      padding-left: 5px;
+    }
+  }
+
   h3 {
-    float: left;
     padding: 13px 15px 15px;
     margin: 0;
     font-size: 20px;
+    flex-grow: 2;
 
     span {
       display: block;
@@ -113,7 +154,7 @@ ul.need-list {
   }
 
   form.bookmark {
-    float: right;
+    width: 3.5rem;
 
     .bookmark-icon {
       @extend .glyphicon;

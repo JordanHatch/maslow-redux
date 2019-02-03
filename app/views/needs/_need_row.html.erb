@@ -1,4 +1,4 @@
-<li class="need-row" data-need-id="<%= need.id %>">
+<li class="need-row <%= 'draggable' if local_assigns[:draggable] %>" data-need-id="<%= need.id %>">
   <%= link_to need_path(need) do %>
     <h2 class="need-id">
       #<%= need.need_id %>
@@ -6,18 +6,27 @@
         <span class="need-closed-label">Closed</span>
       <% end %>
     </h2>
-    <h3><span>I need to</span> <%= format_need_goal(need.goal) %></h3>
 
-    <% if @bookmarks.present? %>
-      <%= semantic_form_for :bookmark, url: toggle_bookmarks_path,
-                                       class: 'bookmark-form',
-                                       data: { module: 'bookmark' } do |f| %>
-
-        <%= f.input :need_id, :as => :hidden, :input_html => { :value => need.need_id } %>
-        <%= f.input :redirect_to, :as => :hidden, :input_html => { :value => @current_page } %>
-        <%= f.action :submit, input_html: { class: 'bookmark-toggle-button'} %>
-        <span class="bookmark-icon <%= bookmark_icon(@bookmarks, need.need_id) %>" title="Toggle bookmark"></span>
+    <div class="need-row-inner">
+      <% if local_assigns[:draggable] %>
+        <div class="drag-handles">
+          <span class="inner"></span>
+        </div>
       <% end %>
-    <% end %>
+
+      <h3><span>I need to</span> <%= format_need_goal(need.goal) %></h3>
+
+      <% if @bookmarks.present? %>
+        <%= semantic_form_for :bookmark, url: toggle_bookmarks_path,
+                                         class: 'bookmark-form',
+                                         data: { module: 'bookmark' } do |f| %>
+
+          <%= f.input :need_id, :as => :hidden, :input_html => { :value => need.need_id } %>
+          <%= f.input :redirect_to, :as => :hidden, :input_html => { :value => @current_page } %>
+          <%= f.action :submit, input_html: { class: 'bookmark-toggle-button'} %>
+          <span class="bookmark-icon <%= bookmark_icon(@bookmarks, need.need_id) %>" title="Toggle bookmark"></span>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </li>

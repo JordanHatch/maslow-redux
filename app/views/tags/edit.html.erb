@@ -13,7 +13,7 @@
 
     <div data-page-editor-role="column-set">
       <ul style="display: none" data-page-editor-role="all-needs">
-        <%= render partial: "needs/need_row", collection: needs, as: :need %>
+        <%= render partial: "needs/need_row", collection: needs, as: :need, locals: { draggable: true } %>
       </ul>
 
       <ul style="display: none" class="other-needs" data-page-editor-role="other-list">
