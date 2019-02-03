@@ -2,7 +2,7 @@
   <%= semantic_form_for tag_instance, html: { class: 'tag-page-editor', data: { module: 'tag-page-editor' }} do |f| %>
     <header>
       <h1>
-        <span class="type-label"><%= tag_type.name %></span>
+        <span class="type-label"><%= tag_type.name.singularize %></span>
         <%= tag_instance.name %>
       </h1>
 
