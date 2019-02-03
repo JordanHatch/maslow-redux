@@ -22,11 +22,7 @@
 
     &.dragging {
       .other-needs, .selected-needs {
-        background: #f5f1f9;
-        -moz-transition: all .3s ease-in-out;
-        -webkit-transition: all .3s ease-in-out;
-        -o-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
+        background-color: #f5f1f9;
       }
     }
 
