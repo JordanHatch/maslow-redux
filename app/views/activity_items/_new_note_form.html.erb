@@ -4,8 +4,11 @@
                        as: :text,
                        required: false, # prevents an asterisk from appearing
                        input_html: {
-                         :rows => 3,
-                         'data-module' => 'expand',
+                         rows: 3,
+                         data: {
+                           module: 'expand',
+                           expand_hide_form_until_active: true,
+                         }
                        } %>
   <% end %>
   <%= f.action :submit,
