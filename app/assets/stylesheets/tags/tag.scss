@@ -39,6 +39,13 @@
 section.tag {
   @extend .settings;
 
+  .tag-body {
+    border-bottom: 1px solid #eee;
+    font-size: 1.7rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
   .priority-needs-list, .other-needs-list {
     padding-left: 0;
   }

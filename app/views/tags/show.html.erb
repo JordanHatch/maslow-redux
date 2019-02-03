@@ -7,6 +7,12 @@
     </div>
   </header>
 
+  <% if tag_instance.body.present? %>
+    <section class="tag-body">
+      <%= simpler_format(tag_instance.body) %>
+    </section>
+  <% end %>
+
   <% if priority_needs.any? %>
     <ul class="priority-needs-list">
       <%= render partial: "needs/need_row", collection: priority_needs, as: :need %>
