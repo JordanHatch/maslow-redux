@@ -33,6 +33,12 @@
 
     margin: 0;
     padding: 0;
+
+    .type-label {
+      font-size: 1.7rem;
+      display: block;
+      line-height: 1.6rem;
+    }
   }
 }
 @mixin header-panel-with-negative-margin {

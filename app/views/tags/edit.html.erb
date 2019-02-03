@@ -1,7 +1,10 @@
 <section class="tag">
   <%= semantic_form_for tag_instance, html: { class: 'tag-page-editor', data: { module: 'tag-page-editor' }} do |f| %>
     <header>
-      <h1><%= tag_type.name %>: <%= tag_instance.name %></h1>
+      <h1>
+        <span class="type-label"><%= tag_type.name %></span>
+        <%= tag_instance.name %>
+      </h1>
 
       <div class="actions">
         <%= f.action :submit, as: :button, button_html: { class: 'btn btn-primary' }, label: 'Save page' %>
