@@ -8,6 +8,7 @@
 </ul>
 
 <% if tag_types_with_index_pages.any? %>
+<h3>Collections</h3>
 <ul class="navigation-list">
   <% tag_types_with_index_pages.each do |tag_type| %>
     <%= nav_link_to tag_type.name, tag_type_path(tag_type.identifier), icon: 'tags', match_prefix: true %>
