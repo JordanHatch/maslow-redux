@@ -1,10 +1,11 @@
 <%= semantic_form_for [:settings, tag_type] do |f| %>
   <%= f.inputs do %>
-    <%= f.input :name %>
-    <%= f.input :show_index_page %>
+    <%= f.input :name, label: 'Name the tag type',
+                       hint: "A good name is short and plural (eg. 'Organisations' or 'Life events'). It will be converted automagically to the singular form when needed." %>
+    <%= f.input :show_index_page, hint: 'This lets users add an overview and curate the most important needs' %>
   <% end %>
 
   <%= f.actions do %>
-    <%= f.action :submit, as: :button, button_html: { class: 'btn btn-primary' } %>
+    <%= f.action :submit, as: :button, label: 'Save', button_html: { class: 'btn btn-primary' } %>
   <% end %>
 <% end %>
