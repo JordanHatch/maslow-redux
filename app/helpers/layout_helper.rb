@@ -1,6 +1,9 @@
 module LayoutHelper
   def nav_link_to(label, url, icon: nil, match_prefix: false)
-    if match_prefix
+
+    if content_for?(:selected_navigation_url)
+      selected = (url == content_for(:selected_navigation_url))
+    elsif match_prefix
       selected = current_page_or_prefix?(url)
     else
       selected = current_page?(url)

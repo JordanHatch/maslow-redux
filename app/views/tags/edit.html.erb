@@ -1,3 +1,4 @@
+<% content_for(:selected_navigation_url, tag_type_path(tag_type.identifier)) %>
 <section class="tag">
   <%= semantic_form_for tag_instance, html: { class: 'tag-page-editor', data: { module: 'tag-page-editor' }} do |f| %>
     <header>
