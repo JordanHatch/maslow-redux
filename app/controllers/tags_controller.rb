@@ -26,7 +26,7 @@ private
   helper_method :tag_type
 
   def tag_instance
-    @tag_instance ||= Tag.find(params[:id])
+    @tag_instance ||= Tag.with_pages.find(params[:id])
   end
   helper_method :tag_instance
 

@@ -6,6 +6,7 @@ class Tag < ActiveRecord::Base
   has_many :needs, through: :taggings
 
   scope :of_type, -> (type) { where(tag_type: type) }
+  scope :with_pages, ->{ where(tag_type: TagType.index_pages) }
 
   before_validation :remove_blank_priority_need_ids
 
