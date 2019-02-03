@@ -9,9 +9,18 @@
       </div>
     </header>
 
+    <%= f.input :body, as: :text,
+                       label: 'Add an overview for this page',
+                       input_html: {
+                         rows: 3,
+                         data: {
+                           module: 'expand',
+                         }
+                       } %>
+
     <input type="hidden" name="tag[priority_need_ids][]">
 
-    <div data-page-editor-role="column-set">
+    <div class="priority-needs-editor" data-page-editor-role="column-set">
       <ul style="display: none" data-page-editor-role="all-needs">
         <%= render partial: "needs/need_row", collection: needs, as: :need, locals: { draggable: true } %>
       </ul>

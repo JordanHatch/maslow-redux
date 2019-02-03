@@ -2,9 +2,13 @@
 
 .tag-page-editor {
 
-  .sortable-columns {
-    padding: 0;
+  .priority-needs-editor {
+    border-top: 1px solid #ddd;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
 
+  .sortable-columns {
     .clear {
       clear: both;
     }

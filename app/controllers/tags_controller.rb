@@ -36,7 +36,7 @@ private
   helper_method :needs
 
   def tag_attributes
-    params.require(:tag).permit(priority_need_ids: [])
+    params.require(:tag).permit(:body, priority_need_ids: [])
   end
 
   def priority_needs
