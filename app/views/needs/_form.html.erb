@@ -25,7 +25,7 @@
   <% end %>
 
   <% if TagType.any? %>
-    <%= f.inputs "Tag this need", class: 'tags' do %>
+    <%= f.inputs "Tag this need to collections", class: 'tags' do %>
       <%= render partial: "tag_type", collection: TagType.all, locals: { f: f } %>
     <% end %>
   <% end %>

@@ -22,7 +22,7 @@
     <%= nav_link_to 'Team members', settings_users_path, icon: 'user', match_prefix: true %>
   </ul>
 
-  <h3>Tags</h3>
+  <h3>Collections</h3>
   <ul class="navigation-list">
     <% tag_types.each do |tag_type| %>
       <%= nav_link_to tag_type.name, settings_tag_type_path(tag_type), icon: 'tags', match_prefix: true %>
