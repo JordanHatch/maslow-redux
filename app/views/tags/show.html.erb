@@ -16,6 +16,13 @@
     </section>
   <% end %>
 
+  <% if needs.empty? %>
+    <section class="no-needs">
+      <h2>This <%= tag_type.name.downcase.singularize %> hasn't been added to any needs yet</h2>
+      <p><%= link_to 'Add it to a need', needs_path %> and it will show up here.</p>
+    </section>
+  <% end %>
+
   <% if priority_needs.any? %>
     <ul class="priority-needs-list">
       <%= render partial: "needs/need_row", collection: priority_needs, as: :need %>
