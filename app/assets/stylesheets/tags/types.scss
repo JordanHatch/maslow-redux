@@ -1,0 +1,22 @@
+section.tag-type {
+  @extend .settings;
+
+  ul.tag-list {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      margin-bottom: .5rem;
+
+      a {
+        display: block;
+        padding: 1.2rem;
+        font-size: 1.7rem;
+        font-weight: bold;
+        background: $white;
+        border: 1px solid $grey-3;
+        border-radius: 4px;
+      }
+    }
+  }
+}

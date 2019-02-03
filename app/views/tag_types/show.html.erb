@@ -1,9 +1,9 @@
-<section class="tag">
+<section class="tag-type">
   <header>
     <h1><%= tag_type.name %></h1>
   </header>
 
-  <ul>
+  <ul class="tag-list">
     <% tag_type.tags.each do |tag| %>
       <li><%= link_to tag.name, tag_path(tag) %></li>
     <% end %>
