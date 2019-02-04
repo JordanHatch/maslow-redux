@@ -25,6 +25,30 @@ section.box {
   }
 }
 
+.box-follows {
+  ul {
+    padding: 10px 15px 5px;
+  }
+  li {
+    list-style: none;
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+
+    .team-name, .team-icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .team-icon {
+      margin-right: 3px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+}
+
 .box-met-when, .box-proposition {
   ul {
     padding: 15px 25px 5px 35px;

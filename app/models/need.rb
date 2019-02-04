@@ -12,6 +12,9 @@ class Need < ActiveRecord::Base
   has_many :need_responses, dependent: :destroy
   has_and_belongs_to_many :proposition_statements
 
+  has_many :follows, as: :followable
+  has_many :teams, through: :follows
+
   belongs_to :canonical_need, class_name: 'Need'
 
   before_validation :remove_blank_met_when_criteria

@@ -19,6 +19,23 @@
 
     <div class="need-overview">
       <div class="column">
+        <section class="box box-follows">
+          <h1>Teams</h1>
+
+          <% if need.teams.any? %>
+            <ul>
+            <% need.teams.each do |team| %>
+              <li>
+                <%= team_icon(team) %>
+                <span class="team-name"><%= team.name %></span>
+              </li>
+            <% end %>
+            </ul>
+          <% else %>
+            <p class="empty">This need is not followed by any teams.</p>
+          <% end %>
+        </section>
+
         <section class="box box-met-when">
           <h1>Met when the user:</h1>
 
