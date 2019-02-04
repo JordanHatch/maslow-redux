@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   delegate :can?, :cannot?, :to => :ability
 
+  has_and_belongs_to_many :teams
+
   validates :name, presence: true
   validate :roles_exist_in_list
 
