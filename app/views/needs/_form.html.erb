@@ -24,6 +24,16 @@
     <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
   <% end %>
 
+  <%= f.inputs "Which teams are involved with this need?" do %>
+    <%= f.input :team_ids, as: :select,
+                           multiple: true,
+                           label: false,
+                           collection: available_teams,
+                           input_html: {
+                             'data-module' => 'chosen',
+                           } %>
+  <% end %>
+
   <% if TagType.any? %>
     <%= f.inputs "Tag this need to collections", class: 'tags' do %>
       <%= render partial: "tag_type", collection: TagType.all, locals: { f: f } %>
