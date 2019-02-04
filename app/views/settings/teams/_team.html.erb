@@ -1,5 +1,8 @@
 <tr>
-  <td><%= team.name %></td>
+  <td>
+    <%= team_icon(team) %>
+    <%= team.name %>
+  </td>
   <td><%= team.description %></td>
   <td><%= team.users.size %></td>
   <td class="actions">
