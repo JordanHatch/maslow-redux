@@ -1,5 +1,6 @@
 class Need < ActiveRecord::Base
   include ActiveModel::AttributeMethods
+  include Concerns::Followable
 
   has_many :revisions, class_name: "NeedRevision"
 
@@ -11,9 +12,6 @@ class Need < ActiveRecord::Base
   has_many :evidence_items, dependent: :destroy
   has_many :need_responses, dependent: :destroy
   has_and_belongs_to_many :proposition_statements
-
-  has_many :follows, as: :followable
-  has_many :teams, through: :follows
 
   belongs_to :canonical_need, class_name: 'Need'
 
