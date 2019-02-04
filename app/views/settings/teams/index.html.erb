@@ -1,0 +1,23 @@
+<section class="teams">
+  <header>
+    <h1>Teams</h1>
+
+    <div class="actions">
+      <%= link_to 'Add new team', new_settings_team_path, class: 'btn btn-primary' %>
+    </div>
+  </header>
+
+  <table class="editable-resource-list">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Users</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'team', collection: teams %>
+    </tbody>
+  </table>
+</section>

@@ -42,6 +42,9 @@ en:
       bookmark:
         submit: 'Toggle bookmark'
         update: 'Toggle bookmark'
+      team:
+        create: 'Create team'
+        update: 'Save team'
     labels:
       need_response:
         response_type: What kind of thing is it?

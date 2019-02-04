@@ -9,6 +9,13 @@
                         input_html: {
                           'data-module' => 'chosen',
                         } %>
+    <%= f.input :team_ids, as: :select,
+                           multiple: true,
+                           label: 'Teams',
+                           collection: available_teams,
+                           input_html: {
+                             'data-module' => 'chosen',
+                           } %>
   <% end %>
 
   <% if f.object.new_record? %>
