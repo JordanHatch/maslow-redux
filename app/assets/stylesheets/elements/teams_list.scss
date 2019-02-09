@@ -1,0 +1,27 @@
+@mixin teams-list {
+  ul {
+    padding: 10px 0 5px;
+  }
+  li {
+    list-style: none;
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+
+    .team-name, .team-icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .team-icon {
+      margin-right: 3px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.teams-list {
+  @include teams-list;
+}

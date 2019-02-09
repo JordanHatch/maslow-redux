@@ -33,27 +33,9 @@ section.box {
   }
 }
 
-.box-follows {
+.box-follows .teams-list {
   ul {
-    padding: 10px 15px 5px;
-  }
-  li {
-    list-style: none;
-    padding-bottom: 8px;
-    font-size: 1.4rem;
-
-    .team-name, .team-icon {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .team-icon {
-      margin-right: 3px;
-    }
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
+    padding-left: 15px;
   }
 }
 

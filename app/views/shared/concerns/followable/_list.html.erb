@@ -1,0 +1,16 @@
+<section class="teams-list">
+  <h1>Teams</h1>
+
+  <% if teams.any? %>
+    <ul>
+    <% teams.each do |team| %>
+      <li>
+        <%= team_icon(team) %>
+        <span class="team-name"><%= team.name %></span>
+      </li>
+    <% end %>
+    </ul>
+  <% elsif local_assigns[:empty_message] %>
+    <p class="empty"><%= local_assigns[:empty_message] %></p>
+  <% end %>
+</section>

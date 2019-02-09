@@ -24,15 +24,7 @@
     <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
   <% end %>
 
-  <%= f.inputs "Which teams are involved with this need?" do %>
-    <%= f.input :team_ids, as: :select,
-                           multiple: true,
-                           label: false,
-                           collection: available_teams,
-                           input_html: {
-                             'data-module' => 'chosen',
-                           } %>
-  <% end %>
+  <%= render partial: 'shared/concerns/followable/form', locals: { form: f, label: 'Which teams are involved with this need?' } %>
 
   <% if presenter.show_tags? %>
     <%= f.inputs "Tag this need to collections", class: 'tags' do %>

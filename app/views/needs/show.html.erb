@@ -28,20 +28,11 @@
     <div class="need-overview">
       <div class="column">
         <section class="box box-follows">
-          <h1>Teams</h1>
-
-          <% if need.teams.any? %>
-            <ul>
-            <% need.teams.each do |team| %>
-              <li>
-                <%= team_icon(team) %>
-                <span class="team-name"><%= team.name %></span>
-              </li>
-            <% end %>
-            </ul>
-          <% else %>
-            <p class="empty">There are no teams involved with this need.</p>
-          <% end %>
+          <%= render partial: 'shared/concerns/followable/list',
+                     locals: {
+                       teams: need.teams,
+                       empty_message: 'There are no teams involved with this need.',
+                     } %>
         </section>
 
         <section class="box box-met-when">
