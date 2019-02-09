@@ -14,7 +14,7 @@ RSpec.describe 'managing users', type: :feature do
     it 'can create a user' do
       visit settings_root_path
 
-      click_on 'Users'
+      click_on 'User accounts'
       click_on 'Add new user'
 
       fill_in 'Name', with: 'Winston Smith-Churchill'
@@ -36,7 +36,7 @@ RSpec.describe 'managing users', type: :feature do
       user = create(:user)
       visit settings_root_path
 
-      click_on 'Users'
+      click_on 'User accounts'
 
       click_on_edit_for_user_in_list(user.name)
 
