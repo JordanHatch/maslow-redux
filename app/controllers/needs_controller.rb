@@ -135,7 +135,7 @@ private
   helper_method :need
 
   def presenter
-    @presenter ||= NeedPresenter.new(need)
+    @presenter ||= NeedPresenter.new(need, view_context)
   end
   helper_method :presenter
 

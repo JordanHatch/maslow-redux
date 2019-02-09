@@ -1,7 +1,8 @@
 class NeedPresenter
 
-  def initialize(need)
+  def initialize(need, view_context)
     @need = need
+    @view_context = view_context
   end
 
   def show_proposition_statements?
@@ -13,10 +14,14 @@ class NeedPresenter
   end
 
   def show_actions?
-    ! need.closed?
+    ! need.closed? && current_user.can?(:close, Need)
   end
 
 private
-  attr_reader :need
+  attr_reader :need, :view_context
+
+  def current_user
+    view_context.current_user
+  end
 
 end

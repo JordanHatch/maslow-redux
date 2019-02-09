@@ -11,6 +11,14 @@
         I need to <em><%= need.goal %></em><br />
         So that <em><%= need.benefit %></em>
       </h1>
+
+      <% if current_user.can?(:update, Need) && !need.closed? %>
+        <div class="actions">
+          <%= link_to edit_need_path(need), class: 'button-primary' do %>
+            Edit this need
+          <% end %>
+        </div>
+      <% end %>
     </header>
 
     <% if need.closed? %>
@@ -116,16 +124,8 @@
           <section class="box box-actions">
             <h1>Actions</h1>
             <p>
-              <% if current_user.can?(:update, Need) %>
-                <%= link_to edit_need_path(need), class: 'button-primary' do %>
-                  Edit need
-                <% end %>
-              <% end %>
-
-              <% if current_user.can?(:close, Need) %>
-                <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
-                  <span class="icon" aria-hidden="true"></span> Close as duplicate
-                <% end %>
+              <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
+                <span class="icon" aria-hidden="true"></span> Close as duplicate
               <% end %>
             </p>
           </section>

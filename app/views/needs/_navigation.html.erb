@@ -24,9 +24,3 @@
   <%= nav_link_to 'Meeting the need', need_responses_path(need), icon: 'globe', match_prefix: true %>
   <%= nav_link_to 'Performance', need_performance_path(need), icon: 'stats' %>
 </ul>
-
-<% if current_user.can?(:update, Need) && !need.closed? %>
-<ul class="navigation-list">
-  <%= nav_link_to 'Edit need', edit_need_path(need), icon: 'pencil' %>
-</ul>
-<% end %>

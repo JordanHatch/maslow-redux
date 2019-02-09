@@ -4,15 +4,23 @@
   em {
     font-style: normal;
   }
+
+  overflow: auto;
+
+  h1 { float: left; max-width: 80%; }
+
+  .actions { float: right; }
 }
 
 .need-overview {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 20px 5px;
 
   .column {
     flex: 1;
+    min-width: 40rem;
   }
 }
 
