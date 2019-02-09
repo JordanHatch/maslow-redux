@@ -12,11 +12,12 @@ $(function() {
     autosize($input)
     $form.addClass('inactive')
 
-    $label.hide()
-    $input.attr('placeholder', $label.text() + '...')
-
     if (hideFormUntilActive) {
       $submit.hide()
+
+      $label.hide()
+      $input.attr('placeholder', $label.text() + '...')
+      
       $input.on('focus', function () {
         $form.removeClass('inactive').addClass('active')
         $input.removeAttr('placeholder')

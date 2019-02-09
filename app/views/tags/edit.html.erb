@@ -14,13 +14,15 @@
     </header>
 
     <%= f.input :body, as: :text,
-                       label: 'Add an overview for this page',
+                       label: "Add an overview for this #{tag_type.name.downcase.singularize}",
                        input_html: {
                          rows: 3,
                          data: {
                            module: 'expand',
                          }
                        } %>
+
+    <%= render partial: 'shared/concerns/followable/form', locals: { form: f, label: "Which teams are involved with this #{tag_type.name.downcase.singularize}?" } %>
 
     <input type="hidden" name="tag[priority_need_ids][]">
 

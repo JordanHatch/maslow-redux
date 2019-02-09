@@ -5,7 +5,7 @@
     <%= f.input :benefit, :label => "So that…", :hint => "Why does the user want to do this?", :required => false, :input_html => { :class => 'input-md-8' } %>
   <% end %>
 
-  <% if PropositionStatement.any? %>
+  <% if presenter.show_proposition_statements? %>
     <%= f.inputs "Which criteria of the proposition does this need meet?" do %>
       <%= f.input :proposition_statement_ids, as: :check_boxes,
                                               label: false,
@@ -24,14 +24,15 @@
     <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
   <% end %>
 
-  <% if TagType.any? %>
+  <%= render partial: 'shared/concerns/followable/form', locals: { form: f, label: 'Which teams are involved with this need?' } %>
+
+  <% if presenter.show_tags? %>
     <%= f.inputs "Tag this need to collections", class: 'tags' do %>
       <%= render partial: "tag_type", collection: TagType.all, locals: { f: f } %>
     <% end %>
   <% end %>
 
-  <%= render layout: 'workflow_footer' do %>
-    <div class="navbar-btn">
+  <div class="navbar-btn">
     <%= f.action :submit,
                  :button_html => {
                    :value => "Save",
@@ -45,6 +46,5 @@
                    :class => "btn btn-primary"
                  }
                %>
-    </div>
-  <% end %>
+  </div>
 <% end %>

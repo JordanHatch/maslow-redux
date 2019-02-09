@@ -1,0 +1,9 @@
+<%= form.inputs do %>
+  <%= form.input :team_ids, as: :select,
+                         multiple: true,
+                         label: local_assigns[:label],
+                         collection: available_teams,
+                         input_html: {
+                           'data-module' => 'chosen',
+                         } %>
+<% end %>

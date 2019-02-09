@@ -4,4 +4,8 @@ module Settings::UsersHelper
     User::ROLES - ['bot']
   end
 
+  def available_teams
+    Team.all
+  end
+
 end

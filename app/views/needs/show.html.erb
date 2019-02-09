@@ -11,6 +11,14 @@
         I need to <em><%= need.goal %></em><br />
         So that <em><%= need.benefit %></em>
       </h1>
+
+      <% if current_user.can?(:update, Need) && !need.closed? %>
+        <div class="actions">
+          <%= link_to edit_need_path(need), class: 'button-primary' do %>
+            Edit this need
+          <% end %>
+        </div>
+      <% end %>
     </header>
 
     <% if need.closed? %>
@@ -19,6 +27,14 @@
 
     <div class="need-overview">
       <div class="column">
+        <section class="box box-follows">
+          <%= render partial: 'shared/concerns/followable/list',
+                     locals: {
+                       teams: need.teams,
+                       empty_message: 'There are no teams involved with this need.',
+                     } %>
+        </section>
+
         <section class="box box-met-when">
           <h1>Met when the user:</h1>
 
@@ -33,50 +49,54 @@
           <% end %>
         </section>
 
-        <section class="box box-tags">
-          <h1>Collections</h1>
+        <% if presenter.show_tags? %>
+          <section class="box box-tags">
+            <h1>Collections</h1>
 
-          <% if need.taggings.any? %>
-            <ul class="tags-list">
-              <% need.joined_tag_types.each do |tag_type| %>
-                <li>
-                  <h3><%= tag_type.name %>:</h3>
-                  <ul>
-                    <% need.tags_of_type(tag_type).each do |tag| %>
-                      <% if tag_type.show_index_page? %>
-                        <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
-                      <% else %>
-                        <li><%= tag.name %></li>
+            <% if need.taggings.any? %>
+              <ul class="tags-list">
+                <% need.joined_tag_types.each do |tag_type| %>
+                  <li>
+                    <h3><%= tag_type.name %>:</h3>
+                    <ul>
+                      <% need.tags_of_type(tag_type).each do |tag| %>
+                        <% if tag_type.show_index_page? %>
+                          <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
+                        <% else %>
+                          <li><%= tag.name %></li>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </ul>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="empty">This need has not yet been tagged with anything.</p>
-          <% end %>
-        </section>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="empty">This need has not yet been tagged with anything.</p>
+            <% end %>
+          </section>
+        <% end %>
       </div>
       <div class="column">
-        <section class="box box-proposition">
-          <h1>This need is in scope because:</h1>
+        <% if presenter.show_proposition_statements? %>
+          <section class="box box-proposition">
+            <h1>This need is in scope because:</h1>
 
-          <% if need.proposition_statements.any? %>
-            <ul>
-            <% need.proposition_statements.each do |statement| %>
-              <li>
-                <h2><%= statement.name %></h2>
-                <% if statement.description %>
-                  <p><%= statement.description %></p>
-                <% end %>
-              </li>
+            <% if need.proposition_statements.any? %>
+              <ul>
+              <% need.proposition_statements.each do |statement| %>
+                <li>
+                  <h2><%= statement.name %></h2>
+                  <% if statement.description %>
+                    <p><%= statement.description %></p>
+                  <% end %>
+                </li>
+              <% end %>
+              </ul>
+            <% else %>
+              <p class="empty">This need doesn't meet any criteria in the proposition.</p>
             <% end %>
-            </ul>
-          <% else %>
-            <p class="empty">This need doesn't meet any criteria in the proposition.</p>
-          <% end %>
-        </section>
+          </section>
+        <% end %>
 
         <section class="box box-responses">
           <h1>Response</h1>
@@ -91,20 +111,12 @@
           </p>
         </section>
 
-        <% unless need.closed? %>
+        <% if presenter.show_actions? %>
           <section class="box box-actions">
             <h1>Actions</h1>
             <p>
-              <% if current_user.can?(:update, Need) %>
-                <%= link_to edit_need_path(need), class: 'button-primary' do %>
-                  Edit need
-                <% end %>
-              <% end %>
-
-              <% if current_user.can?(:close, Need) %>
-                <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
-                  <span class="icon" aria-hidden="true"></span> Close as duplicate
-                <% end %>
+              <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
+                <span class="icon" aria-hidden="true"></span> Close as duplicate
               <% end %>
             </p>
           </section>

@@ -11,11 +11,19 @@
     </div>
   </header>
 
-  <% if tag_instance.body.present? %>
-    <section class="tag-body">
-      <%= simpler_format(tag_instance.body) %>
-    </section>
-  <% end %>
+  <section class="overview">
+    <% if tag_instance.body.present? %>
+      <section class="tag-body">
+        <%= simpler_format(tag_instance.body) %>
+      </section>
+    <% end %>
+
+    <%= render partial: 'shared/concerns/followable/list',
+               locals: {
+                 teams: tag_instance.teams,
+                 empty_message: "There are no teams involved with this #{tag_type.name.downcase.singularize}."
+               } %>
+  </section>
 
   <% if needs.empty? %>
     <section class="no-needs">

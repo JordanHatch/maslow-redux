@@ -4,15 +4,23 @@
   em {
     font-style: normal;
   }
+
+  overflow: auto;
+
+  h1 { float: left; max-width: 80%; }
+
+  .actions { float: right; }
 }
 
 .need-overview {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 20px 5px;
 
   .column {
     flex: 1;
+    min-width: 40rem;
   }
 }
 
@@ -22,6 +30,12 @@ section.box {
   .empty {
     padding: 15px;
     margin: 0;
+  }
+}
+
+.box-follows .teams-list {
+  ul {
+    padding-left: 15px;
   }
 }
 

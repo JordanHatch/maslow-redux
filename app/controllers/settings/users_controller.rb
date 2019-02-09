@@ -39,10 +39,10 @@ private
   end
 
   def creation_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, roles: [])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, roles: [], team_ids: [])
   end
 
   def update_params
-    params.require(:user).permit(:name, :email, roles: [])
+    params.require(:user).permit(:name, :email, roles: [], team_ids: [])
   end
 end

@@ -1,4 +1,6 @@
 class Tag < ActiveRecord::Base
+  include Concerns::Followable
+
   belongs_to :tag_type
   validates :name, :tag_type, presence: true
 

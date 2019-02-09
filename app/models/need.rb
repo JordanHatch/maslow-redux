@@ -1,5 +1,6 @@
 class Need < ActiveRecord::Base
   include ActiveModel::AttributeMethods
+  include Concerns::Followable
 
   has_many :revisions, class_name: "NeedRevision"
 
