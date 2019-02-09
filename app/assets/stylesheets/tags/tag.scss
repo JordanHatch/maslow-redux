@@ -39,11 +39,33 @@
 section.tag {
   @extend .settings;
 
-  .tag-body {
-    border-bottom: 1px solid #eee;
-    font-size: 1.7rem;
+  .overview {
+    display: flex;
+    flex-wrap: wrap;
+
+    border-bottom: 1px solid $grey-3;
     padding-bottom: 1rem;
     margin-bottom: 2rem;
+
+    .tag-body {
+      flex: 2;
+    }
+
+    .teams-list {
+      flex: 1;
+      min-width: 15rem;
+      padding-left: 2rem;
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 0 .5rem;
+      }
+    }
+  }
+
+  .tag-body {
+    font-size: 1.7rem;
   }
 
   .priority-needs-list, .other-needs-list {
@@ -63,7 +85,7 @@ section.tag {
       @include tag-list-need-row;
     }
 
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $grey-3;
     padding-bottom: 2rem;
     margin-bottom: 1rem;
   }
