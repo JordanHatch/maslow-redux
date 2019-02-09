@@ -50,50 +50,54 @@
           <% end %>
         </section>
 
-        <section class="box box-tags">
-          <h1>Collections</h1>
+        <% if presenter.show_tags? %>
+          <section class="box box-tags">
+            <h1>Collections</h1>
 
-          <% if need.taggings.any? %>
-            <ul class="tags-list">
-              <% need.joined_tag_types.each do |tag_type| %>
-                <li>
-                  <h3><%= tag_type.name %>:</h3>
-                  <ul>
-                    <% need.tags_of_type(tag_type).each do |tag| %>
-                      <% if tag_type.show_index_page? %>
-                        <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
-                      <% else %>
-                        <li><%= tag.name %></li>
+            <% if need.taggings.any? %>
+              <ul class="tags-list">
+                <% need.joined_tag_types.each do |tag_type| %>
+                  <li>
+                    <h3><%= tag_type.name %>:</h3>
+                    <ul>
+                      <% need.tags_of_type(tag_type).each do |tag| %>
+                        <% if tag_type.show_index_page? %>
+                          <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
+                        <% else %>
+                          <li><%= tag.name %></li>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </ul>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="empty">This need has not yet been tagged with anything.</p>
-          <% end %>
-        </section>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="empty">This need has not yet been tagged with anything.</p>
+            <% end %>
+          </section>
+        <% end %>
       </div>
       <div class="column">
-        <section class="box box-proposition">
-          <h1>This need is in scope because:</h1>
+        <% if presenter.show_proposition_statements? %>
+          <section class="box box-proposition">
+            <h1>This need is in scope because:</h1>
 
-          <% if need.proposition_statements.any? %>
-            <ul>
-            <% need.proposition_statements.each do |statement| %>
-              <li>
-                <h2><%= statement.name %></h2>
-                <% if statement.description %>
-                  <p><%= statement.description %></p>
-                <% end %>
-              </li>
+            <% if need.proposition_statements.any? %>
+              <ul>
+              <% need.proposition_statements.each do |statement| %>
+                <li>
+                  <h2><%= statement.name %></h2>
+                  <% if statement.description %>
+                    <p><%= statement.description %></p>
+                  <% end %>
+                </li>
+              <% end %>
+              </ul>
+            <% else %>
+              <p class="empty">This need doesn't meet any criteria in the proposition.</p>
             <% end %>
-            </ul>
-          <% else %>
-            <p class="empty">This need doesn't meet any criteria in the proposition.</p>
-          <% end %>
-        </section>
+          </section>
+        <% end %>
 
         <section class="box box-responses">
           <h1>Response</h1>
@@ -108,7 +112,7 @@
           </p>
         </section>
 
-        <% unless need.closed? %>
+        <% if presenter.show_actions? %>
           <section class="box box-actions">
             <h1>Actions</h1>
             <p>

@@ -5,7 +5,7 @@
     <%= f.input :benefit, :label => "So that…", :hint => "Why does the user want to do this?", :required => false, :input_html => { :class => 'input-md-8' } %>
   <% end %>
 
-  <% if PropositionStatement.any? %>
+  <% if presenter.show_proposition_statements? %>
     <%= f.inputs "Which criteria of the proposition does this need meet?" do %>
       <%= f.input :proposition_statement_ids, as: :check_boxes,
                                               label: false,
@@ -34,7 +34,7 @@
                            } %>
   <% end %>
 
-  <% if TagType.any? %>
+  <% if presenter.show_tags? %>
     <%= f.inputs "Tag this need to collections", class: 'tags' do %>
       <%= render partial: "tag_type", collection: TagType.all, locals: { f: f } %>
     <% end %>

@@ -134,6 +134,11 @@ private
   end
   helper_method :need
 
+  def presenter
+    @presenter ||= NeedPresenter.new(need)
+  end
+  helper_method :presenter
+
   def redirect_url
     params["add_new"] ? new_need_path : need_url(need.need_id)
   end
