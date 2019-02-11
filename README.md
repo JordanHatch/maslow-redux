@@ -17,6 +17,8 @@ see the GOV.UK user needs in action on the 'info' pages - eg.
 
 ## Getting started
 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
     # Installs gem dependencies, creates database tables, and creates the first
     # user account
     bin/setup

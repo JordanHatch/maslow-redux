@@ -1,0 +1,10 @@
+{
+  "name": "Maslow Redux",
+  "description": "Document, discuss and track the performance of your users' needs",
+  "repository": "https://github.com/jordanhatch/maslow-redux",
+  "addons": [
+    {
+      "plan": "sendgrid:starter"
+    }
+  ]
+}
