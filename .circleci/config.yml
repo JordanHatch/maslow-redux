@@ -61,4 +61,7 @@ jobs:
 
       # Save test results for timing analysis
       - store_test_results:
-          path: test_results
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results

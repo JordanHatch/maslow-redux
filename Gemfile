@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 3.6.0'
+  gem 'simplecov'
   gem 'timecop'
   gem 'webmock'
 end
