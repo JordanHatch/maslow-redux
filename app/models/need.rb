@@ -32,9 +32,6 @@ class Need < ActiveRecord::Base
   scope :excluding_closed_needs, ->{ where(canonical_need_id: nil) }
 
   validates :role, :goal, :benefit, presence: true
-
-  validates :yearly_user_contacts, :yearly_site_views, :yearly_need_views, :yearly_searches,
-            numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 0 }
   validates :canonical_need, presence: true, if: -> { canonical_need_id.present? }
 
   def need_id
