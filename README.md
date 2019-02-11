@@ -1,6 +1,6 @@
 # Maslow Redux
 
-[![Build Status](https://circleci.com/gh/JordanHatch/maslow-redux.svg?style=svg)](https://circleci.com/gh/JordanHatch/maslow-redux) [![Maintainability](https://api.codeclimate.com/v1/badges/a001835d1a0055c11bf9/maintainability)](https://codeclimate.com/github/JordanHatch/maslow-redux/maintainability)
+[![Build Status](https://circleci.com/gh/JordanHatch/maslow-redux.svg?style=svg)](https://circleci.com/gh/JordanHatch/maslow-redux) [![Maintainability](https://api.codeclimate.com/v1/badges/a001835d1a0055c11bf9/maintainability)](https://codeclimate.com/github/JordanHatch/maslow-redux/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a001835d1a0055c11bf9/test_coverage)](https://codeclimate.com/github/JordanHatch/maslow-redux/test_coverage)
 
 This is a fork of [Maslow](https://github.com/alphagov/maslow), an app built by
 the Government Digital Service to track the user needs behind GOV.UK.
