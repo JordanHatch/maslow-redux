@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery unless: -> { request.format.json? && bot_request? }
   force_ssl if: :ssl_enabled?
 
   include ApplicationHelper
@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
 private
-  def verify_authenticity_token
-    raise ActionController::InvalidAuthenticityToken unless verified_request?
+  def bot_request?
+    current_user.present? && current_user.bot?
   end
 
   def ssl_enabled?

@@ -1,5 +1,6 @@
 json.id need_response_url(need_response.need, need_response, format: :json)
 json.name need_response.name
+json.need_response_id need_response.id
 json.response_type do
   json.type need_response.response_type
   json.label need_response.response_type_text
