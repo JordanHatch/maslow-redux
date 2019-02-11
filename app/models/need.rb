@@ -80,13 +80,6 @@ class Need < ActiveRecord::Base
     need_id.to_s
   end
 
-  def changesets
-    (revisions + [nil]).each_cons(2).map {|revision, previous|
-      notes = Note.where(revision: revision.id)
-      Changeset.new(revision, previous, notes)
-    }
-  end
-
   def add_more_criteria
     met_when << ""
   end
