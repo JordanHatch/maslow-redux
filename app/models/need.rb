@@ -2,8 +2,6 @@ class Need < ActiveRecord::Base
   include ActiveModel::AttributeMethods
   include Concerns::Followable
 
-  has_many :revisions, class_name: "NeedRevision"
-
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :tag_types, through: :tags
