@@ -1,8 +1,7 @@
 class NeedsController < ApplicationController
   include Concerns::Filterable
 
-  class Http404 < StandardError
-  end
+  class Http404 < StandardError; end
 
   rescue_from Http404 do
     render "public/404", :status => 404
@@ -19,8 +18,8 @@ class NeedsController < ApplicationController
       format.json
       format.csv do
         send_data NeedsCsvPresenter.new(needs_url, needs).to_csv,
-                  filename: "#{params["organisation_id"]}.csv",
-                  type: "text/csv; charset=utf-8"
+                  filename: 'needs.csv',
+                  type: 'text/csv; charset=utf-8'
       end
     end
   end
@@ -39,9 +38,9 @@ class NeedsController < ApplicationController
 
   def edit
     authorize! :update, Need
-    @need = load_need
-    if @need.duplicate?
-      redirect_to need_url(@need.need_id),
+
+    if need.duplicate?
+      redirect_to need_url(need.need_id),
                   alert: "Closed needs cannot be edited",
                   status: 303
       return
@@ -50,7 +49,6 @@ class NeedsController < ApplicationController
 
   def new
     authorize! :create, Need
-    @need = Need.new({})
   end
 
   def create
@@ -127,7 +125,7 @@ private
 
   def need
     if params.key?(:id)
-      @need ||= Need.find_by_need_id(params[:id])
+      @need ||= Need.find_by_id(params[:id])
     else
       @need ||= Need.new
     end
@@ -151,14 +149,6 @@ private
         end
       end
     }
-  end
-
-  def load_need
-    begin
-      Need.find_by_need_id(params[:id])
-    rescue ArgumentError, TypeError # shouldn't happen; route is constrained
-      raise Http404
-    end
   end
 
   def criteria_params_present?

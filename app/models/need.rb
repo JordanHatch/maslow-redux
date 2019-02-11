@@ -42,10 +42,6 @@ class Need < ActiveRecord::Base
     Need.where(id: ids)
   end
 
-  def self.find_by_need_id(id)
-    self.find(id)
-  end
-
   def save_as(user)
     action = persisted? ? 'update' : 'create'
 
