@@ -7,7 +7,7 @@
       "plan": "sendgrid:starter"
     },
     {
-      "plan": "heroku-postgresql",
+      "plan": "heroku-postgresql"
     }
   ],
   "scripts": {
