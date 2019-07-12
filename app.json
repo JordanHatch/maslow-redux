@@ -15,8 +15,18 @@
       "description": "When enabled, redirects HTTP connections to HTTPS",
       "value": "1"
     },
+    "INSTANCE_NAME": {
+      "description": "The name of your Maslow instance (eg. 'GOV.UK Maslow')",
+      "optional": true
+    },
+    "MASLOW_HOST": {
+      "description": "The URL to your Maslow instance, used to build links in emails (eg. 'http://example.org/')"
+    },
+    "EMAIL_FROM_ADDRESS": {
+      "description": "The email address that auto-generated emails (eg. password resets) will appear to be sent from (eg. 'noreply@example.org')"
+    },
     "SECRET_KEY_BASE": {
       "generator": "secret"
-    },
+    }
   }
 }
