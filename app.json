@@ -10,6 +10,9 @@
       "plan": "heroku-postgresql",
     }
   ],
+  "scripts": {
+    "postdeploy": "bin/rake db:schema:load"
+  },
   "env": {
     "FORCE_SSL": {
       "description": "When enabled, redirects HTTP connections to HTTPS",
