@@ -5,6 +5,18 @@
   "addons": [
     {
       "plan": "sendgrid:starter"
+    },
+    {
+      "plan": "heroku-postgresql",
     }
-  ]
+  ],
+  "env": {
+    "FORCE_SSL": {
+      "description": "When enabled, redirects HTTP connections to HTTPS",
+      "value": "1"
+    },
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+  }
 }
