@@ -1,5 +1,10 @@
 <section class="setup">
-  <h1><%= t('setup.title') %></h1>
+  <div class="introduction">
+    <span class="glyphicon glyphicon-cog"></span>
+    <h1><%= t('setup.title') %></h1>
+
+    <%= simple_format t('setup.introduction') %>
+  </div>
 
   <%= semantic_form_for(user, url: setup_path, as: :setup) do |f| %>
     <%= f.input :name %>

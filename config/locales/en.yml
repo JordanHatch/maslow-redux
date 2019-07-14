@@ -75,5 +75,9 @@ en:
       short_time: "%-I:%M%P"
   setup:
     title: Get started with Maslow
+    introduction: |
+      To get started with Maslow, create a user account.
+
+      This will be the first account on this Maslow site. We will give it full access to manage settings and user accounts.
     notices:
       success: 'Your account has been created.'
