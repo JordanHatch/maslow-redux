@@ -1,2 +1,2 @@
 web: bin/puma -p $PORT
-release: bin/rake db:migrate
+release: bin/heroku_release
