@@ -12,19 +12,28 @@ see the GOV.UK user needs in action on the 'info' pages - eg.
 
 ## Dependencies
 
-- Ruby (2.5.3)
+- Ruby (2.6.3)
 - A running PostgreSQL instance
 
 ## Getting started
 
+### On Heroku
+
+You can deploy your own instance of Maslow to Heroku, configured ready for use:
+
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Visiting your new Maslow instance in a browser will prompt you to create the
+first user account.
+
+### In development
 
     # Installs gem dependencies, creates database tables, and creates the first
     # user account
     bin/setup
 
     # Starts the Maslow server
-    foreman start
+    foreman start -c 'web=1'
 
 ## Configuration
 
