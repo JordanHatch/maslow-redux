@@ -2,6 +2,7 @@ class SetupController < ApplicationController
   class SetupNotEnabled < StandardError; end
 
   before_action :enforce_setup_enabled
+  before_action :filter_devise_flash_messages
 
   skip_before_action :redirect_to_setup
   skip_before_action :authenticate_user!
@@ -31,6 +32,14 @@ class SetupController < ApplicationController
 private
   def enforce_setup_enabled
     raise SetupNotEnabled unless setup_enabled?
+  end
+
+  # This filters out the standard unauthenticated flash message set by Devise
+  # when the user is redirected from the root path. It doesn't make sense to
+  # show it when the app is being set up for the first time.
+  #
+  def filter_devise_flash_messages
+    flash.delete(:alert) if flash.alert == t('devise.failure.unauthenticated')
   end
 
   def user
