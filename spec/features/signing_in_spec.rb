@@ -5,6 +5,10 @@ RSpec.describe 'signing in', type: :feature do
   let(:user) { create(:user) }
   let(:bot_user) { create(:bot_user) }
 
+  # Create a user to ensure we don't get bounced to the setup screen
+  #
+  before(:each) { create(:user) }
+
   describe 'for a signed out user', :skip_login do
     it 'can sign in as a regular user' do
       visit root_path

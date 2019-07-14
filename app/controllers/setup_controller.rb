@@ -3,7 +3,9 @@ class SetupController < ApplicationController
 
   before_action :enforce_setup_enabled
 
+  skip_before_action :redirect_to_setup
   skip_before_action :authenticate_user!
+
   skip_authorization_check
 
   rescue_from SetupNotEnabled, with: ->{ redirect_to root_path }
