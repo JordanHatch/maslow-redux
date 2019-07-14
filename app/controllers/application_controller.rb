@@ -22,6 +22,10 @@ private
     current_user.present? && current_user.bot?
   end
 
+  def setup_enabled?
+    ! User.any?
+  end
+
   def ssl_enabled?
     ENV['FORCE_SSL'].present?
   end
