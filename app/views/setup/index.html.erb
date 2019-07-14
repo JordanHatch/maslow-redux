@@ -1,1 +1,12 @@
-<h1>Set up Maslow</h1>
+<section class="setup">
+  <h1><%= t('setup.title') %></h1>
+
+  <%= semantic_form_for(user, url: setup_path, as: :setup) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+
+    <%= f.action :submit %>
+  <% end %>
+</section>
