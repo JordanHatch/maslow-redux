@@ -63,5 +63,8 @@ Maslow::Application.routes.draw do
     root to: 'root#index'
   end
 
+  get '/setup', to: 'setup#index', as: :setup
+  post '/setup', to: 'setup#create'
+
   root :to => redirect('/needs')
 end

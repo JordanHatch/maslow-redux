@@ -1,0 +1,17 @@
+<section class="setup">
+  <div class="introduction">
+    <span class="glyphicon glyphicon-cog"></span>
+    <h1><%= t('setup.title') %></h1>
+
+    <%= simple_format t('setup.introduction') %>
+  </div>
+
+  <%= semantic_form_for(user, url: setup_path, as: :setup) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+
+    <%= f.action :submit %>
+  <% end %>
+</section>

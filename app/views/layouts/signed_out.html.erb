@@ -16,12 +16,14 @@
     </header>
 
     <%= render partial: 'shared/flash' %>
-    
+
     <%= content_for?(:content) ? yield(:content) : yield %>
 
-    <footer class="signed-out-actions">
-      <%= render "devise/shared/links" %>
-    </footer>
+    <% if self.respond_to?(:devise_mapping) %>
+      <footer class="signed-out-actions">
+        <%= render "devise/shared/links" %>
+      </footer>
+    <% end %>
   </div>
 </body>
 </html>

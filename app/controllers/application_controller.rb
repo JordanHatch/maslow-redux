@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   check_authorization unless: :devise_controller?
 
+  before_action :redirect_to_setup
+
   rescue_from ActionController::InvalidAuthenticityToken do
     render text: "Invalid authenticity token", status: 403
   end
@@ -20,6 +22,14 @@ class ApplicationController < ActionController::Base
 private
   def bot_request?
     current_user.present? && current_user.bot?
+  end
+
+  def setup_enabled?
+    ! User.any?
+  end
+
+  def redirect_to_setup
+    redirect_to setup_path if setup_enabled?
   end
 
   def ssl_enabled?

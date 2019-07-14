@@ -45,6 +45,8 @@ en:
       team:
         create: 'Create team'
         update: 'Save team'
+      setup:
+        create: 'Start using Maslow'
     labels:
       need_response:
         response_type: What kind of thing is it?
@@ -52,6 +54,11 @@ en:
         url: What's the URL?
       tag_type:
         show_index_page: Create pages for tags of this type?
+      setup:
+        name: Your name
+        email: Your email address
+        password: Your account password
+        password_confirmation: Confirm your password
   performance:
     graphs:
       time_periods:
@@ -66,3 +73,11 @@ en:
     formats:
       short_date: "%-e %B %Y"
       short_time: "%-I:%M%P"
+  setup:
+    title: Get started with Maslow
+    introduction: |
+      To get started with Maslow, create a user account.
+
+      This will be the first account on this Maslow site. We will give it full access to manage settings and user accounts.
+    notices:
+      success: 'Your account has been created.'
