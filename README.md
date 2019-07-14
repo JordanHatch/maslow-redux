@@ -17,6 +17,8 @@ see the GOV.UK user needs in action on the 'info' pages - eg.
 
 ## Getting started
 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
     # Installs gem dependencies, creates database tables, and creates the first
     # user account
     bin/setup
@@ -39,6 +41,12 @@ see the GOV.UK user needs in action on the 'info' pages - eg.
 - `SMTP_USERNAME`: the username used to connect to the SMTP server
 - `SMTP_PASSWORD`: the password used to connect to the SMTP server
 - `SMTP_DOMAIN`: the HELO domain used when sending emails (optional)
+
+If you are using Sendgrid and the `SENDGRID_USERNAME` variable is present,
+Maslow will use Sendgrid for emails instead.
+
+- `SENDGRID_USERNAME`: the username for your Sendgrid account
+- `SENDGRID_PASSWORD`: the password for your Sendgrid account
 
 ### Basic authentication
 
