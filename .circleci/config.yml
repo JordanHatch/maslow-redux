@@ -5,7 +5,7 @@ jobs:
     environment:
       CC_TEST_REPORTER_ID: 9cf59949508b77d574703e9fb321607ed17938e68d10b3e780c2a2772975ca64
     docker:
-      - image: circleci/ruby:2.5.3-node
+      - image: circleci/ruby:2.6.3-node
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
