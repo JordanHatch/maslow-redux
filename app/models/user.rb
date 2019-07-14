@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   ROLES = [
     "admin",
     "commenter",
+    "editor",
     "bot",
   ]
 
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
 
   def admin?
     roles.include?('admin')
+  end
+
+  def editor?
+    roles.include?('editor')
   end
 
   def bot?
