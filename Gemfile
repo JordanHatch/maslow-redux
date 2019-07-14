@@ -1,4 +1,4 @@
-ruby '2.5.3'
+ruby '2.6.3'
 source 'https://rubygems.org'
 
 gem 'airbrake', '~> 6.2.1'
