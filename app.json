@@ -22,7 +22,7 @@
       "optional": true
     },
     "MASLOW_HOST": {
-      "description": "The URL to your Maslow instance, used to build links in emails (eg. 'http://example.org/')"
+      "description": "The URL to your Maslow instance, used to build links in emails (eg. 'https://example.org/')"
     },
     "EMAIL_FROM_ADDRESS": {
       "description": "The email address that auto-generated emails (eg. password resets) will appear to be sent from (eg. 'noreply@example.org')"
