@@ -72,7 +72,7 @@ RSpec.describe 'managing users', type: :feature do
 
       click_on_edit_for_user_in_list(user.name)
 
-      expect(page).to have_select('Roles', options: ['admin', 'commenter'],
+      expect(page).to have_select('Roles', options: ['admin', 'editor', 'commenter'],
                                            selected: ['commenter'])
     end
   end

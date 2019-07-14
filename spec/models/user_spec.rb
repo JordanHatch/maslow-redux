@@ -100,6 +100,20 @@ RSpec.describe User, :type => :model do
     end
   end
 
+  describe '#editor?' do
+    it 'returns true when the user has the editor role' do
+      user = User.new(valid_attributes.merge(roles: ['editor']))
+
+      expect(user).to be_editor
+    end
+
+    it 'returns false when the user does not have the editor role' do
+      user = User.new(valid_attributes.merge(roles: ['admin']))
+
+      expect(user).to_not be_editor
+    end
+  end
+
   describe '#bot?' do
     it 'returns true when the user has the bot role' do
       user = User.new(valid_attributes.merge(roles: ['bot']))
