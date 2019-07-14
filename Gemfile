@@ -1,4 +1,4 @@
-ruby '2.5.3'
+ruby '2.6.3'
 source 'https://rubygems.org'
 
 gem 'airbrake', '~> 6.2.1'
@@ -19,7 +19,6 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari', '~> 1.0.1'
-gem 'lrucache', '0.1.4'
 gem 'oauth2'
 gem 'pg'
 gem 'puma', '~> 3.11.4'
