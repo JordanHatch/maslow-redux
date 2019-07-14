@@ -7,10 +7,16 @@ class Ability
     can :index, ActivityItem
     can :read, NeedPerformancePoint
     can :read, TagType
-    can [:read, :update], Tag
+    can :read, Tag
 
-    if user.commenter? || user.admin?
+    if user.commenter? || user.editor? || user.admin?
       can :create, :note
+    end
+
+    if user.editor? || user.admin?
+      can [ :create, :update, :destroy ], NeedResponse
+      can [ :create, :update, :close, :reopen ], Need
+      can [ :read, :update ], Tag
     end
 
     if user.bot? || user.admin?
@@ -18,8 +24,6 @@ class Ability
     end
 
     if user.admin?
-      can [ :create, :update, :destroy ], NeedResponse
-      can [ :create, :update, :close, :reopen ], Need
       can :manage, :settings
     end
   end
