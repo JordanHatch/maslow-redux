@@ -14,13 +14,10 @@
 <% end %>
 
 <% content_for :navigation do %>
-  <h3>Project</h3>
+  <h3>Needs</h3>
   <ul class="navigation-list">
-    <%= nav_link_to 'API clients', settings_bot_users_path, icon: 'console', match_prefix: true %>
     <%= nav_link_to 'Evidence types', settings_evidence_types_path, icon: 'folder-open', match_prefix: true %>
     <%= nav_link_to 'Proposition statements', settings_proposition_statements_path, icon: 'list', match_prefix: true %>
-    <%= nav_link_to 'Teams', settings_teams_path, icon: 'th-large', match_prefix: true %>
-    <%= nav_link_to 'User accounts', settings_users_path, icon: 'user', match_prefix: true %>
   </ul>
 
   <h3>Collections</h3>
@@ -29,6 +26,13 @@
       <%= nav_link_to tag_type.name, settings_tag_type_path(tag_type), icon: 'tags', match_prefix: true %>
     <% end %>
     <%= nav_link_to 'Add new tag type', new_settings_tag_type_path, icon: 'plus' %>
+  </ul>
+
+  <h3>Users</h3>
+  <ul class="navigation-list">
+    <%= nav_link_to 'API clients', settings_bot_users_path, icon: 'console', match_prefix: true %>
+    <%= nav_link_to 'Teams', settings_teams_path, icon: 'th-large', match_prefix: true %>
+    <%= nav_link_to 'User accounts', settings_users_path, icon: 'user', match_prefix: true %>
   </ul>
 <% end %>
 
