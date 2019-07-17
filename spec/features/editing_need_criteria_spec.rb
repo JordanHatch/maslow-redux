@@ -32,6 +32,9 @@ RSpec.describe 'editing need criteria', type: :feature do
 
     criteria = page.all('.need-criteria li').map(&:text)
     expect(criteria.first).to eq(new_value)
+
+    click_on 'Activity'
+    expect(page).to have_content('Updated Met when')
   end
 
   it 'can add a new criteria' do

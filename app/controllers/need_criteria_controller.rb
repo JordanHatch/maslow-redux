@@ -16,9 +16,8 @@ class NeedCriteriaController < ApplicationController
     @form = NeedCriteriaForm.from_params(params, id: need.id)
 
     if @form.valid?
-      need.update_attributes(
-        met_when: @form.to_criteria
-      )
+      need.met_when = @form.to_criteria
+      need.save_as(current_user)
 
       if params[:commit] == I18n.t('formtastic.actions.need_criteria.save_add_more')
         @form.add_extra_criteria!
