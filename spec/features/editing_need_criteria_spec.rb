@@ -10,11 +10,14 @@ RSpec.describe 'editing need criteria', type: :feature do
   }
   let(:need) { create(:need, met_when: expected_criteria) }
 
+  def expect_need_criteria_present(page, expected)
+    criteria = page.all('.need-criteria li').map(&:text)
+    expect(criteria).to contain_exactly(*expected)
+  end
+
   it 'can view criteria' do
     visit need_criteria_path(need)
-    criteria = page.all('.need-criteria li').map(&:text)
-
-    expect(criteria).to contain_exactly(*expected_criteria)
+    expect_need_criteria_present(page, expected_criteria)
   end
 
   it 'can update criteria' do
@@ -30,8 +33,8 @@ RSpec.describe 'editing need criteria', type: :feature do
     fill_in 'Criteria 1', with: new_value
     click_on 'Save criteria'
 
-    criteria = page.all('.need-criteria li').map(&:text)
-    expect(criteria.first).to eq(new_value)
+    expected = [new_value, expected_criteria.last]
+    expect_need_criteria_present(page, expected)
 
     click_on 'Activity'
     expect(page).to have_content('Updated Met when')
@@ -57,8 +60,7 @@ RSpec.describe 'editing need criteria', type: :feature do
     end
     click_on 'Save criteria'
 
-    criteria = page.all('.need-criteria li').map(&:text)
-    expect(criteria).to contain_exactly(expected_criteria.last)
+    expect_need_criteria_present(page, expected_criteria.last)
   end
 
 end
