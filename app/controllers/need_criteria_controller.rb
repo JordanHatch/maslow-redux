@@ -4,6 +4,28 @@ class NeedCriteriaController < ApplicationController
     authorize! :read, Need
   end
 
+  def edit
+    authorize! :update, Need
+
+    @form = NeedCriteriaForm.from_model(need)
+  end
+
+  def update
+    authorize! :update, Need
+
+    @form = NeedCriteriaForm.from_params(params, id: need.id)
+
+    if @form.valid?
+      need.update_attributes(
+        met_when: @form.to_criteria
+      )
+
+      redirect_to need_criteria_path(need)
+    else
+      render action: :edit
+    end
+  end
+
 private
   def need
     @need ||= Need.find(params[:need_id])

@@ -9,6 +9,10 @@
       <h1>'Met when' criteria for this need</h1>
     </header>
 
+    <% if current_user.can?(:update, Need) %>
+      <p><%= link_to 'Edit the criteria', edit_need_criteria_path(need), class: 'btn btn-primary' %></p>
+    <% end %>
+
     <% if need.met_when.any? %>
       <ul>
         <h2>This need is likely to be met when the user...</h2>

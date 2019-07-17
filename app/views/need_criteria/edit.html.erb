@@ -1,0 +1,21 @@
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
+
+<article class="need">
+  <section class="need-main need-criteria">
+    <header>
+      <h1>'Met when' criteria for this need</h1>
+    </header>
+
+    <%= semantic_form_for @form, url: need_criteria_path(need) do |f| %>
+
+      <%= f.fields_for :criteria, f.object.criteria do |cf| %>
+        <%= cf.input :value, as: :string, label: "Criteria #{cf.index+1}" %>
+      <% end %>
+
+      <%= f.action :submit, button_html: { class: 'btn btn-primary', value: 'Save criteria' } %>
+    <% end %>
+  </section>
+</article>
