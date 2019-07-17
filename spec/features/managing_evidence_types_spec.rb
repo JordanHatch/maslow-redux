@@ -29,7 +29,7 @@ RSpec.describe 'managing evidence types', type: :feature do
     end
   end
 
-  it 'can update a proposition statement' do
+  it 'can update an evidence type' do
     evidence_type = create(:evidence_type)
 
     visit settings_root_path
