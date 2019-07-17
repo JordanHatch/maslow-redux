@@ -9,8 +9,11 @@
       <h1>'Met when' criteria for this need</h1>
     </header>
 
-    <%= semantic_form_for @form, url: need_criteria_path(need), as: :need_criteria do |f| %>
+    <div class="overview">
+      <%= render partial: 'edit_overview' %>
+    </div>
 
+    <%= semantic_form_for @form, url: need_criteria_path(need), as: :need_criteria do |f| %>
       <ul>
       <%= f.fields_for :criteria, f.object.criteria do |cf| %>
         <li>

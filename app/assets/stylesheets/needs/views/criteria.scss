@@ -1,12 +1,79 @@
 section.need-main.need-criteria {
+  overflow: auto;
+
   header {
     @include header-panel;
     margin-bottom: 25px;
   }
 
-  p, form {
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-bottom: 15px;
+  .overview, form {
+    float: left;
+    padding: 0 2rem;
+  }
+
+  .overview {
+    width: 40%;
+    padding-right: 4rem;
+    border-right: 1px solid $grey-3;
+
+    h2 {
+      margin: 0 0 2rem;
+    }
+  }
+
+  .feature-icon {
+    display: block;
+    font-size: 10rem;
+    padding: 0 0 3rem;
+    color: #333;
+  }
+
+  .example {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    max-width: 35rem;
+    margin-top: 3rem;
+
+    h2 {
+      font-size: 1.2rem;
+      background: $primary-color;
+      color: $grey-4;
+      padding: .4rem;
+      display: inline-block;
+      margin: 0 0 1rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    .source {
+      font-size: 1.1rem;
+      margin: .5rem 0 0;
+      text-align: right;
+    }
+
+    ul {
+      padding-left: 1.7rem;
+    }
+  }
+
+  form {
+    width: 60%;
+
+    ul {
+      padding-left: 0;
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 3rem;
+    }
   }
 }
