@@ -1,6 +1,11 @@
 class NeedCriteriaForm < Rectify::Form
   class CriterionForm < Rectify::Form
     attribute :value, String
+    attribute :delete, Boolean
+
+    def deleted?
+      self.delete == true
+    end
   end
 
   mimic :need_criteria
@@ -15,7 +20,7 @@ class NeedCriteriaForm < Rectify::Form
   def criteria_attributes=(attributes)
     self.criteria = attributes.map {|_, item|
       CriterionForm.from_params(item)
-    }
+    }.reject(&:deleted?)
   end
 
   def add_extra_criteria!

@@ -11,9 +11,14 @@
 
     <%= semantic_form_for @form, url: need_criteria_path(need), as: :need_criteria do |f| %>
 
+      <ul>
       <%= f.fields_for :criteria, f.object.criteria do |cf| %>
-        <%= cf.input :value, as: :string, label: "Criteria #{cf.index+1}" %>
+        <li>
+          <%= cf.input :value, as: :string, label: "Criteria #{cf.index+1}" %>
+          <%= cf.input :delete, as: :boolean %>
+        </li>
       <% end %>
+      </ul>
 
       <%= f.action :submit, button_html: { class: 'btn btn-primary' } %>
       <%= f.action :submit, button_html: { class: 'btn btn-primary', value: t('formtastic.actions.need_criteria.save_add_more') } %>

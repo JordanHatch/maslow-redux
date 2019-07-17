@@ -47,4 +47,18 @@ RSpec.describe 'editing need criteria', type: :feature do
     expect(inputs.size).to eq(expected_criteria.size + 1)
   end
 
+  it 'can delete a criteria' do
+    visit need_criteria_path(need)
+    click_on 'Edit'
+
+    input_container = page.all('form li').first
+    within(input_container) do
+      check 'Delete'
+    end
+    click_on 'Save criteria'
+
+    criteria = page.all('.need-criteria li').map(&:text)
+    expect(criteria).to contain_exactly(expected_criteria.last)
+  end
+
 end
