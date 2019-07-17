@@ -24,7 +24,7 @@ Maslow::Application.routes.draw do
 
     resource :performance, controller: 'need_performance', only: :show
     resource :evidence, controller: 'need_evidence', only: [:show, :edit, :update]
-    resource :criteria, controller: 'need_criteria', only: [:show, :edit, :update]
+    resource :criteria, controller: 'need_criteria', only: [:edit, :update]
 
     resources :responses, controller: 'need_responses' do
       member do

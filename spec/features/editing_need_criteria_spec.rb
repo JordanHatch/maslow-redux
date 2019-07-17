@@ -15,14 +15,20 @@ RSpec.describe 'editing need criteria', type: :feature do
     expect(criteria).to contain_exactly(*expected)
   end
 
+  def click_edit_button(page)
+    within('.box-met-when') do
+      click_on 'Edit'
+    end
+  end
+
   it 'can view criteria' do
-    visit need_criteria_path(need)
+    visit need_path(need)
     expect_need_criteria_present(page, expected_criteria)
   end
 
   it 'can update criteria' do
-    visit need_criteria_path(need)
-    click_on 'Edit'
+    visit need_path(need)
+    click_edit_button(page)
 
     inputs = page.all('input[type=text]')
 
@@ -41,8 +47,9 @@ RSpec.describe 'editing need criteria', type: :feature do
   end
 
   it 'can add a new criteria' do
-    visit need_criteria_path(need)
-    click_on 'Edit'
+    visit need_path(need)
+    click_edit_button(page)
+
     click_on 'Save and add another criteria'
 
     inputs = page.all('input[type=text]')
@@ -51,8 +58,8 @@ RSpec.describe 'editing need criteria', type: :feature do
   end
 
   it 'can delete a criteria' do
-    visit need_criteria_path(need)
-    click_on 'Edit'
+    visit need_path(need)
+    click_edit_button(page)
 
     input_container = page.all('form li').first
     within(input_container) do

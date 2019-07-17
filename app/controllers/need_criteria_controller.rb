@@ -1,9 +1,5 @@
 class NeedCriteriaController < ApplicationController
 
-  def show
-    authorize! :read, Need
-  end
-
   def edit
     authorize! :update, Need
 
@@ -23,7 +19,7 @@ class NeedCriteriaController < ApplicationController
         @form.add_extra_criteria!
         render action: :edit
       else
-        redirect_to need_criteria_path(need)
+        redirect_to need_path(need)
       end
     else
       render action: :edit
