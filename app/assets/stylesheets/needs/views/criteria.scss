@@ -1,0 +1,12 @@
+section.need-main.need-criteria {
+  header {
+    @include header-panel;
+    margin-bottom: 25px;
+  }
+
+  p, form {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 15px;
+  }
+}
