@@ -28,11 +28,20 @@ RSpec.describe 'editing need criteria', type: :feature do
     new_value = 'cannot do a thing'
 
     fill_in 'Criteria 1', with: new_value
-    click_on 'Save'
+    click_on 'Save criteria'
 
     criteria = page.all('.need-criteria li').map(&:text)
-
     expect(criteria.first).to eq(new_value)
+  end
+
+  it 'can add a new criteria' do
+    visit need_criteria_path(need)
+    click_on 'Edit'
+    click_on 'Save and add another criteria'
+
+    inputs = page.all('input[type=text]')
+
+    expect(inputs.size).to eq(expected_criteria.size + 1)
   end
 
 end

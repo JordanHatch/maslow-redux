@@ -47,6 +47,9 @@ en:
         update: 'Save team'
       setup:
         create: 'Start using Maslow'
+      need_criteria:
+        update: 'Save criteria'
+        save_add_more: 'Save and add another criteria'
     labels:
       need_response:
         response_type: What kind of thing is it?

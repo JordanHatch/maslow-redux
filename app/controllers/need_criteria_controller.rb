@@ -20,7 +20,12 @@ class NeedCriteriaController < ApplicationController
         met_when: @form.to_criteria
       )
 
-      redirect_to need_criteria_path(need)
+      if params[:commit] == I18n.t('formtastic.actions.need_criteria.save_add_more')
+        @form.add_extra_criteria!
+        render action: :edit
+      else
+        redirect_to need_criteria_path(need)
+      end
     else
       render action: :edit
     end

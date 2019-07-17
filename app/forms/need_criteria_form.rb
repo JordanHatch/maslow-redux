@@ -1,9 +1,9 @@
 class NeedCriteriaForm < Rectify::Form
   class CriterionForm < Rectify::Form
-    attribute :value
+    attribute :value, String
   end
 
-  mimic :need
+  mimic :need_criteria
   attribute :criteria, Array[CriterionForm]
 
   def map_model(model)
@@ -16,6 +16,10 @@ class NeedCriteriaForm < Rectify::Form
     self.criteria = attributes.map {|_, item|
       CriterionForm.from_params(item)
     }
+  end
+
+  def add_extra_criteria!
+    self.criteria << CriterionForm.new
   end
 
   def to_criteria
