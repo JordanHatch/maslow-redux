@@ -22,24 +22,12 @@ RSpec.describe 'creating needs', type: :feature do
       check proposition_statements.last.name
     end
 
-    fill_in 'criteria-0', with: 'the assertions are met'
-    click_on 'Enter another criteria'
-    fill_in 'criteria-1', with: 'the test passes'
-    click_on 'Enter another criteria'
-    fill_in 'criteria-2', with: 'the build succeeds'
-
     first(:button, "Save").click
 
     within '.the-need' do
       expect(page).to have_content('As a Capybara')
       expect(page).to have_content('I need to create a user need')
       expect(page).to have_content('So that I can check that this works')
-    end
-
-    within '.box-met-when' do
-      expect(page).to have_content('the assertions are met')
-      expect(page).to have_content('the test passes')
-      expect(page).to have_content('the build succeeds')
     end
 
     within '.box-proposition' do

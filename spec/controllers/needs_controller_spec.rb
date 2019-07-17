@@ -33,46 +33,6 @@ RSpec.describe NeedsController, type: :controller do
 
       expect(controller).to render_template(:new)
     end
-
-    describe 'when criteria_action is present' do
-      it 'adds more criteria without saving the need' do
-        post :create, params: {
-                        criteria_action: '1',
-                        need: need_attributes.merge(
-                          met_when: ['the need is met']
-                        )
-                      }
-
-        expect(controller.send(:need).met_when).to eq([
-          'the need is met',
-          '',
-        ])
-
-        expect(controller.send(:need)).to_not be_persisted
-        expect(controller).to render_template(:new)
-      end
-
-      it 'removes a particular criteria without saving the need' do
-        post :create, params: {
-                        delete_criteria: '1',
-                        need: need_attributes.merge(
-                          met_when: [
-                            'the need is met',
-                            'another criteria is met',
-                            'a third criteria is met',
-                          ]
-                        )
-                      }
-
-        expect(controller.send(:need).met_when).to eq([
-          'the need is met',
-          'a third criteria is met',
-        ])
-
-        expect(controller.send(:need)).to_not be_persisted
-        expect(controller).to render_template(:new)
-      end
-    end
   end
 
   describe '#update' do
@@ -99,46 +59,6 @@ RSpec.describe NeedsController, type: :controller do
       patch :update, params: { id: need, need: updated_attributes }
 
       expect(controller).to render_template(:edit)
-    end
-
-    describe 'when criteria_action is present' do
-      it 'adds more criteria without saving the need' do
-        expect(controller.send(:need)).to_not receive(:save_as)
-
-        patch :update, params: {
-                         id: need, criteria_action: '1',
-                         need: updated_attributes.merge(
-                           met_when: ['the need is met']
-                         )
-                       }
-
-        expect(controller.send(:need).met_when).to eq([
-          'the need is met', '',
-        ])
-        expect(controller).to render_template(:edit)
-      end
-
-      it 'removes a particular criteria without saving the need' do
-        expect(controller.send(:need)).to_not receive(:save_as)
-
-        patch :update, params: {
-                         id: need,
-                         delete_criteria: '1',
-                         need: updated_attributes.merge(
-                           met_when: [
-                             'the need is met',
-                             'another criteria is met',
-                             'a third criteria is met',
-                           ],
-                         )
-                       }
-
-        expect(controller.send(:need).met_when).to eq([
-          'the need is met',
-          'a third criteria is met',
-        ])
-        expect(controller).to render_template(:edit)
-      end
     end
   end
 
