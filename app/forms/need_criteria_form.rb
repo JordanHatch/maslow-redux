@@ -15,6 +15,7 @@ class NeedCriteriaForm < Rectify::Form
     self.criteria = model.met_when.map {|value|
       CriterionForm.from_params(value: value)
     }
+    self.add_extra_criteria! if self.criteria.size < 1
   end
 
   def criteria_attributes=(attributes)
