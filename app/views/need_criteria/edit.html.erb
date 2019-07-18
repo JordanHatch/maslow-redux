@@ -15,16 +15,28 @@
 
     <%= semantic_form_for @form, url: need_criteria_path(need), as: :need_criteria do |f| %>
       <ul>
-      <%= f.fields_for :criteria, f.object.criteria do |cf| %>
-        <li>
-          <%= cf.input :value, as: :string, label: "Criteria #{cf.index+1}" %>
-          <%= cf.input :delete, as: :boolean %>
-        </li>
-      <% end %>
+        <%= f.fields_for :criteria, f.object.criteria do |cf| %>
+          <li data-index="<%= cf.index %>">
+            <%= cf.input :value, as: :string, label: "Criteria <span data-label-index>#{cf.index+1}</span>".html_safe %>
+            <%= cf.input :delete, as: :boolean, wrapper_html: { class: 'js-disabled' }, input_html: { data: { delete: 'delete' } } %>
+
+            <a href="#" class="button-danger" data-action="delete">
+              <%= t('formtastic.actions.need_criteria.delete') %>
+            </a>
+          </li>
+        <% end %>
       </ul>
 
-      <%= f.action :submit, button_html: { class: 'btn btn-primary' } %>
-      <%= f.action :submit, button_html: { class: 'btn btn-primary', value: t('formtastic.actions.need_criteria.save_add_more') } %>
+      <div class="action-container">
+        <a href="#" class="button" data-action="add">
+          <%= t('formtastic.actions.need_criteria.add_more') %>
+        </a>
+      </div>
+
+      <%= f.actions do %>
+        <%= f.action :submit, button_html: { class: 'button-primary' } %>
+        <%= f.action :submit, button_html: { class: 'js-disabled btn btn-primary', value: t('formtastic.actions.need_criteria.save_add_more') } %>
+      <% end %>
     <% end %>
   </section>
 </article>

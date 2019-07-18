@@ -74,6 +74,44 @@ section.need-main.need-criteria {
     li {
       list-style: none;
       margin-bottom: 3rem;
+
+      &.deleted {
+        color: $grey-2;
+        text-decoration: line-through;
+
+        input {
+          opacity: 0.5;
+        }
+      }
     }
+
+    *[data-action] {
+      display: none;
+    }
+  }
+}
+
+body.js-enabled section.need-main.need-criteria form {
+  .button-danger {
+    display: inline-block;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-end;
+
+    .string {
+      flex: 1;
+      padding-right: 2rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .action-container {
+    border-bottom: 1px solid $grey-3;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+
+    .button { display: inline-block; }
   }
 }
