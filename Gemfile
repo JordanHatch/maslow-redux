@@ -33,7 +33,6 @@ group :development, :test do
   gem 'database_cleaner', require: false
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'jasmine', '2.1.0'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 3.6.0'
