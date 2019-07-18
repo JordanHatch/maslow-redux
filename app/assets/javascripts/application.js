@@ -20,11 +20,45 @@
 //= require bootstrap
 //= require Chart.bundle
 //= require chartkick
+//= require_self
 //= require_tree .
 
-$(function(){
-  $('#decide-on-need-button').
-    attr('href', '#decide-on-need-modal').
-    attr('data-toggle', 'modal').
-    attr('role', 'button');
-});
+/*
+  We're using the Garber-Irish loading pattern to separate modules:
+    https://www.viget.com/articles/extending-paul-irishs-comprehensive-dom-ready-execution/
+*/
+
+window.MASLOW = {
+  common: {
+    init: function () {
+      var toDisable = document.querySelectorAll('.js-disabled')
+      toDisable.forEach(function (el) {
+        el.style.display = 'none'
+      })
+
+      document.querySelector('body').classList.add('js-enabled')
+    }
+  }
+}
+
+var UTIL = {
+  exec: function (controller, action) {
+    var ns = window.MASLOW
+    action = (action === undefined) ? 'init' : action
+
+    if (controller !== '' && ns[controller] && typeof ns[controller][action] === 'function') {
+      ns[controller][action]()
+    }
+  },
+  init: function () {
+    var body = document.body
+    var controller = body.getAttribute('data-controller')
+    var action = body.getAttribute('data-action')
+
+    UTIL.exec('common')
+    UTIL.exec(controller)
+    UTIL.exec(controller, action)
+  }
+}
+
+$(document).ready(UTIL.init)

@@ -8,7 +8,7 @@
 
   <title><%= content_for?(:page_title) ? yield(:page_title) + " | " : "" %><%= app_title %></title>
 </head>
-<body class="default">
+<body class="default" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
   <%= render partial: 'shared/flash' %>
   <section class="app-container">
     <aside class="navigation">
