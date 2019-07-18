@@ -36,6 +36,7 @@
       <%= f.actions do %>
         <%= f.action :submit, button_html: { class: 'button-primary' } %>
         <%= f.action :submit, button_html: { class: 'js-disabled btn btn-primary', value: t('formtastic.actions.need_criteria.save_add_more') } %>
+        <%= f.action :cancel, button_html: { class: 'button' } %>
       <% end %>
     <% end %>
   </section>
