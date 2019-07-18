@@ -55,7 +55,6 @@ class NeedsController < ApplicationController
     authorize! :create, Need
 
     need.assign_attributes(need_params)
-    add_or_remove_criteria(:new) and return if criteria_params_present?
 
     if need.save_as(current_user)
       redirect_to redirect_url, notice: "Need created",
@@ -69,7 +68,6 @@ class NeedsController < ApplicationController
     authorize! :update, Need
 
     need.assign_attributes(need_params)
-    add_or_remove_criteria(:edit) and return if criteria_params_present?
 
     if need.save_as(current_user)
       redirect_to redirect_url, notice: "Need updated",
@@ -141,39 +139,9 @@ private
     params["add_new"] ? new_need_path : need_url(need.need_id)
   end
 
-  def prepare_need_params
-    need_params.tap {|hash|
-      [:met_when].each do |field|
-        if hash[field]
-          hash[field].select!(&:present?)
-        end
-      end
-    }
-  end
-
-  def criteria_params_present?
-    params[:criteria_action].present? || params[:delete_criteria].present?
-  end
-
-  def add_or_remove_criteria(action)
-    add_criteria if params[:criteria_action]
-    remove_criteria if params[:delete_criteria]
-    render :action => action
-  end
-
-  def add_criteria
-    need.add_more_criteria
-  end
-
-  def remove_criteria
-    index = Integer(params[:delete_criteria])
-    need.remove_criteria(index)
-  rescue ArgumentError
-  end
-
   def need_params
     params.require(:need).permit(:role, :goal, :benefit,
-      { met_when: [], proposition_statement_ids: [], team_ids: [] }
+      { proposition_statement_ids: [], team_ids: [] }
     ).tap do |whitelisted|
       permit_fields_for_tags!(whitelisted)
     end

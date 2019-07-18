@@ -16,6 +16,13 @@
     font-weight: 600;
     margin: 0;
     padding: 9px 15px;
+
+    a {
+      float: right;
+      color: $white;
+      text-decoration: none;
+      font-size: 15px;
+    }
   }
 }
 

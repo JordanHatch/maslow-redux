@@ -20,10 +20,6 @@
     <% end %>
   <% end %>
 
-  <%= f.inputs "How will you know when this need has been met?" do %>
-    <%= render partial: "met_when", locals: { met_when_criteria: criteria_with_blank_value(f.object.met_when), f: f } %>
-  <% end %>
-
   <%= render partial: 'shared/concerns/followable/form', locals: { form: f, label: 'Which teams are involved with this need?' } %>
 
   <% if presenter.show_tags? %>

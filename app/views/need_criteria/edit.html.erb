@@ -1,0 +1,43 @@
+<% content_for :page_title, "##{need.need_id}: #{format_need_goal(need.goal)}" %>
+<% content_for :navigation do %>
+  <%= render partial: 'needs/navigation' %>
+<% end %>
+
+<article class="need">
+  <section class="need-main need-criteria">
+    <header>
+      <h1>'Met when' criteria for this need</h1>
+    </header>
+
+    <div class="overview">
+      <%= render partial: 'edit_overview' %>
+    </div>
+
+    <%= semantic_form_for @form, url: need_criteria_path(need), as: :need_criteria do |f| %>
+      <ul>
+        <%= f.fields_for :criteria, f.object.criteria do |cf| %>
+          <li data-index="<%= cf.index %>">
+            <%= cf.input :value, as: :string, label: "Criteria <span data-label-index>#{cf.index+1}</span>".html_safe %>
+            <%= cf.input :delete, as: :boolean, wrapper_html: { class: 'js-disabled' }, input_html: { data: { delete: 'delete' } } %>
+
+            <a href="#" class="button-danger" data-action="delete">
+              <%= t('formtastic.actions.need_criteria.delete') %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="action-container">
+        <a href="#" class="button" data-action="add">
+          <%= t('formtastic.actions.need_criteria.add_more') %>
+        </a>
+      </div>
+
+      <%= f.actions do %>
+        <%= f.action :submit, button_html: { class: 'button-primary' } %>
+        <%= f.action :submit, button_html: { class: 'js-disabled btn btn-primary', value: t('formtastic.actions.need_criteria.save_add_more') } %>
+        <%= f.action :cancel, button_html: { class: 'button' } %>
+      <% end %>
+    <% end %>
+  </section>
+</article>

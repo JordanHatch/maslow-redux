@@ -36,10 +36,12 @@
         </section>
 
         <section class="box box-met-when">
-          <h1>Met when the user:</h1>
+          <h1>Met when the user:
+            <%= link_to 'Edit', edit_need_criteria_path(need) %>
+          </h1>
 
           <% if need.met_when.any? %>
-            <ul>
+            <ul class="need-criteria">
             <% need.met_when.each do |criterion| %>
               <li><%= criterion %></li>
             <% end %>
