@@ -21,6 +21,10 @@ RSpec.describe 'editing need criteria', type: :feature do
     end
   end
 
+  def button_label(action)
+    I18n.t(action, scope: %w[formtastic actions need_criteria])
+  end
+
   it 'can view criteria' do
     visit need_path(need)
     expect_need_criteria_present(page, expected_criteria)
@@ -37,7 +41,7 @@ RSpec.describe 'editing need criteria', type: :feature do
     new_value = 'cannot do a thing'
 
     fill_in 'Criteria 1', with: new_value
-    click_on 'Save criteria'
+    click_on button_label(:update)
 
     expected = [new_value, expected_criteria.last]
     expect_need_criteria_present(page, expected)
@@ -50,7 +54,7 @@ RSpec.describe 'editing need criteria', type: :feature do
     visit need_path(need)
     click_edit_button(page)
 
-    click_on 'Save and add another criteria'
+    click_on button_label(:save_add_more)
 
     inputs = page.all('input[type=text]')
 
@@ -65,7 +69,7 @@ RSpec.describe 'editing need criteria', type: :feature do
     within(input_container) do
       check 'Delete'
     end
-    click_on 'Save criteria'
+    click_on button_label(:update)
 
     expect_need_criteria_present(page, expected_criteria.last)
   end

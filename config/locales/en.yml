@@ -48,8 +48,10 @@ en:
       setup:
         create: 'Start using Maslow'
       need_criteria:
-        update: 'Save criteria'
+        update: 'Save changes'
+        add_more: 'Add another criteria'
         save_add_more: 'Save and add another criteria'
+        delete: 'Remove'
     labels:
       need_response:
         response_type: What kind of thing is it?
