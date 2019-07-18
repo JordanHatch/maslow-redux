@@ -16,16 +16,14 @@
 
       <h3><span>I need to</span> <%= format_need_goal(need.goal) %></h3>
 
-      <% if @bookmarks.present? %>
-        <%= semantic_form_for :bookmark, url: toggle_bookmarks_path,
-                                         class: 'bookmark-form',
-                                         data: { module: 'bookmark' } do |f| %>
+      <%= semantic_form_for :bookmark, url: toggle_bookmarks_path,
+                                       class: 'bookmark-form',
+                                       data: { module: 'bookmark' } do |f| %>
 
-          <%= f.input :need_id, :as => :hidden, :input_html => { :value => need.need_id } %>
-          <%= f.input :redirect_to, :as => :hidden, :input_html => { :value => @current_page } %>
-          <%= f.action :submit, input_html: { class: 'bookmark-toggle-button'} %>
-          <span class="bookmark-icon <%= bookmark_icon(@bookmarks, need.need_id) %>" title="Toggle bookmark"></span>
-        <% end %>
+        <%= f.input :need_id, :as => :hidden, :input_html => { :value => need.need_id } %>
+        <%= f.input :redirect_to, :as => :hidden, :input_html => { :value => @current_page } %>
+        <%= f.action :submit, input_html: { class: 'bookmark-toggle-button'} %>
+        <span class="bookmark-icon <%= bookmark_icon(@bookmarks, need.need_id) %>" title="Toggle bookmark"></span>
       <% end %>
     </div>
   <% end %>
