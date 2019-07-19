@@ -12,7 +12,7 @@
         So that <em><%= need.benefit %></em>
       </h1>
 
-      <% if current_user.can?(:update, Need) && !need.closed? %>
+      <% if current_user_can_edit_need?(need) %>
         <div class="actions">
           <%= link_to edit_need_path(need), class: 'button-primary' do %>
             Edit this need
@@ -37,7 +37,9 @@
 
         <section class="box box-met-when">
           <h1>Met when the user:
-            <%= link_to 'Edit', edit_need_criteria_path(need) %>
+            <% if current_user_can_edit_need?(need) %>
+              <%= link_to 'Edit', edit_need_criteria_path(need) %>
+            <% end %>
           </h1>
 
           <% if need.met_when.any? %>

@@ -11,6 +11,12 @@ FactoryBot.define do
         ['admin']
       }
     end
+    trait :editor do
+      roles { ['editor'] }
+    end
+    trait :commenter do
+      roles { ['commenter'] }
+    end
     trait :bot do
       roles {
         ['bot']
@@ -21,6 +27,8 @@ FactoryBot.define do
     end
 
     factory :admin_user, traits: [:admin]
+    factory :editor_user, traits: [:editor]
+    factory :commenter_user, traits: [:commenter]
     factory :bot_user, traits: [:bot]
   end
 end

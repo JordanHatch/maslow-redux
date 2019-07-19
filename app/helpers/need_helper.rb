@@ -28,4 +28,8 @@ module NeedHelper
   def bookmark_icon(bookmarks = [], need_id)
     bookmarks.include?(need_id.to_s) ? 'bookmark-selected' : 'bookmark-unselected'
   end
+
+  def current_user_can_edit_need?(need)
+    current_user.can?(:update, Need) && !need.closed?
+  end
 end
