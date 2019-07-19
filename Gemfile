@@ -29,7 +29,7 @@ gem 'sassc-rails', '>= 2.0.0'
 gem 'simple_token_authentication', '~> 1.0'
 
 group :development, :test do
-  gem 'capybara', '~> 2.10.0'
+  gem 'capybara', '~> 3.26.0'
   gem 'database_cleaner', require: false
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
