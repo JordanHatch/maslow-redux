@@ -9,7 +9,7 @@
       <h1>Justification and evidence for this need</h1>
     </header>
 
-    <% if current_user_can_update_need?(need) %>
+    <% if current_user_can_edit_need?(need) %>
       <p><%= link_to 'Add or edit evidence', edit_need_evidence_path(need), class: 'btn btn-primary' %></p>
     <% end %>
 
