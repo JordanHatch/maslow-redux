@@ -134,13 +134,13 @@ section.box {
     }
 
     .response-type-content .icon {
-      @extend .glyphicon-file;
+      @extend .glyphicon-book;
     }
     .response-type-service .icon {
-      @extend .glyphicon-ok;
+      @extend .glyphicon-list-alt;
     }
     .response-type-other .icon {
-      @extend .glyphicon-certificate;
+      @extend .glyphicon-bullhorn;
     }
   }
 }
