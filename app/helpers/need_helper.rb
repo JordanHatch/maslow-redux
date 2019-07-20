@@ -1,7 +1,4 @@
 module NeedHelper
-  include ActiveSupport::Inflector
-  include ActionView::Helpers::NumberHelper
-
   def format_need_goal(goal)
     return "" if goal.blank?
 

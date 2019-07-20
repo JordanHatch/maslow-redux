@@ -1,7 +1,7 @@
 class NeedResponse < ApplicationRecord
   extend Enumerize
 
-  enumerize :response_type, in: [:content, :service, :other]
+  enumerize :response_type, in: [:content, :service, :other], scope: :with_type
 
   validates :need, :response_type, :name, presence: true
 

@@ -1,11 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe 'adding responses to needs', type: :feature do
+RSpec.describe 'editing need responses', type: :feature do
 
   let(:need) { create(:need) }
 
   def form_label(key)
     I18n.t("formtastic.labels.need_response.#{key}")
+  end
+
+  def type_label(key)
+    I18n.t(key, scope: %w[enumerize need_response response_type])
+  end
+
+  it 'can see the count of need responses on the overview' do
+    response_counts = {
+      content: 3,
+      service: 2,
+      other: 1,
+    }
+
+    response_counts.each do |type, count|
+      create_list(:need_response, count, response_type: type, need: need)
+    end
+
+    visit need_path(need)
+
+    within '.box-responses' do
+      response_counts.each do |type, count|
+        label = type_label(type).downcase.pluralize(count)
+
+        # Eg. "2 content items"
+        expect(page).to have_content("#{count} #{label}")
+      end
+    end
   end
 
   it 'can add a response to a need' do

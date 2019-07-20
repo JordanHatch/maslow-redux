@@ -102,18 +102,7 @@
           </section>
         <% end %>
 
-        <section class="box box-responses">
-          <h1>Response</h1>
-          <h2>
-            <em><%= need.need_responses.count %></em>
-            <%= 'thing'.pluralize(need.need_responses.count) %> responding to this need
-          </h2>
-          <p class="more-link">
-            <%= link_to need_responses_path(need) do %>
-              See all responses to this need &rarr;
-            <% end %>
-          </p>
-        </section>
+        <%= render partial: 'needs/overview/responses', locals: { need: need } %>
 
         <% if presenter.show_actions? %>
           <section class="box box-actions">

@@ -1,0 +1,14 @@
+<section class="box box-responses">
+  <h1>Meeting this need</h1>
+
+  <ul class="response-summary">
+    <% NeedResponse.response_type.options.each do |label, value| %>
+      <li class="<%= "response-type-#{value}" %>">
+        <%= link_to need_responses_path(need) do %>
+          <span class="icon" aria-hidden="true"></span>
+          <span class="detail"><%= pluralize(need.need_responses.with_type(value).count, label.downcase) %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>
