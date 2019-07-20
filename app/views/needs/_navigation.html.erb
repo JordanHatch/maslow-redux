@@ -22,5 +22,8 @@
   <%= nav_link_to 'Activity', activity_need_path(need), icon: 'inbox' %>
   <%= nav_link_to 'Justification and evidence', need_evidence_path(need), icon: 'th-list', match_prefix: true %>
   <%= nav_link_to 'Meeting the need', need_responses_path(need), icon: 'globe', match_prefix: true %>
-  <%= nav_link_to 'Performance', need_performance_path(need), icon: 'stats' %>
+
+  <% if NeedPerformancePoint.any? %>
+    <%= nav_link_to 'Performance', need_performance_path(need), icon: 'stats' %>
+  <% end %>
 </ul>
