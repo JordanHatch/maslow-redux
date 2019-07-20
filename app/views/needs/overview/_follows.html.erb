@@ -1,0 +1,7 @@
+<section class="box box-follows">
+  <%= render partial: 'shared/concerns/followable/list',
+             locals: {
+               teams: need.teams,
+               empty_message: 'There are no teams involved with this need.',
+             } %>
+</section>

@@ -1,0 +1,20 @@
+<% if presenter.show_proposition_statements? %>
+  <section class="box box-proposition">
+    <h1>This need is in scope because:</h1>
+
+    <% if need.proposition_statements.any? %>
+      <ul>
+      <% need.proposition_statements.each do |statement| %>
+        <li>
+          <h2><%= statement.name %></h2>
+          <% if statement.description %>
+            <p><%= statement.description %></p>
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p class="empty">This need doesn't meet any criteria in the proposition.</p>
+    <% end %>
+  </section>
+<% end %>

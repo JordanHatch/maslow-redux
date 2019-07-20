@@ -1,0 +1,26 @@
+<% if presenter.show_tags? %>
+  <section class="box box-tags">
+    <h1>Collections</h1>
+
+    <% if need.taggings.any? %>
+      <ul class="tags-list">
+        <% need.joined_tag_types.each do |tag_type| %>
+          <li>
+            <h3><%= tag_type.name %>:</h3>
+            <ul>
+              <% need.tags_of_type(tag_type).each do |tag| %>
+                <% if tag_type.show_index_page? %>
+                  <li><%= link_to "#{tag.name} →", tag_path(tag) %></li>
+                <% else %>
+                  <li><%= tag.name %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="empty">This need has not yet been tagged with anything.</p>
+    <% end %>
+  </section>
+<% end %>

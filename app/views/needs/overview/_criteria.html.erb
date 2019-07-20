@@ -1,0 +1,17 @@
+<section class="box box-met-when">
+  <h1>Met when the user:
+    <% if current_user_can_edit_need?(need) %>
+      <%= link_to 'Edit', edit_need_criteria_path(need) %>
+    <% end %>
+  </h1>
+
+  <% if need.met_when.any? %>
+    <ul class="need-criteria">
+    <% need.met_when.each do |criterion| %>
+      <li><%= criterion %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p class="empty">This need has no 'met when' criteria.</p>
+  <% end %>
+</section>

@@ -1,0 +1,10 @@
+<% if presenter.show_actions? %>
+  <section class="box box-actions">
+    <h1>Actions</h1>
+    <p>
+      <%= link_to close_as_duplicate_need_path(need), class: 'button-danger' do %>
+        <span class="icon" aria-hidden="true"></span> Close as duplicate
+      <% end %>
+    </p>
+  </section>
+<% end %>
