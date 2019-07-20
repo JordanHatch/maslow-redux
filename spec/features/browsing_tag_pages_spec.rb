@@ -20,4 +20,13 @@ RSpec.describe 'browsing tag pages', type: :feature do
     end
   end
 
+  it 'can open the tag editing page' do
+    # TODO: Expand this test case to edit a tag and check the changes are applied
+    #
+    visit tag_path(tag)
+    click_on 'Edit this page'
+
+    expect(page).to have_field('tag_body')
+  end
+
 end

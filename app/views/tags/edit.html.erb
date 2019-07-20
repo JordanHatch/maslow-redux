@@ -34,7 +34,7 @@
     <% else %>
       <div class="priority-needs-editor" data-page-editor-role="column-set">
         <ul style="display: none" data-page-editor-role="all-needs">
-          <%= render partial: "needs/need_row", collection: needs, as: :need, locals: { draggable: true } %>
+          <%= render partial: "needs/need_row", collection: needs, as: :need, locals: { draggable: true, skip_bookmarks: true } %>
         </ul>
 
         <ul style="display: none" class="other-needs" data-page-editor-role="other-list">
