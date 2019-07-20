@@ -1,6 +1,8 @@
 /* Navigation layout rules can be found in `layouts/default.scss`.
 */
 
+$navigationLeftGutter: 1.2em;
+
 aside.navigation {
   background: $primary-color;
   border: 0px solid #e6e6e6;
@@ -11,20 +13,21 @@ aside.navigation {
     border-bottom-width: 5px;
   }
   @include respond-to(tablet) {
-    font-size: 13px;
+    font-size: 1.2rem;
   }
 
   color: #fff;
-  font-size: 14px;
+  font-size: 1.4rem;
 
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 
   header {
-    padding: 10px 15px 15px;
+    padding: .7em $navigationLeftGutter 1.1em;
     background: darken($primary-color, 10%);
     border-bottom: 2px solid darken($primary-color, 2%);
-    margin-bottom: 7px;
+    margin-bottom: .5em;
   }
 
   .back-link {
@@ -32,7 +35,7 @@ aside.navigation {
       color: rgba(255,255,255,0.5);
       display: inline-block;
       text-decoration: none;
-      font-size: 0.785em;
+      font-size: 1.1rem;
 
       &:hover {
         color: #fff;
@@ -43,7 +46,7 @@ aside.navigation {
         @extend .glyphicon-menu-left;
 
         padding-right: 1px;
-        font-size: 9px;
+        font-size: 0.9rem;
       }
     }
   }
@@ -55,29 +58,34 @@ aside.navigation {
       color: $inverse-text-color;
     }
 
-    font-size: 1.285em;
-    margin: 10px 0 0;
+    font-size: 1.8rem;
+    margin: .6em 0 0;
     line-height: 1.2em;
   }
 
   h3 {
-    font-size: 0.928em;
+    font-size: .95em;
     text-transform: uppercase;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.75);
-    padding: 0 15px;
-    margin: 20px 0 5px;
+    padding: 0 $navigationLeftGutter;
+    margin: 1.4em 0 .15em;
   }
 
   ul.navigation-list {
-    padding: 10px 0;
+    padding: 0.7em 0;
+    font-size: .95em;
+
+    @include respond-to(tablet) {
+      font-size: 1.05em;
+    }
 
     li {
       list-style: none;
 
       a {
         display: block;
-        padding: 10px 15px 10px 15px;
+        padding: .58em $navigationLeftGutter;
 
         color: rgba(255, 255, 255, 0.7);
         font-weight: 500;
@@ -103,13 +111,14 @@ aside.navigation {
 
   .nav-content {
     flex: 1;
+    overflow: scroll;
   }
 
   .signed-in-user {
     align-self: flex-end;
 
     background: darken($primary-color, 10%);
-    padding: 15px;
+    padding: .9em $navigationLeftGutter;
     width: 100%;
 
     strong {
@@ -124,7 +133,7 @@ aside.navigation {
     li {
       list-style: none;
       display: inline;
-      font-size: 0.857em;
+      font-size: .95em;
 
       &::after {
         content: " - ";
