@@ -33,7 +33,7 @@ first user account.
     bin/setup
 
     # Starts the Maslow server
-    foreman start -c 'web=1'
+    foreman start web
 
 ## Configuration
 
